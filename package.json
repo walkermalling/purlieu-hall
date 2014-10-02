@@ -1,0 +1,32 @@
+{
+  "name": "purlieu-hall",
+  "version": "3.0.1",
+  "description": "homepage",
+  "repository": {
+    "type": "git"
+  },
+  "dependencies": {
+    "body-parser": "^1.9.0",
+    "express": "^4.9.5",
+    "moment": "^2.8.3",
+    "mongoose": "^3.8.17",
+    "jwt-simple": "latest",
+    "passport": "^0.2.1",
+    "passport-http": "^0.2.2"
+  },
+  "devDependencies": {
+    "app-root-path": "^0.1.0",
+    "automocha": "^1.0.0",
+    "chai": "^1.9.1",
+    "mocha": "^1.21.4",
+    "debowerify": "^0.8.1",
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^3.0.1",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-sass": "^0.8.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-express-server": "^0.4.19"
+  }
+}
