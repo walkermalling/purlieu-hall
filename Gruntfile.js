@@ -30,8 +30,7 @@ module.exports = function(grunt) {
           'css/*.css',
           'views/*.html'
         ],
-        dest: 'build/',
-        filter: 'isFile'
+        dest: 'build/'
       }
     },
 
@@ -56,14 +55,6 @@ module.exports = function(grunt) {
       }
     },
 
-    sass: {
-      build: {
-        files: {
-          'app/css/styles.css': 'app/css/scss/styles.scss'
-        }
-      }
-    },
-
     express: {
       dev: {
         options: {
@@ -78,16 +69,17 @@ module.exports = function(grunt) {
         files: [
           'app/js/**/*.js',
           'app/index.html',
+          'app/css/*.css',
+          'app/templates/*.html',
           'app/views/**/*.html',
-          'app/css/scss/*.scss',
           'server.js',
           'models/*.js',
           'routes/*.js',
-          'images/**.*'
+          'images/**.*',
+          '.jshintrc'
         ],
         tasks: [
           'jshint',
-          'sass',
           'clean:dev',
           'browserify:dev',
           'copy:dev',
@@ -104,7 +96,6 @@ module.exports = function(grunt) {
   // register tasks
   grunt.registerTask('default', [
       'jshint',
-      'sass',
       'clean:dev',
       'browserify:dev',
       'copy:dev',

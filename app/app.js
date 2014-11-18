@@ -10,7 +10,7 @@ require('angular-route');
 require('angular-cookies');
 require('angular-base64');
 
-var purlieu = angular.module('purlieu', [
+var redcedar = angular.module('redcedar', [
   'ngRoute',
   'base64',
   'ngCookies'
@@ -26,7 +26,7 @@ var purlieu = angular.module('purlieu', [
 
 // Routes
 
-purlieu.config([ '$routeProvider', function($routeProvider) {
+redcedar.config([ '$routeProvider', function($routeProvider) {
     $routeProvider
       .when('/home', {
         templateUrl: 'views/home-view.html'
