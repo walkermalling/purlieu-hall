@@ -43,6 +43,13 @@ header{
   border-left:6px solid black;
   border-right:6px solid black;
 }
+
+#placeholder{
+  width:80px;
+  height:300px;
+  margin:0 auto;
+  border:2px solid black;
+}
 nav{
   width:812px;
   margin:0 0 0 -6px;
@@ -60,6 +67,12 @@ nav{
   }
   nav > div.menu-item{
     width:100%;
+    height:50px;
+    -webkit-transition: height 300ms ease-in-out;
+    -moz-transition: height 300ms ease-in-out;
+    -ms-transition: height 300ms ease-in-out;
+    -o-transition: height 300ms ease-in-out;
+    transition: height 300ms ease-in-out;
   }
     nav > div.menu-item > a{
       display:block;
@@ -71,16 +84,15 @@ nav{
       nav > div.menu.item:hover > a{
         text-decoration:underline;
       }
-      .menu-item .pull-down{
+      .menu-item > .pull-down{
         height:0px;
         opacity:0;
         padding:0 40px 0 40px;
-        
-        -webkit-transition: height 900ms ease-in-out;
-        -moz-transition: height 900ms ease-in-out;
-        -ms-transition: height 900ms ease-in-out;
-        -o-transition: height 900ms ease-in-out;
-        transition: height 900ms ease-in-out;
+        -webkit-transition: all 300ms ease-in-out;
+        -moz-transition: all 300ms ease-in-out;
+        -ms-transition: all 300ms ease-in-out;
+        -o-transition: all 300ms ease-in-out;
+        transition: all 300ms ease-in-out;
 
         -webkit-transition: opacity 200ms ease-in-out;
         -moz-transition: opacity 200ms ease-in-out;
@@ -88,9 +100,17 @@ nav{
         -o-transition: opacity 200ms ease-in-out;
         transition: opacity 200ms ease-in-out;
       }
-      .menu-item.active .pull-down{
+      .menu-item.active{
+        height:150px;
+      }
+      .menu-item.active > .pull-down{
         height:100px;
         opacity:1;
+      }
+
+      .menu-item.primary > .pull-down,
+      .menu-item.secondary > .pull-down{
+        color:#f9f8cc;
       }
   nav > div.menu-item.primary{
     background: #333426;
