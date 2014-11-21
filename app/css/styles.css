@@ -84,7 +84,8 @@ div#centering-wrapper {
     width: calc(100% + 1em);
     margin:0 0 0 -.5em;
     position:relative;
-    height:400px;
+    height:420px;
+    background:black;
   }
     div#first-top-border-green{
       height: .5em;
@@ -146,34 +147,39 @@ div#centering-wrapper {
         }
           .pull-down p{
             letter-spacing:1px;
+            text-align: justify;
           }
-          .pull-down.table{
+          @media screen and (max-width: 800px){
+            .pull-down p{
+              font-size: .9em;
+            }
           }
-          .pull-down.table p{
-            letter-spacing:1px;
-            line-height:1.5em;
+          @media screen and (max-width: 600px){
+            .pull-down p{
+              font-size: .8em;
+            }
           }
-            .pull-down.table p span{
+            .pull-down p span{
               display:inline-block;
               height:1.5em;
               line-height: 1.5em;
               padding:0;
             }
-              .pull-down.table p span.date{
+              .pull-down p span.date{
                 width:70px;
               }
-              .pull-down.table p span.dash{
+              .pull-down p span.dash{
                 width:20px;
                 text-align:center;
               }
-              .pull-down.table p span.event{
+              .pull-down p span.event{
                 width:200px;
               }
-              .pull-down.table p span.time{
+              .pull-down p span.time{
                 width:20px;
                 text-align:center;
               }
-              .pull-down.table p span.fee{
+              .pull-down p span.fee{
                 width:150px;
               }
         .menu-item.active{
@@ -183,6 +189,15 @@ div#centering-wrapper {
           height:100px;
           opacity:1;
         }
+          /* adjust pull down size */
+          .menu-item.primary.active,
+          .menu-item.quinary.active{
+            height:200px;
+          }
+            .menu-item.primary.active > .pull-down,
+            .menu-item.quinary.active > .pull-down{
+              height:150px;
+            }
 
         /* font color for menu sections */
         .menu-item.primary > .pull-down,
@@ -204,7 +219,7 @@ div#centering-wrapper {
         .pull-down input[type="password"]{
           border:0;
           width:15em;
-          margin:0 2em;
+          margin:1em 2em;
           background:transparent;
           border-bottom:1px solid #4D4C38;
           color:#4D4C38;
