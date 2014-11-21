@@ -10,8 +10,6 @@ require('angular-route');
 require('angular-cookies');
 require('angular-base64');
 
-
-
 var purlieu = angular.module('purlieu', [
   'ngRoute',
   'base64',
@@ -19,13 +17,18 @@ var purlieu = angular.module('purlieu', [
 ]);
 
 // Services
+// require('./js/services/auth-service')(purlieu);
 
 // Models
 
 // Controllers
-require('./controllers/home-controller')(purlieu);
+
+require('./js/controllers/home-controller')(purlieu);
+// require('./js/controllers/user-controller')(purlieu);
 
 // Directives
+
+require('./js/directives/login-directive')(purlieu);
 
 // Routes
 

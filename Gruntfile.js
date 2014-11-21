@@ -1,6 +1,9 @@
 'use strict';
 
 module.exports = function(grunt) {
+
+  require('time-grunt')(grunt);
+
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -28,9 +31,13 @@ module.exports = function(grunt) {
         src: [
           '*.html',
           'css/*.css',
-          'views/*.html'
+          'views/*.html',
+          'templates/*.html',
+          'images/**/*',
+          'fonts/**/*'
         ],
-        dest: 'build/'
+        dest: 'build/',
+        filter: 'isFile'
       }
     },
 
@@ -103,7 +110,7 @@ module.exports = function(grunt) {
       'watch:express'
     ]);
 
-  grunt.registerTask('build:dev', [
+  grunt.registerTask('build', [
       'clean:dev',
       'browserify:dev',
       'copy:dev'
@@ -111,6 +118,11 @@ module.exports = function(grunt) {
 
   grunt.registerTask('watch:dev', [
       'build:dev',
+      'express:dev',
+      'watch:express'
+    ]);
+
+  grunt.registerTask('serve',[
       'express:dev',
       'watch:express'
     ]);
