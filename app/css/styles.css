@@ -183,21 +183,36 @@ div#centering-wrapper {
                 width:150px;
               }
         .menu-item.active{
-          height:170px;
+          height:340px;
         }
+          .menu-item,
+          .menu-item > a {
+            -webkit-transition: all 300ms ease-in-out;
+            -moz-transition: all 300ms ease-in-out;
+            -ms-transition: all 300ms ease-in-out;
+            -o-transition: all 300ms ease-in-out;
+            transition: all 300ms ease-in-out;
+          }
+          .menu-item.supress{
+            height:1em;
+          }
+          .menu-item.supress > a {
+            opacity:0;
+            line-height:0;
+          }
         .menu-item.active > .pull-down{
-          height:100px;
+          height:290px;
           opacity:1;
         }
-          /* adjust pull down size */
-          .menu-item.primary.active,
+
+/*          .menu-item.primary.active,
           .menu-item.quinary.active{
-            height:200px;
+            height:340px;
           }
             .menu-item.primary.active > .pull-down,
             .menu-item.quinary.active > .pull-down{
               height:150px;
-            }
+            }*/
 
         /* font color for menu sections */
         .menu-item.primary > .pull-down,
