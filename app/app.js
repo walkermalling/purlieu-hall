@@ -17,29 +17,36 @@ var purlieu = angular.module('purlieu', [
 ]);
 
 // Services
-// require('./js/services/auth-service')(purlieu);
+require('./js/services/auth-service')(purlieu);
 
 // Models
 
 // Controllers
 
-require('./js/controllers/home-controller')(purlieu);
-// require('./js/controllers/user-controller')(purlieu);
+require('./js/controllers/user-controller')(purlieu);
 
 // Directives
 
-require('./js/directives/login-directive')(purlieu);
+require('./js/directives/footer-directive')(purlieu);
 
 // Routes
 
 purlieu.config([ '$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/home', {
+      .when('/', {
         templateUrl: 'views/home-view.html',
-        controller: 'homeController'
+        controller: 'userController'
+      })
+      .when('/dtosaua', {
+        templateUrl: 'views/dtosaua.html',
+        controller: 'userController'
+      })
+      .when('/signout', {
+        templateUrl: 'views/home-view.html',
+        controller: 'userController'
       })
       .otherwise({
-        redirectTo: '/home'
+        redirectTo: '/'
       });
 
 } ]);

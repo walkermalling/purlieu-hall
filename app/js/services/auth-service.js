@@ -8,8 +8,9 @@ module.exports = function(app) {
           $location.path('/home');
           return 'noauth';
         } 
-        else
+        else {
           $http.defaults.headers.common.jwt = $cookies.jwt;
+        }
       }
     };
 

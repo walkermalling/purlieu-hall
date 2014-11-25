@@ -4,14 +4,22 @@ module.exports = function(app){
 
   app.controller('userController',
     function($scope, $http, $cookies, $base64, $location) {
-      if ($location.path() === '/signout')
-        $cookies.jwt = null;
 
-      if (!$cookies.jwt || $cookies.jwt.length >= 10)
-        return $location.path('/');
+      if ($location.path() === '/signout') $cookies.jwt = null;
+      if (!$cookies.jwt || $cookies.jwt.length >= 10) {
+        if ($location.path() != '/' ) {
+          console.log('redirecting...');
+          return $location.path('/');
+        }
+      }
 
-      $scope.signin = function() {
-        $http.defaults.headers.common.Authorization = 'Basic' + $base64.encode($scope.user.email + ':' + $scope.user.password);
+      $scope.login = function() {
+        console.log('loging in with...');
+        console.log($scope.user.email);
+        console.log($scope.user.password);
+        var credentials = 'Basic' + $base64.encode($scope.user.email + ':' + $scope.user.password);
+        console.log(credentials);
+        $http.defaults.headers.common.Authorization = credentials;
         $http({
           method: 'GET',
           url: '/api/users'
@@ -27,6 +35,7 @@ module.exports = function(app){
       };
 
       $scope.createUser = function() {
+        console.log('requesting new user account...');
         $http({
           method: 'POST',
           url: '/api/users',
@@ -43,8 +52,40 @@ module.exports = function(app){
       };
 
       $scope.validatePassword = function() {
-        return $scope.user.password === $scope.user.passwordConfirmation;
+        if ($scope.user.password === $scope.user.passwordConfirmation &&
+            $scope.user.password.length >= 5){
+          return true;
+        }
+        return false;
       };
+
+
+
+      /* ui logic */
+
+      var $ = require('jquery');
+      var menuLinks = $('nav .menu-item > a');
+      var menuItems = $('nav .menu-item');
+
+      menuLinks.on('click', function(){
+
+        var $this = $(this);
+
+        if ($this.parents('.menu-item').hasClass('active')){
+          $this.parents('.menu-item')
+            .removeClass('active');
+          menuItems
+            .removeClass('supress');
+        } else {
+          menuItems
+            .removeClass('active')
+              .not($this.parents('.menu-item'))
+              .addClass('supress');
+          $this.parents('.menu-item')
+            .addClass('active');
+        }
+
+      });
 
 
   });

@@ -1,10 +1,9 @@
 <main>
-  <header>
 
+  <header>
     <div id="placeholder">
       <img src="images/stairs.jpg" alt=""/>
     </div>
-
   </header>
 
   <nav>
@@ -71,13 +70,69 @@
       <li class="menu-item quinary">
         <a>Fellows</a>
         <div class="pull-down">
-          <login-controls></login-controls>
+          <div id="login">
+
+            <form name="loginform" data-ng-hide="newuser">
+
+              <input 
+                data-ng-model="user.email" 
+                type="text" 
+                name="email" 
+                placeholder="Email" 
+                required 
+                autofocus />
+
+              <input 
+                data-ng-model="user.password" 
+                type="password" 
+                name="password" 
+                placeholder="Password" 
+                required />
+              <br/>
+
+              <button data-ng-click="login()" data-ng-disabled="userform.$invalid">
+                Descend
+              </button>
+            
+            </form>
+
+            <form name="newuserform" data-ng-show="newuser">
+
+              <input 
+                type="text" 
+                data-ng-model="user.email" 
+                placeholder="email"
+                required />
+
+              <input 
+                type="password" 
+                data-ng-model="user.password" 
+                placeholder="password"
+                required />
+
+              <input 
+                type="password" 
+                data-ng-model="user.passwordConfirmation" 
+                placeholder="confirm"
+                required />
+
+              <br/>
+
+              <button data-ng-disabled="newuserform.$invalid" data-ng-click="createUser()">
+                Create New User
+              </button>
+
+            </form>
+
+            <a data-ng-click="newuser = !newuser">
+              {{ !newuser ? 'New Account' : 'Sign In'}}
+            </a>
+
+          </div>
         </div>
       </li>
 
     </ul><!-- end #static-wrapper -->
-
-   
 
     <div class="inverted-border left"></div>
     <div class="inverted-border right"></div>
@@ -85,37 +140,7 @@
   </nav>
 
   <footer>
-
-    <div id="black-bottom">
-      <div class="wide-item"></div>
-        <div class="wide-item"></div>
-      <div class="wide-item"></div>
-        <div class="wide-item"></div>
-      <div class="wide-item"></div>
-        <div class="wide-item"></div>
-      <div class="wide-item"></div>
-        <div class="wide-item"></div>
-      <div class="wide-item"></div>
-        <div class="wide-item"></div>
-      <div class="wide-item"></div>
-        <div class="wide-item"></div>
-      <div class="wide-item"></div>
-        <div class="wide-item"></div>
-      <div class="wide-item"></div>
-        <div class="wide-item"></div>
-      <div class="wide-item coda">
-        <div class="narrow-item"></div>
-        <div class="narrower-item"></div>
-      </div>
-    </div>
-
-    <address>
-      <p>102 S Jackson St Seattle</p>
-    </address>
-
-    <div class="inverted-border left"></div>
-    <div class="inverted-border right"></div>
-
+    <footer-block></footer-block>
   </footer>
 
 </main>

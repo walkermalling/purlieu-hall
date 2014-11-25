@@ -71,12 +71,12 @@ div#centering-wrapper {
     width:100%;
   }
   #placeholder{
-    width:200px;
+    width:75px;
     margin:0 auto;
-    padding:3em 0;
+    padding:3em 0 5em 0;
   }
     #placeholder img{
-      width:200px;
+      width:75px;
     }
   nav{
     width: -moz-calc(100% + 1em);
@@ -230,6 +230,12 @@ div#centering-wrapper {
           maring:0 auto;
           text-align:center;
         }
+          #login a{
+            font-family: 'Lucida Grand', sans-serif;
+            display:block;
+            padding:1em;
+            font-size:.9em;
+          }
         .pull-down input[type="text"],
         .pull-down input[type="password"]{
           border:0;
@@ -263,6 +269,7 @@ div#centering-wrapper {
             color:white;
             background-color: red;
           }
+
         
 
     li.menu-item.primary{
