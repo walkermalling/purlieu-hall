@@ -5,7 +5,7 @@ module.exports = function(app){
   app.directive('footerBlock', function() {
     return {
       restrict: 'EAC',
-      templateUrl: 'templates/footer-template.html'
+      templateUrl: 'js/directives/footer/footer-template.html'
     };
   });
 

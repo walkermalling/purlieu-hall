@@ -11,11 +11,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-mocha');
+  grunt.loadNpmTasks('grunt-simple-mocha');
 
   var allJavaScriptFilePaths = [
     'app/js/**/*.js',
+    'app/js/directives/**/*.js',
     'models/**/*.js',
     'routes/**/*.js',
+    'lib/**/*.js',
     'server.js'
   ];
 
@@ -34,7 +38,7 @@ module.exports = function(grunt) {
           '*.html',
           'css/*.css',
           'views/*.html',
-          'templates/*.html',
+          'js/directives/**/*.html',
           'images/**/*',
           'fonts/**/*'
         ],
@@ -61,6 +65,20 @@ module.exports = function(grunt) {
           'app/app.js'
         ],
         dest: 'build/scripts.js'
+      }
+    },
+
+    sass: {
+      build: {
+        files: {
+          'app/css/styles.css': 'app/css/scss/styles.scss'
+        }
+      }
+    },
+
+    simplemocha: {
+      all: {
+        src: ['test/mocha/**/*.js']
       }
     },
 
@@ -113,9 +131,17 @@ module.exports = function(grunt) {
     ]);
 
   grunt.registerTask('build', [
+      'jshint',
       'clean:dev',
       'browserify:dev',
       'copy:dev'
+    ]);
+
+  grunt.registerTask('test', [
+      'clean:dev',
+      'browserify:dev',
+      'copy:dev',
+      'simplemocha'
     ]);
 
   grunt.registerTask('watch:dev', [

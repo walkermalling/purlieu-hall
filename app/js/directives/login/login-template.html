@@ -1,0 +1,23 @@
+<form name="loginform" data-ng-hide="newuser">
+
+  <input 
+    data-ng-model="user.email" 
+    type="text" 
+    name="email" 
+    placeholder="Email" 
+    required 
+    autofocus />
+
+  <input 
+    data-ng-model="user.password" 
+    type="password" 
+    name="password" 
+    placeholder="Password" 
+    required />
+  <br/>
+
+  <button data-ng-click="signin()" data-ng-disabled="userform.$invalid">
+    Descend
+  </button>
+
+</form>

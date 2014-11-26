@@ -17,33 +17,39 @@ var purlieu = angular.module('purlieu', [
 ]);
 
 // Services
-require('./js/services/auth-service')(purlieu);
+// require('./js/services/auth-service')(purlieu);
 
 // Models
 
 // Controllers
 
-require('./js/controllers/user-controller')(purlieu);
+require('./js/controllers/home-controller')(purlieu);
+require('./js/controllers/login-controller')(purlieu);
+require('./js/controllers/new-user-controller')(purlieu);
+require('./js/controllers/dtosaua-controller')(purlieu);
 
 // Directives
 
-require('./js/directives/footer-directive')(purlieu);
+require('./js/directives/footer/footer-directive')(purlieu);
+require('./js/directives/login/login-directive')(purlieu);
+require('./js/directives/newuser/new-user-directive')(purlieu);
 
 // Routes
 
-purlieu.config([ '$routeProvider', function($routeProvider) {
+purlieu.config([ '$routeProvider', '$locationProvider', 
+  function($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/home-view.html',
-        controller: 'userController'
+        controller: 'homeController'
       })
       .when('/dtosaua', {
         templateUrl: 'views/dtosaua.html',
-        controller: 'userController'
+        controller: 'dtosauaController'
       })
       .when('/signout', {
         templateUrl: 'views/home-view.html',
-        controller: 'userController'
+        controller: 'loginController'
       })
       .otherwise({
         redirectTo: '/'

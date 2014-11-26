@@ -5,7 +5,7 @@ module.exports = function(app) {
     var auth = {
       sendJWT: function() {
         if (!$cookies.jwt || $cookies.jwt.length < 10){
-          $location.path('/home');
+          $location.path('/');
           return 'noauth';
         } 
         else {

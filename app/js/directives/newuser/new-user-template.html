@@ -1,0 +1,27 @@
+<form name="newuserform" data-ng-show="newuser">
+
+  <input 
+    type="text" 
+    data-ng-model="user.newEmail" 
+    placeholder="email"
+    required />
+
+  <input 
+    type="password" 
+    data-ng-model="user.newPassword" 
+    placeholder="password"
+    required />
+
+  <input 
+    type="password" 
+    data-ng-model="user.passwordConfirmation" 
+    placeholder="confirm"
+    required />
+
+  <br/>
+
+  <button data-ng-disabled="newuserform.$invalid" data-ng-click="createUser()">
+    Create New User
+  </button>
+
+</form>
