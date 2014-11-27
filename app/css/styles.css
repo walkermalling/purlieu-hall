@@ -44,9 +44,6 @@ div {
   border: 0;
   padding: 0; }
 
-main div {
-  position: relative; }
-
 div#centering-wrapper {
   margin: 1em auto 0 auto;
   width: 90%;
@@ -54,12 +51,25 @@ div#centering-wrapper {
   height: 900px;
   position: relative; }
 
+div {
+  position: relative; }
+
+main {
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border: 0;
+  border-left: 0.5em solid black;
+  border-right: 0.5em solid black;
+  padding: 1em;
+  min-height: 300px; }
+
 header {
   border-top: 0.5em solid black;
   border-left: 0.5em solid black;
   border-right: 0.5em solid black; }
 
-main {
+#container {
   height: 850px;
   width: 100%; }
 
@@ -85,6 +95,67 @@ div.inverted-border.left {
 
 div.inverted-border.right {
   right: 0.5em; }
+
+footer {
+  width: -moz-calc(100% + 1em);
+  width: -webkit-calc(100% + 1em);
+  width: calc(100% + 1em);
+  margin: 0 0 0 -0.5em;
+  position: relative;
+  bottom: 0; }
+
+footer div.wide-item {
+  width: 100%;
+  height: 0.5em; }
+
+footer > div#black-bottom {
+  height: auto; }
+
+div#black-bottom > div.wide-item:nth-child(odd) {
+  background: black; }
+
+div#black-bottom > div.wide-item:nth-child(even) {
+  /*background:#f9f8cc;*/
+  background-color: #E7E4B1;
+  height: 0.25em; }
+
+div#black-bottom > div.wide-item:first-child {
+  height: 40px; }
+
+div#black-bottom > div.wide-item.coda {
+  text-align: center;
+  height: 0.5em;
+  background: black; }
+
+div.narrow-item {
+  width: -moz-calc(100% - 1em);
+  width: -webkit-calc(100% - 1em);
+  width: calc(100% - 1em);
+  margin: 0 auto;
+  background: black;
+  height: 1em; }
+
+div.narrower-item {
+  width: -moz-calc(100% - 10em);
+  width: -webkit-calc(100% - 10em);
+  width: calc(100% - 10em);
+  margin: 0 auto;
+  background: black;
+  height: 0.5em; }
+
+footer address {
+  clear: both;
+  font-family: 'MarketDeco';
+  font-style: normal;
+  text-align: center;
+  line-height: 2em;
+  font-size: 0.8em;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased; }
+
+address p {
+  padding: 1.5em 0; }
 
 nav {
   width: -moz-calc(100% + 1em);
@@ -278,83 +349,7 @@ li.menu-item.quinary {
   background: #c8c797;
   background: #c4c293; }
 
-footer {
-  width: -moz-calc(100% + 1em);
-  width: -webkit-calc(100% + 1em);
-  width: calc(100% + 1em);
-  margin: 0 0 0 -0.5em;
-  position: relative;
-  bottom: 0; }
-
-footer div.wide-item {
-  width: 100%;
-  height: 0.5em; }
-
-footer > div#black-bottom {
-  height: auto; }
-
-div#black-bottom > div.wide-item:nth-child(odd) {
-  background: black; }
-
-div#black-bottom > div.wide-item:nth-child(even) {
-  /*background:#f9f8cc;*/
-  background-color: #E7E4B1;
-  height: 0.25em; }
-
-div#black-bottom > div.wide-item:first-child {
-  height: 40px; }
-
-div#black-bottom > div.wide-item.coda {
-  text-align: center;
-  height: 0.5em;
-  background: black; }
-
-div.narrow-item {
-  width: -moz-calc(100% - 1em);
-  width: -webkit-calc(100% - 1em);
-  width: calc(100% - 1em);
-  margin: 0 auto;
-  background: black;
-  height: 1em; }
-
-div.narrower-item {
-  width: -moz-calc(100% - 10em);
-  width: -webkit-calc(100% - 10em);
-  width: calc(100% - 10em);
-  margin: 0 auto;
-  background: black;
-  height: 0.5em; }
-
-footer address {
-  clear: both;
-  font-family: 'MarketDeco';
-  font-style: normal;
-  text-align: center;
-  line-height: 2em;
-  font-size: 0.8em;
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  font-smoothing: antialiased; }
-
-address p {
-  padding: 1.5em 0; }
-
-main.dtosaua div#main-wrapper {
-  width: 100%;
-  margin: 0 auto;
-  box-sizing: border-box;
-  border: 0;
-  border-left: 0.5em solid black;
-  border-right: 0.5em solid black;
-  padding: 1em;
-  min-height: 300px; }
-
-main.dtosaua #masthead {
-  width: 75px;
-  margin: 0 auto;
-  padding: 1em 0 2em 0; }
-
-main.dtosaua nav {
+nav.dtosaua {
   width: -moz-calc(100% + 1em);
   width: -webkit-calc(100% + 1em);
   width: calc(100% + 1em);
@@ -391,3 +386,6 @@ main.dtosaua nav {
 
 #dtosaua-nav ul li:last-child a {
   padding-right: 2em; }
+
+#dtosaua-nav ul.sub-menu {
+  background: #727152; }

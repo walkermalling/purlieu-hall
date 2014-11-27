@@ -3,7 +3,7 @@ header{
   border-left:.5em solid black;
   border-right:.5em solid black;
 }
-main{
+#container{
   height:850px;
   width:100%;
 }
@@ -15,8 +15,6 @@ main{
   #masthead img{
     width:75px;
   }
-
-
 div.inverted-border{
   background: #f9f8cc;
   background-color: #E7E4B1;

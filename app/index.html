@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ng-app="purlieu">
 <head>
   <meta charset="UTF-8">
   <title>Purlieu Hall</title>
@@ -9,10 +9,24 @@
 </head>
 <body>
   <div id="centering-wrapper">
-    <div data-ng-app="purlieu">
+
+    <div id="container">
+
+      <header>
+        <div id="masthead">
+          <a href="/"><img src="images/stairs.jpg" alt=""/></a>
+        </div>
+      </header>
+
       <div data-ng-view></div>
-    </div>
-  </div>
+
+      <footer>
+        <footer-block></footer-block>
+      </footer>
+
+    </div><!-- end container -->
+
+  </div><!-- end centering wrapper -->
   <script src="scripts.js"></script>
 </body>
 </html>

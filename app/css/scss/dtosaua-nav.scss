@@ -1,4 +1,4 @@
-main.dtosaua nav{
+nav.dtosaua{
   width: -moz-calc(100% + 1em);
   width: -webkit-calc(100% + 1em);
   width: calc(100% + 1em);
@@ -37,3 +37,8 @@ main.dtosaua nav{
   #dtosaua-nav ul li:last-child a{
     padding-right:2em;
   }
+
+  #dtosaua-nav ul.sub-menu{
+    background:#727152;
+  }
+  

@@ -1,45 +1,63 @@
-<main class="dtosaua">
+<nav class="dtosaua">
 
-  <header>
-    <div id="masthead">
-      <a href="/"><img src="images/stairs.jpg" alt=""/></a>
-    </div>
-  </header>
+  <div id="first-top-border-green"></div>
+  <div id="second-top-border-green"></div>
 
-  <nav>
+  <div id="dtosaua-nav">
 
-    <div id="first-top-border-green"></div>
-    <div id="second-top-border-green"></div>
+    <ul class="">
+      <li><a data-ng-click="menu.select('home')">Home</a></li>  
+      <li><a data-ng-click="menu.select('calendar')">Calendar</a></li>
+      <li><a data-ng-click="menu.select('hours')">Hours</a></li>
+      <li><a data-ng-click="menu.select('library')">Library</a></li>
+      <li><a data-ng-click="menu.select('articles')">Articles</a></li>
+      <li><a data-ng-click="menu.select('dues')">Dues</a></li>
+    </ul>
 
-    <div id="dtosaua-nav">
-      <ul>
-        <li><a href="/#/dtosaua">Home</a></li>  
-        <li><a href="/#/dtosaua">Calendar</a></li>
-        <li><a href="/#/dtosaua">Hours</a></li>
-        <li><a href="/#/dtosaua">Library</a></li>
-        <li><a href="/#/dtosaua">Articles</a></li>
-        <li><a href="/#/dtosaua">Dues</a></li>
-      </ul>
-    </div>
-    
-    <div class="inverted-border left"></div>
-    <div class="inverted-border right"></div>
+    <ul class="sub-menu" data-ng-switch on="menu.selection">
 
-  </nav>
+      <div data-ng-switch-when="home">
+        <li><a data-ng-click="">home</a></li>
+      </div>
 
-  <div id="main-wrapper">
-    
-    <section>
-      <p>You are logged in.</p>
-      <p><a href="/#/signout">Log Out</a></p>
-    </section>
+      <div data-ng-switch-when="calendar">
+        <li><a data-ng-click="">calendar</a></li>
+      </div>
+      
+      <div data-ng-switch-when="hours">
+        <li><a data-ng-click="">hours</a></li>
+      </div>
+
+      <div data-ng-switch-when="library">
+        <li><a data-ng-click="">Search</a></li>
+        <li><a data-ng-click="">Collections</a></li>
+        <li><a data-ng-click="">Recordings</a></li>
+      </div>
+
+      <div data-ng-switch-when="articles">
+        <li><a data-ng-click="">articles</a></li>
+      </div>
+
+      <div data-ng-switch-when="dues">
+        <li><a data-ng-click="">dues</a></li>
+      </div>
+
+    </ul>
 
   </div>
+  
+  <div class="inverted-border left"></div>
+  <div class="inverted-border right"></div>
 
- 
+</nav>
 
-  <footer>
-    <footer-block></footer-block>
-  </footer>
+<main>
+  
+  <section>
+    <p>You are logged in.</p>
+    <p><a href="/#/signout">Log Out</a></p>
+  </section>
 
 </main>
+
+
