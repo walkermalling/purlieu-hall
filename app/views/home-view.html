@@ -1,7 +1,7 @@
-<main>
+<main class="home">
 
   <header>
-    <div id="placeholder">
+    <div id="masthead">
       <img src="images/stairs.jpg" alt=""/>
     </div>
   </header>
@@ -55,19 +55,6 @@
           <p>
             Please direct and questions you may have about the Hall to <a href="mailto:inquiries@purlieuhall.com">inquiries@purlieuhall.com</a>
           </p>
-          <form name="test-form">
-            <input 
-              data-ng-model="test.data" 
-              type="text" 
-              name="fake" 
-              placeholder="fake"
-              value="fake data"
-              required />
-            <br/>
-
-            <button data-ng-click="testGet()">Test</button>
-          
-          </form>
         </div>
       </li>
 
@@ -81,15 +68,15 @@
       </li>
 
       <li class="menu-item quinary">
-        <a>Fellows</a>
+        <a>{{ !user.create ? 'Fellows' : 'Create Account'}}</a>
         <div class="pull-down">
           <div id="login">
             
             <login-directive></login-directive>
             <newuser-directive></newuser-directive>
 
-            <a data-ng-click="newuser = !newuser">
-              {{ !newuser ? 'New Account' : 'Sign In'}}
+            <a data-ng-click="user.swap()">
+              {{ !user.create ? 'New Account' : 'Sign In'}}
             </a>
 
           </div>

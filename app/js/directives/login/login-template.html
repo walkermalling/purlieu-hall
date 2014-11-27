@@ -1,4 +1,4 @@
-<form name="loginform" data-ng-hide="newuser">
+<form name="loginform" data-ng-hide="user.create">
 
   <input 
     data-ng-model="user.email" 
@@ -16,7 +16,7 @@
     required />
   <br/>
 
-  <button data-ng-click="signin()" data-ng-disabled="userform.$invalid">
+  <button data-ng-click="signin()" data-ng-disabled="loginform.$invalid">
     Descend
   </button>
 

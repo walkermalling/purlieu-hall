@@ -27,6 +27,9 @@ module.exports = function(grunt) {
     clean: {
       dev: {
         src: ['build/']
+      },
+      style: {
+        src: ['build/css']
       }
     },
 
@@ -44,6 +47,15 @@ module.exports = function(grunt) {
         ],
         dest: 'build/',
         filter: 'isFile'
+      },
+      style:{
+        expand:true,
+        cwd: 'app/',
+        src: [
+          'css/*.css'
+        ],
+        dest: 'build/',
+        filter:'isFile'
       }
     },
 
@@ -109,9 +121,26 @@ module.exports = function(grunt) {
           'jshint',
           'clean:dev',
           'browserify:dev',
+          'sass:build',
           'copy:dev',
           'express:dev',
           'watch:express'
+        ],
+        options: {
+          spawn: false
+        }
+      },
+      style: {
+        files: [
+          'app/css/scss/*.scss',
+          '!app/css/scss/styles.scss'
+        ],
+        tasks: [
+          'clean:style',
+          'sass:build',
+          'copy:style',
+          'express:dev',
+          'watch:style'
         ],
         options: {
           spawn: false
@@ -125,21 +154,23 @@ module.exports = function(grunt) {
       'jshint',
       'clean:dev',
       'browserify:dev',
+      'sass:build',
       'copy:dev',
-      'express:dev',
-      'watch:express'
+      'express:dev'
     ]);
 
   grunt.registerTask('build', [
       'jshint',
       'clean:dev',
       'browserify:dev',
+      'sass:build',
       'copy:dev'
     ]);
 
   grunt.registerTask('test', [
       'clean:dev',
       'browserify:dev',
+      'sass:build',
       'copy:dev',
       'simplemocha'
     ]);
@@ -148,6 +179,11 @@ module.exports = function(grunt) {
       'build:dev',
       'express:dev',
       'watch:express'
+    ]);
+
+  grunt.registerTask('serve:style', [
+      'express:dev',
+      'watch:style'
     ]);
 
   grunt.registerTask('serve',[

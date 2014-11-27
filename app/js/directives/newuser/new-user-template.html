@@ -1,21 +1,21 @@
-<form name="newuserform" data-ng-show="newuser">
+<form name="newuserform" data-ng-show="user.create">
 
   <input 
     type="text" 
     data-ng-model="user.newEmail" 
-    placeholder="email"
+    placeholder="Email"
     required />
 
   <input 
     type="password" 
     data-ng-model="user.newPassword" 
-    placeholder="password"
+    placeholder="Password"
     required />
 
   <input 
     type="password" 
     data-ng-model="user.passwordConfirmation" 
-    placeholder="confirm"
+    placeholder="Confirm Password"
     required />
 
   <br/>

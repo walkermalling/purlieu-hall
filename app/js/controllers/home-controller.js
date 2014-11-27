@@ -2,7 +2,14 @@
 
 module.exports = function(app){
 
-  app.controller('homeController', function() {
+  app.controller('homeController', ['$scope', function($scope) {
+
+    $scope.user = {
+      create: false,
+      swap: function(){
+        $scope.user.create = !$scope.user.create;
+      }
+    };
 
     var $ = require('jquery');
     var menuLinks = $('nav .menu-item > a');
@@ -17,6 +24,8 @@ module.exports = function(app){
           .removeClass('active');
         menuItems
           .removeClass('supress');
+      } else if ( $this.parents('.menu-item').hasClass('supress')){
+        // do nothing
       } else {
         menuItems
           .removeClass('active')
@@ -28,5 +37,5 @@ module.exports = function(app){
 
     });
 
-  });
+  }]);
 };
