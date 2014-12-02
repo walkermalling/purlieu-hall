@@ -5,7 +5,6 @@ nav.dtosaua{
   margin:0 0 0 -.5em;
   position:relative;
   height:auto;
-  background:#cccc99;
 }
 
 #dtosaua-nav{
@@ -14,6 +13,7 @@ nav.dtosaua{
 }
 #dtosaua-nav ul{
   width:100%;
+  background:#cccc99;
 }
 #dtosaua-nav ul li{
   display:inline-block;
@@ -39,6 +39,36 @@ nav.dtosaua{
   }
 
   #dtosaua-nav ul.sub-menu{
-    background:#727152;
+    z-index:10;
+    position:absolute;
+    width:100%;
   }
-  
+  #dtosaua-nav ul.sub-menu > div.sub-menu-container{
+    background:#727152;
+    width:100%;
+  }
+
+
+ul.sub-menu div.ng-enter{
+  -webkit-transition:200ms ease-in-out all;
+  transition:200ms ease-in-out all;
+}
+
+ul.sub-menu div.ng-enter,
+ul.sub-menu div.ng-leave.ng-leave-active{
+  height:0px;
+}
+
+ul.sub-menu div.ng-leave,
+ul.sub-menu div.ng-enter.ng-enter-active{
+  height:34px;
+}
+
+ul.sub-menu a.ng-enter,
+ul.sub-menu a.ng-leave.ng-leave-active{
+  opacity:0;
+}
+ul.sub-menu a.ng-leave,
+ul.sub-menu a.ng-enter.ng-enter-active{
+  opacity:1;
+}

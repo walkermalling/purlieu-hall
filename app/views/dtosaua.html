@@ -6,45 +6,22 @@
   <div id="dtosaua-nav">
 
     <ul class="">
-      <li><a data-ng-click="menu.select('home')">Home</a></li>  
-      <li><a data-ng-click="menu.select('calendar')">Calendar</a></li>
-      <li><a data-ng-click="menu.select('hours')">Hours</a></li>
-      <li><a data-ng-click="menu.select('library')">Library</a></li>
-      <li><a data-ng-click="menu.select('articles')">Articles</a></li>
-      <li><a data-ng-click="menu.select('dues')">Dues</a></li>
+      <li data-ng-repeat="item in menu.items">
+        <a data-ng-click="select(item.name)">{{ item.name }}</a>
+      </li>
     </ul>
 
-    <ul class="sub-menu" data-ng-switch on="menu.selection">
-
-      <div data-ng-switch-when="home">
-        <li><a data-ng-click="">home</a></li>
+    <ul class="sub-menu">
+      <div data-ng-repeat="item in menu.items" data-ng-if="item.active" class="sub-menu-container">
+          <li data-ng-repeat="subitem in item.submenu">
+            <a data-ng-click="getPage(item.name, subitem.name)" data-ng-if="item.active">{{ subitem.name }}</a>
+          </li>
       </div>
-
-      <div data-ng-switch-when="calendar">
-        <li><a data-ng-click="">calendar</a></li>
-      </div>
-      
-      <div data-ng-switch-when="hours">
-        <li><a data-ng-click="">hours</a></li>
-      </div>
-
-      <div data-ng-switch-when="library">
-        <li><a data-ng-click="">Search</a></li>
-        <li><a data-ng-click="">Collections</a></li>
-        <li><a data-ng-click="">Recordings</a></li>
-      </div>
-
-      <div data-ng-switch-when="articles">
-        <li><a data-ng-click="">articles</a></li>
-      </div>
-
-      <div data-ng-switch-when="dues">
-        <li><a data-ng-click="">dues</a></li>
-      </div>
-
+      <div class="inverted-border left"></div>
+      <div class="inverted-border right"></div>
     </ul>
 
-  </div>
+  </div>      
   
   <div class="inverted-border left"></div>
   <div class="inverted-border right"></div>
@@ -53,10 +30,11 @@
 
 <main>
   
-  <section>
-    <p>You are logged in.</p>
-    <p><a href="/#/signout">Log Out</a></p>
-  </section>
+  <div data-ng-repeat="item in menu.items" data-ng-if="item.active">
+    <div data-ng-repeat="subitem in item.submenu" data-ng-if="subitem.active">
+      <div data-ng-bind-html="subitem.content"></div>
+    </div>
+  </div>
 
 </main>
 

@@ -9,11 +9,15 @@ require('angular/angular');
 require('angular-route');
 require('angular-cookies');
 require('angular-base64');
+require('angular-animate');
+require('angular-sanitize');
 
 var purlieu = angular.module('purlieu', [
   'ngRoute',
   'base64',
-  'ngCookies'
+  'ngCookies',
+  'ngAnimate',
+  'ngSanitize',
 ]);
 
 // Services

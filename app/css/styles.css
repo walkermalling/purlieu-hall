@@ -61,7 +61,7 @@ main {
   border: 0;
   border-left: 0.5em solid black;
   border-right: 0.5em solid black;
-  padding: 1em;
+  padding: 3em 1em;
   min-height: 300px; }
 
 header {
@@ -88,7 +88,7 @@ div.inverted-border {
   top: 0;
   bottom: 0;
   width: 0.5em;
-  z-index: 10; }
+  z-index: 100; }
 
 div.inverted-border.left {
   left: 0.5em; }
@@ -355,15 +355,15 @@ nav.dtosaua {
   width: calc(100% + 1em);
   margin: 0 0 0 -0.5em;
   position: relative;
-  height: auto;
-  background: #cccc99; }
+  height: auto; }
 
 #dtosaua-nav {
   width: 100%;
   text-align: center; }
 
 #dtosaua-nav ul {
-  width: 100%; }
+  width: 100%;
+  background: #cccc99; }
 
 #dtosaua-nav ul li {
   display: inline-block; }
@@ -388,4 +388,31 @@ nav.dtosaua {
   padding-right: 2em; }
 
 #dtosaua-nav ul.sub-menu {
-  background: #727152; }
+  z-index: 10;
+  position: absolute;
+  width: 100%; }
+
+#dtosaua-nav ul.sub-menu > div.sub-menu-container {
+  background: #727152;
+  width: 100%; }
+
+ul.sub-menu div.ng-enter {
+  -webkit-transition: 200ms ease-in-out all;
+  transition: 200ms ease-in-out all; }
+
+ul.sub-menu div.ng-enter, ul.sub-menu div.ng-leave.ng-leave-active {
+  height: 1em; }
+
+ul.sub-menu div.ng-leave, ul.sub-menu div.ng-enter.ng-enter-active {
+  height: 34px; }
+
+/*ul.sub-menu a.ng-enter,
+ul.sub-menu a.ng-leave{
+  -webkit-transition:200ms ease-in-out all;
+  transition:200ms ease-in-out all;
+}*/
+ul.sub-menu a.ng-enter, ul.sub-menu a.ng-leave.ng-leave-active {
+  opacity: 0; }
+
+ul.sub-menu a.ng-leave, ul.sub-menu a.ng-enter.ng-enter-active {
+  opacity: 1; }
