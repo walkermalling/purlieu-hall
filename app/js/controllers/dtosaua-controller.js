@@ -41,8 +41,9 @@ module.exports = function(app){
         'name' : 'home',
         'submenu' : [
           {
-            'name' : 'the con',
-            'content' : '<h3>the con</h3><p>slkdjfslkdjflskdjflskdjflsl kdjfslkdjflskdj flskdjflslkdjfslk</p><p>djflskdjflskdjf lslkdjfslkdjflskd jflskdjflslkdjfsl kdjflskdjflskdjfl</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p>'
+            'name' : 'welcome',
+            'header' : '102',
+            'content' : '<p>sl<span class="bold">kdjfslkdj</span>flskdjflskdjflsl kdjfslkdjflskdj flskdjflslkdjfslk</p><p>djflskdjflskdjf lslkdjfslkdjflskd jflskdjflslkdjfsl kdjflskdjflskdjfl</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p><p>hi</p>'
           }
         ]
       },

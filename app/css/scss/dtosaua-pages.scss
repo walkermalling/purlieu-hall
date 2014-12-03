@@ -1,0 +1,25 @@
+/* Page Transitions */
+.section-content.ng-enter{
+    -webkit-transition:200ms ease-in-out all;
+    transition:200ms ease-in-out all;
+    -webkit-transition-delay:200ms;
+    transition-delay:200ms;
+}
+
+.section-content.ng-leave{}
+
+.section-content.ng-enter,
+.section-content.ng-leave.ng-leave-active{
+  opacity:0;
+}
+
+.section-content.ng-leave,
+.section-content.ng-enter.ng-enter-active{
+  opacity:1;
+}
+
+.section-content h3{
+  font-family: 'MarketDeco', sans-serif;
+  font-size:16px;
+  font-weight:100;
+}
