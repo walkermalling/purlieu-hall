@@ -16,7 +16,6 @@ module.exports = function(grunt) {
 
   var allJavaScriptFilePaths = [
     'app/js/**/*.js',
-    'app/js/directives/**/*.js',
     'models/**/*.js',
     'routes/**/*.js',
     'lib/**/*.js',
@@ -41,7 +40,7 @@ module.exports = function(grunt) {
           '*.html',
           'css/*.css',
           'views/*.html',
-          'js/directives/**/*.html',
+          'js/**/*.html',
           'images/**/*',
           'fonts/**/*'
         ],
@@ -109,7 +108,6 @@ module.exports = function(grunt) {
           'app/js/**/*.js',
           'app/index.html',
           'app/css/*.css',
-          'app/templates/*.html',
           'app/views/**/*.html',
           'server.js',
           'models/*.js',

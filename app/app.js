@@ -21,22 +21,24 @@ var purlieu = angular.module('purlieu', [
 ]);
 
 // Services
+
+require('./js/services/account-server')(purlieu);
 // require('./js/services/auth-service')(purlieu);
 
 // Models
 
 // Controllers
 
-require('./js/controllers/home-controller')(purlieu);
-require('./js/controllers/login-controller')(purlieu);
-require('./js/controllers/new-user-controller')(purlieu);
-require('./js/controllers/dtosaua-controller')(purlieu);
+require('./js/public-nav/home-controller')(purlieu);
+require('./js/account/signin/signin-controller')(purlieu);
+require('./js/account/new-user/new-user-controller')(purlieu);
+require('./js/fellows-nav/dtosaua-controller')(purlieu);
 
 // Directives
 
-require('./js/directives/footer/footer-directive')(purlieu);
-require('./js/directives/login/login-directive')(purlieu);
-require('./js/directives/newuser/new-user-directive')(purlieu);
+require('./js/partials/footer/footer-directive')(purlieu);
+require('./js/account/signin/signin-directive')(purlieu);
+require('./js/account/new-user/new-user-directive')(purlieu);
 
 // Routes
 

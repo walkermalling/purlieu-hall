@@ -2,10 +2,10 @@
 
 module.exports = function(app){
 
-  app.directive('newuserDirective', function() {
+  app.directive('newUserDirective', function() {
     return {
       restrict: 'EAC',
-      templateUrl: 'js/directives/newuser/new-user-template.html',
+      templateUrl: 'js/account/new-user/new-user-template.html',
       controller: 'newUserController'
     };
   });

@@ -12,7 +12,7 @@ app.use(express.static(__dirname + '/build'));
 
 app.use(bodyparser.json());
 
-mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/db');
+mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/purlieu-db');
 
 app.set('jwtTokenSecret', process.env.JWT_SECRET || 'developmentsecret');
 app.set('secret', process.env.SECRET || 'developmentsecret');
