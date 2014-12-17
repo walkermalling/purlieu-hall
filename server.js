@@ -28,6 +28,7 @@ exports.port = app.get('port');
 
 require('./routes/user-routes')(app, passport);
 require('./routes/login-routes')(app, passport);
+require('./routes/frontpage-routes')(app);
 
 server.listen(app.get('port'),function(){
   console.log('Sever has started on ' + app.get('port'));

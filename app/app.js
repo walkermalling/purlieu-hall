@@ -23,6 +23,7 @@ var purlieu = angular.module('purlieu', [
 // Services
 
 require('./js/services/account-server')(purlieu);
+require('./js/services/cms-server')(purlieu);
 // require('./js/services/auth-service')(purlieu);
 
 // Models
@@ -33,6 +34,7 @@ require('./js/public-nav/home-controller')(purlieu);
 require('./js/account/signin/signin-controller')(purlieu);
 require('./js/account/new-user/new-user-controller')(purlieu);
 require('./js/fellows-nav/dtosaua-controller')(purlieu);
+require('./js/cms/cms-controller')(purlieu);
 
 // Directives
 
@@ -52,6 +54,10 @@ purlieu.config([ '$routeProvider', '$locationProvider',
       .when('/dtosaua', {
         templateUrl: 'views/dtosaua.html',
         controller: 'dtosauaController'
+      })
+      .when('/cms', {
+        templateUrl: 'views/cms-view.html',
+        controller: 'cmsController'
       })
       .when('/signout', {
         templateUrl: 'views/home-view.html',

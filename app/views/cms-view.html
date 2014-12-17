@@ -1,0 +1,42 @@
+<main class="cms">
+
+  <h2>CMS</h2>
+
+  <h3>Front Page Content</h3>
+
+  <h4>Create New Section</h4>
+
+  <div class="cms-form-wrapper">
+    <form data-ng-submit="frontpage.create()">
+      <label>Label</label>
+      <input  data-ng-model="frontpage.newItem.label" type="text" />
+      <label>Heading</label>
+      <input data-ng-model="frontpage.newItem.heading" type="text" />
+      <label>Content</label>
+      <textarea data-ng-model="frontpage.newItem.content"></textarea>
+      <label>Enable</label>
+      <input data-ng-model="frontpage.newItem.enable" type="checkbox" />
+      <input type="submit" value="Create" />
+    </form>
+  </div>
+
+  <h4>Edit Existing Section</h4>
+
+  <div data-ng-repeat="item in frontpage.items">
+    <form data-ng-submit="frontpage.update($index)">
+      <input type="hidden" value="{{ item._id }}" data-ng-model="item.id"/>
+      <label>Label</label>
+      <input type="text" value="{{ item.label }}" data-ng-model="item.label"/>
+      <label>Heading</label>
+      <input type="text" value="{{ item.heading }}" data-ng-model="item.heading" />
+      <label>Content</label>
+      <textarea name="content" data-ng-model="item.content">
+        {{ item.content }}
+      </textarea>
+      <label>Enable</label>
+      <input data-ng-model="newItem.enable" type="checkbox" />
+      <input type="submit" value="Update" />
+    </form>
+  </div>
+
+</main>

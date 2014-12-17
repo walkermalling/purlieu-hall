@@ -10,17 +10,33 @@ var UserSchema = mongoose.Schema({
     email: String,
     password: String
   },
+  name: {type: String, default: 'Fellow'},
   jwt: String,
-  created_at: {type: Date, default: Date.now }
+  permission: {type: String, default: 'denied'},
+  createdAt: {type: Date, default: Date.now },
+  updatedAt: {type: Date, default: Date.now }
 });
+
+// Auto update the updatedAt field before model save
+
+UserSchema.pre('save', function (next) {
+  this.updatedAt = new Date();
+  next();
+});
+
+// Encrypt the Password
 
 UserSchema.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
+// Validate Password
+
 UserSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.basic.password);
 };
+
+// Create JWT Token
 
 UserSchema.methods.createToken = function(app) {
   console.dir('creating token');
@@ -30,7 +46,8 @@ UserSchema.methods.createToken = function(app) {
 
   var token = jwt.encode({
     iss: self._id,
-    expires: expires
+    expires: expires,
+    permission: self.permission
   }, app.get('jwtTokenSecret'));
   
   console.dir(token);
