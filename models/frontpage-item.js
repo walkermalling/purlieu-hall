@@ -5,8 +5,7 @@ var mongoose = require('mongoose');
 // var moment = require('moment');
 
 var FrontpageItemSchema = mongoose.Schema({
-  label: String,
-  heading: String,
+  title: String,
   content: String,
   enable: {type: Boolean, default: false},
   accesslevel: {type: String, default: 'public'},

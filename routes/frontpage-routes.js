@@ -10,7 +10,6 @@ module.exports = function(app) {
   
   app.get(route, function (req,res){
     // TODO limit query based on jwt.auth middleware
-    console.log(req.body);
     FrontpageItem.find({}, function (err, items) {
       if (err) return res.status(500).json(err);
       else res.status(200).send(items);
@@ -29,7 +28,6 @@ module.exports = function(app) {
   // create
 
   app.post(route, function (req,res){
-    console.log(req.body);
     var item = new FrontpageItem(req.body);
     item.save(function (err, item) {
       if (err) return res.status(500).json(err);
@@ -40,10 +38,6 @@ module.exports = function(app) {
   // update
   
   app.put(route + '/:id', function (req,res){
-    console.log('body:');
-    console.log(req.body);
-    console.log('params');
-    console.log(req.params);
     var item = req.body;
     delete item._id;
     FrontpageItem.findOneAndUpdate({

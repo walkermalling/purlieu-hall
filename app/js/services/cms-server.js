@@ -37,7 +37,7 @@ module.exports = function(app) {
     };
 
     cmsServer.frontPageItem.destroy = function (item) {
-      return $http.put('/api/frontpage/' + item._id)
+      return $http.delete('/api/frontpage/' + item._id)
         .error(logError);
     };
 

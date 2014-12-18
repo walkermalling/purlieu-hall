@@ -1,7 +1,7 @@
 node_modules/
 app/bower_components/
 build/
-test/
 db/
+purlieu-db/
 .sass-cache/
 .DS_Store
