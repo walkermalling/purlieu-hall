@@ -24,7 +24,8 @@ var purlieu = angular.module('purlieu', [
 
 require('./js/services/account-server')(purlieu);
 require('./js/services/cms-server')(purlieu);
-// require('./js/services/auth-service')(purlieu);
+require('./js/services/content-server')(purlieu);
+require('./js/services/auth-service')(purlieu);
 
 // Models
 
@@ -41,6 +42,7 @@ require('./js/cms/cms-controller')(purlieu);
 require('./js/partials/footer/footer-directive')(purlieu);
 require('./js/account/signin/signin-directive')(purlieu);
 require('./js/account/new-user/new-user-directive')(purlieu);
+require('./js/partials/helpers/on-finish-render-directive')(purlieu);
 
 // Routes
 

@@ -8,6 +8,7 @@ var FrontpageItemSchema = mongoose.Schema({
   title: String,
   content: String,
   enable: {type: Boolean, default: false},
+  position: {type: Number, default: 0},
   accesslevel: {type: String, default: 'public'},
   createdAt: {type: Date, default: Date.now },
   updatedAt: {type: Date, default: Date.now }

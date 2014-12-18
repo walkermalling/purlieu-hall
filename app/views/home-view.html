@@ -4,58 +4,20 @@
     <div id="second-top-border-green"></div>
 
     <ul id="static-wrapper">
-      <li class="menu-item primary">
-        <a href="">Purlieu Hall</a>
-        <div class="pull-down">
-          <p>
-            Purlieu Hall is a private club for those who share a high respect for the possibilities afforded by having a quiet, provisioned, and companionable place to read, think and write.  Located in Seattle's historic Pioneer Square, the Hall is sometimes a refuge, sometimes a frontier. &mdash; As a club we play host a variety of events, including theatrical performances, concerts, readings, lectures, symposia, and film screenings.  
-          </p>
+
+      <li
+        data-ng-repeat="item in frontpage.items" 
+        on-finish-render
+        class="menu-item" >
+        <a>{{ item.title }}</a>
+        <div class="pull-down" data-ng-bind-html="item.content">
         </div>
       </li>
 
-      <li class="menu-item secondary">
-        <a href="">Public Events Calendar</a>
-        <div class="pull-down table">
-          <p>
-            <div>
-              <span class="date">11.22.14</span>
-              <span class="dash">-</span>
-              <span class="time">7p</span>
-              <span class="dash">-</span>
-              <span class="event">Fall Symposium</span>
-              <span class="dash">-</span>
-              <span class="fee">Members &amp; Guests</span>
-            </div>
-          </p>
-          <p>
-            <div>
-              <span class="date">12.20.14</span>
-              <span class="dash">-</span>
-              <span class="time">7p</span>
-              <span class="dash">-</span>
-              <span class="event">Winter Solstice Social</span>
-              <span class="dash">-</span>
-              <span class="fee">Members &amp; Guests</span>
-            </div>
-          </p>
-        </div>
-      </li>
-
-      <li class="menu-item tertiary">
-        <a href="">Inquiries</a>
+      <li class="menu-item quaternary">
+        <a>Public Events</a>
         <div class="pull-down">
-          <p>
-            Please direct and questions you may have about the Hall to <a href="mailto:inquiries@purlieuhall.com">inquiries@purlieuhall.com</a>
-          </p>
-        </div>
-      </li>
-
-      <li class="menu-item qaternary">
-        <a href="">Articles &amp; Submissions</a>
-        <div class="pull-down">
-          <p>
-            Purlieu Hall produces the Articles, an in-house publication.  Please provide us with your submissions at <a href="mailto:submissions@purlieuhall.com">submissions@purlieuhall.com</a>
-          </p>
+          <p>Cal Directive</p>
         </div>
       </li>
 

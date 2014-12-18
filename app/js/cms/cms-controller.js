@@ -2,8 +2,14 @@
 
 module.exports = function(app){
 
-  app.controller('cmsController', ['$scope', 'cmsServer',
-    function($scope, cmsServer) {
+  app.controller('cmsController', ['$scope', '$cookies', '$location', 'cmsServer',
+    function($scope, $cookies, $location, cmsServer) {
+
+    if (!$cookies.jwt || $cookies.jwt.length < 10) {
+      console.log('not authorized');
+      $cookies.jwt = null;
+      return $location.path('/');
+    }
 
     $scope.frontpage = {};
     $scope.frontpage.newItem = {};

@@ -20,7 +20,7 @@ app.set('secret', process.env.SECRET || 'developmentsecret');
 app.use(passport.initialize());
 require('./lib/passport')(passport);
 
-// var jwtauth = require('./lib/jwtauth')(app);
+var jwtauth = require('./lib/jwtauth')(app);
 
 var server = http.createServer(app);
 app.set('port', process.env.PORT || 3000);
@@ -29,6 +29,7 @@ exports.port = app.get('port');
 require('./routes/user-routes')(app, passport);
 require('./routes/login-routes')(app, passport);
 require('./routes/frontpage-routes')(app);
+require('./routes/frontpage-cms-routes')(app, jwtauth.auth);
 
 server.listen(app.get('port'),function(){
   console.log('Sever has started on ' + app.get('port'));

@@ -4,6 +4,12 @@ module.exports = function(app) {
   app.factory('cmsServer', function($http) {
 
     var cmsServer = {};
+
+    /**
+     *  FrontPage CMS
+     */
+    
+    var frontPageRoute = '/api/cms/frontpage/';
     cmsServer.frontPageItem = {};
 
     function logError (data, status) {
@@ -12,32 +18,32 @@ module.exports = function(app) {
       console.log(status);
     }
 
-    // Frontpage Item CRUD
+    /**
+     *  Frontpage Item CRUD
+     */
 
     cmsServer.frontPageItem.create = function (item) {
-      return $http.post('/api/frontpage', item)
+      return $http.post(frontPageRoute, item)
         .error(logError);
     };
 
     cmsServer.frontPageItem.get = function (id) {
-      return $http.get('/api/frontpage/' + id)
+      return $http.get(frontPageRoute + id)
         .error(logError);
     };
 
     cmsServer.frontPageItem.getAll = function () {
-      return $http.get('/api/frontpage')
+      return $http.get(frontPageRoute)
         .error(logError);
     };
 
     cmsServer.frontPageItem.update = function (item) {
-      console.log('cmsServer has item put request as: ');
-      console.log(item);
-      return $http.put('/api/frontpage/' + item._id, item)
+      return $http.put(frontPageRoute + item._id, item)
         .error(logError);
     };
 
     cmsServer.frontPageItem.destroy = function (item) {
-      return $http.delete('/api/frontpage/' + item._id)
+      return $http.delete(frontPageRoute + item._id)
         .error(logError);
     };
 

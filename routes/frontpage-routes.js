@@ -1,64 +1,27 @@
 'use strict';
 
 var FrontpageItem = require('../models/frontpage-item');
+var _ = require('lodash');
 
 module.exports = function(app) {
 
-  var route = '/api/frontpage';
+  var route = '/api/public/frontpage';
 
-  // get all frontpage items
+  // get all public items
   
   app.get(route, function (req,res){
-    // TODO limit query based on jwt.auth middleware
-    FrontpageItem.find({}, function (err, items) {
-      if (err) return res.status(500).json(err);
-      else res.status(200).send(items);
-    });
-  });
-
-  // get one
-  
-  app.get(route + '/:id', function (req,res){
-    FrontpageItem.find({'_id': req.params.id}, function (err, items) {
-      if (err) return res.status(500).json(err);
-      else res.status(200).send(items);
-    });
-  });
-
-  // create
-
-  app.post(route, function (req,res){
-    var item = new FrontpageItem(req.body);
-    item.save(function (err, item) {
-      if (err) return res.status(500).json(err);
-      else res.status(200).send(item);
-    });
-  });
-
-  // update
-  
-  app.put(route + '/:id', function (req,res){
-    var item = req.body;
-    delete item._id;
-    FrontpageItem.findOneAndUpdate({
-        '_id': req.params.id
-      }, 
-      item, 
-      function(err, data) {
-        if (err) return res.status(500).send('there was an error');
-        res.json(data);
+    FrontpageItem.find({
+        enable:true
+      },{
+        _id: false,
+        title: true,
+        content: true
+      },
+      function (err, items) {
+        var sortedItems = _.sortBy(items, 'position');
+        if (err) return res.status(500).json(err);
+        else res.status(200).send(sortedItems);
       });
   });
-
-
-  // destroy
-
-  app.delete(route + '/:id', function(req, res) {
-    FrontpageItem.remove({'_id': req.params.id}, function(err) {
-      if (err) return res.status(500).send('there was an error');
-      res.json({msg: 'success!'});
-    });
-  });
-
 
 };
