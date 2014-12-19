@@ -63,7 +63,7 @@ purlieu.config([ '$routeProvider', '$locationProvider',
       })
       .when('/signout', {
         templateUrl: 'views/home-view.html',
-        controller: 'loginController'
+        controller: 'signinController'
       })
       .otherwise({
         redirectTo: '/'

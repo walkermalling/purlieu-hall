@@ -9,7 +9,7 @@ module.exports = function(app) {
      *  FrontPage CMS
      */
     
-    var frontPageRoute = '/api/cms/frontpage/';
+    var frontPageRoute = '/api/cms/frontpage';
     cmsServer.frontPageItem = {};
 
     function logError (data, status) {
@@ -28,7 +28,7 @@ module.exports = function(app) {
     };
 
     cmsServer.frontPageItem.get = function (id) {
-      return $http.get(frontPageRoute + id)
+      return $http.get(frontPageRoute + '/' + id)
         .error(logError);
     };
 
@@ -38,12 +38,12 @@ module.exports = function(app) {
     };
 
     cmsServer.frontPageItem.update = function (item) {
-      return $http.put(frontPageRoute + item._id, item)
+      return $http.put(frontPageRoute + '/' + item._id, item)
         .error(logError);
     };
 
     cmsServer.frontPageItem.destroy = function (item) {
-      return $http.delete(frontPageRoute + item._id)
+      return $http.delete(frontPageRoute + '/' + item._id)
         .error(logError);
     };
 

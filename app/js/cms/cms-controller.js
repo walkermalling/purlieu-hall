@@ -2,14 +2,12 @@
 
 module.exports = function(app){
 
-  app.controller('cmsController', ['$scope', '$cookies', '$location', 'cmsServer',
-    function($scope, $cookies, $location, cmsServer) {
+  app.controller('cmsController', 
+    ['$scope', '$cookies', '$location', 'cmsServer', 'auth',
+    function($scope, $cookies, $location, cmsServer, auth) {
 
-    if (!$cookies.jwt || $cookies.jwt.length < 10) {
-      console.log('not authorized');
-      $cookies.jwt = null;
-      return $location.path('/');
-    }
+    // if authorized, set header or redirect
+    auth.sendJWT(); 
 
     $scope.frontpage = {};
     $scope.frontpage.newItem = {};
@@ -26,6 +24,7 @@ module.exports = function(app){
         .success(function (items) {
           $scope.frontpage.items = items;
           $scope.freezePage = false;
+          console.log(items);
         });
     };
 
