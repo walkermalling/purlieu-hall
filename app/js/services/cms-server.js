@@ -27,7 +27,7 @@ module.exports = function(app) {
         .error(logError);
     };
 
-    cmsServer.frontPageItem.get = function (id) {
+    cmsServer.frontPageItem.getOne = function (id) {
       return $http.get(frontPageRoute + '/' + id)
         .error(logError);
     };

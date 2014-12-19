@@ -2,37 +2,33 @@
 
 module.exports = function(app){
 
-  app.controller('dtosauaController', ['$cookies', '$location', '$scope',
-    function($cookies, $location, $scope){
+  app.controller('dtosauaController', 
+    ['$cookies', '$location', '$scope', 'auth',
+    function($cookies, $location, $scope, auth){
 
-    if (!$cookies.jwt || $cookies.jwt.length < 10) {
-      console.log('not authorized');
-      $cookies.jwt = null;
-      return $location.path('/');
-    }
+    // if authorized, set header or redirect
+    auth.sendJWT(); 
 
     $scope.select = function(sectionName){
+
       $scope.menu.items.forEach(function(item){
-        if (item.name === sectionName){
-          item.active = true;
-        } else {
-          item.active = false;
-        }
+        if (item.name === sectionName) item.active = true;
+        else item.active = false;
       });
+      
     };
 
     $scope.getPage = function(sectionName, pageName){
+
       $scope.menu.items.forEach(function(item){
         if (item.name === sectionName){
           item.submenu.forEach(function(subitem){
-            if (subitem.name === pageName){
-              subitem.active = true;
-            } else {
-              subitem.active = false;
-            }
+            if (subitem.name === pageName) subitem.active = true;
+            else subitem.active = false;
           });
         }
       });
+
     };
 
     /* jshint ignore:start*/
