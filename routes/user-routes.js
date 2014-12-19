@@ -4,7 +4,8 @@ var UserModel = require('../models/user');
 
 module.exports = function(app, passport, jwtauth) {
 
-  var apiRoute = '/api/users';
+  var publicApi = '/api/users';
+  var adminApi = '/api/admin/users';
 
   function isAdmin (permission) {
     if (['dodo','admin'].indexOf(permission) != -1) return true;
@@ -18,7 +19,7 @@ module.exports = function(app, passport, jwtauth) {
    * 
    */
 
-  app.post(apiRoute, function (req, res) {
+  app.post(publicApi, function (req, res) {
 
     UserModel.findOne({'basic.email': req.body.email}, function (err, user) {
 
@@ -50,10 +51,16 @@ module.exports = function(app, passport, jwtauth) {
   });
 
   /**
+   *  Administrative User Routes
+   */
+
+
+
+  /**
    * Get All Users
    */
   
-  app.get(apiRoute, jwtauth, function (req,res) {
+  app.get(adminApi, jwtauth, function (req,res) {
 
     if (!isAdmin(req.user.permission)) return res.status(401);
 
@@ -68,7 +75,7 @@ module.exports = function(app, passport, jwtauth) {
    * Get One
    */
   
-  app.get(apiRoute + '/:id', jwtauth, function (req,res) {
+  app.get(adminApi + '/:id', jwtauth, function (req,res) {
 
     var user = req.user._id;
     var sought = req.params.id;
@@ -97,7 +104,7 @@ module.exports = function(app, passport, jwtauth) {
    *  Update User
    */
   
-  app.put(apiRoute + '/:id', jwtauth, function (req, res) {
+  app.put(adminApi + '/:id', jwtauth, function (req, res) {
     
     var user = req.user;
     var update = req.body;
@@ -140,7 +147,7 @@ module.exports = function(app, passport, jwtauth) {
    *  Delete One User
    */
   
-  app.delete(apiRoute + '/:id', jwtauth, function (req, res) {
+  app.delete(adminApi + '/:id', jwtauth, function (req, res) {
 
     if (!isAdmin(req.user.permission)) return res.status(401);
 

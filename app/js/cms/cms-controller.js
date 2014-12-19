@@ -6,29 +6,25 @@ module.exports = function(app){
     ['$scope', '$cookies', '$location', 'cmsServer',
     function($scope, $cookies, $location, cmsServer) {
 
-      console.log('loading cms controller');
+    console.log('loading cms controller');
 
     $scope.frontpage = {};
     $scope.frontpage.newItem = {};
-    $scope.freezePage = false;
 
     // routines
 
     // CRUD
 
     $scope.frontpage.getItems = function () {
-      $scope.freezePage = true;
       $scope.frontpage.newItem = {};
       cmsServer.frontPageItem.getAll()
         .success(function (items) {
           $scope.frontpage.items = items;
-          $scope.freezePage = false;
           console.log(items);
         });
     };
 
     $scope.frontpage.create = function () {
-      $scope.freezePage = true;
       cmsServer.frontPageItem.create($scope.frontpage.newItem)
         .success(function (response) {
           console.log(response);
@@ -37,7 +33,6 @@ module.exports = function(app){
     };
 
     $scope.frontpage.update = function (itemIndex) {
-      $scope.freezePage = true;   
       var item = $scope.frontpage.items[itemIndex];
       cmsServer.frontPageItem.update(item)
         .success(function (response) {
@@ -47,7 +42,6 @@ module.exports = function(app){
     };
 
     $scope.frontpage.delete = function (itemIndex) {   
-      $scope.freezePage = true;
       var item = $scope.frontpage.items[itemIndex];
       cmsServer.frontPageItem.destroy(item)
         .success(function (response) {

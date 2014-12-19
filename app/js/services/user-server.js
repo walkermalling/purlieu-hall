@@ -9,7 +9,7 @@ module.exports = function(app) {
      *  FrontPage
      */
     
-    var userRoute = '/api/admin/user';
+    var userRoute = '/api/admin/users';
 
     userServer.getAll = function () {
       return $http.get(userRoute)

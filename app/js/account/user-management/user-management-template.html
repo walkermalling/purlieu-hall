@@ -1,0 +1,13 @@
+<div data-ng-repeat="user in users" class="user">
+  <p>Name {{ user.name }}</p>
+  <p>Email {{ user.basic.email }}</p>
+  <p>Phone {{ user.phone }}</p>
+  <p>Permission {{ user.permission }}</p>
+  <p>Created {{ user.createdAt | date : 'medium' }}</p>
+  <p>Updated {{ user.updatedAt | date : 'medium' }}</p>
+</div>
+<p>***</p>
+<style type="text/css">
+  .admin .user{
+    padding:1em 0;}
+</style>

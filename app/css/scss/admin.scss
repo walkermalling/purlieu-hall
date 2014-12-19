@@ -1,18 +1,47 @@
-/* form style */
+/* layout */
+
+main.admin{
+  padding:1em;}
+
+.admin section{
+  padding:2em 0;}
+
+.admin div.divider{
+  width: -moz-calc(100% + 4em);
+  width: -webkit-calc(100% + 4em);
+  width: calc(100% + 4em);
+  margin:0 0 0 -2em;
+  position:relative;
+  height:auto;}
+
+.admin p.divider{
+  text-align:center;
+  padding:2em 0;}
+
+.admin .instructions p{
+  font-size:.95em;
+  padding:1em 0;}
+
+/* header style */
+
+.admin h2, h3, h4{
+  font-family: 'MarketDeco';
+  text-align: left;}
+
 .admin h3{
   padding:0 0 0.5em 0;}
 
+  .admin h3 span{
+    font-weight:400;}
+
 .admin h4{
-  font-family: Helvetica, Arial, sans-serif;
   margin:0;
   padding:0.5em 0;}
 
   .admin h4.item-form{
     padding-top:4em;}
 
-.admin p.divider{
-  text-align:center;
-  padding:2em 0;}
+/* form style */
 
 .admin label{
   display:block;
@@ -43,6 +72,7 @@
   color:#222;
   line-height:1.25em;
   padding:0.4em 1em;
+  margin: 0 2em 0 0;
   font-size:0.85em;
   text-transform: uppercase;
   font-family: Helvetica, Arial, sans-serif;
@@ -57,8 +87,20 @@
   transition:all 200ms ease-in;
   background-color:#b2af84;}
 
-.admin input[type="checkbox"]{
-  margin:0 0 1em 0;}
+.admin div.check-box{
+  display:inline-block;
+  height:1.65em;
+  width:1.65em;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center;}
+
+  .check-box.enabled{
+    background-image: url(/images/checkbox-enabled.png);  }
+
+  .check-box.disabled{
+    background-image: url(/images/checkbox-disabled.png);  }
+
 
 .admin .editing-area .glass-ceiling{
   position:absolute;
@@ -74,16 +116,5 @@
   display:inline-block;}
 
 
-/* layout */
 
-.admin section{
-  padding:2em 0;}
-
-.admin .divider{
-  width: -moz-calc(100% + 4em);
-  width: -webkit-calc(100% + 4em);
-  width: calc(100% + 4em);
-  margin:0 0 0 -2em;
-  position:relative;
-  height:auto;}
 
