@@ -3,11 +3,10 @@
 module.exports = function(app){
 
   app.controller('cmsController', 
-    ['$scope', '$cookies', '$location', 'cmsServer', 'auth',
-    function($scope, $cookies, $location, cmsServer, auth) {
+    ['$scope', '$cookies', '$location', 'cmsServer',
+    function($scope, $cookies, $location, cmsServer) {
 
-    // if authorized, set header or redirect
-    auth.sendJWT(); 
+      console.log('loading cms controller');
 
     $scope.frontpage = {};
     $scope.frontpage.newItem = {};

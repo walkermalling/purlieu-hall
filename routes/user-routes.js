@@ -13,35 +13,39 @@ module.exports = function(app, passport, jwtauth) {
 
   /**
    * Create a New User
-   *   - check for existing user
-   *   - hash password
-   *   - save to db
-   *   - return token
+   *
+   * Note: Does not use jwtauth middleware
+   * 
    */
 
   app.post(apiRoute, function (req, res) {
 
-    UserModel.findOne({
-        'basic.email' : req.body.email
-      }, 
-      function (err, user) {
+    UserModel.findOne({'basic.email': req.body.email}, function (err, user) {
+
+      if (err) return res.status(500).json(err);
+
+      // if user exists, return unauthorized 
+
+      if (user) return res.status(401).json({'msg':'cannot create user'});
+
+      // otherwise, populate new model
+
+      var newUser = new UserModel();
+      newUser.basic.email = req.body.email;
+      newUser.basic.password = newUser.generateHash(req.body.password);
+
+      // save new user
+
+      newUser.save(function (err, resUser) {
 
         if (err) return res.status(500).json(err);
-        if (user) return res.status(401).json({'msg':'cannot create user'});
 
-        var newUser = new UserModel();
-        newUser.basic.email = req.body.email;
-        newUser.basic.password = newUser.generateHash(req.body.password);
+        // return with jwt 
+        else return res.status(200).json({'jwt': resUser.createToken(app)});
 
-        newUser.save(function (err, resUser) {
-          if (err) return res.status(500).json(err);
-          else return res.status(200).json({
-            'jwt': resUser.createToken(app)
-          });
-        });
+      });
 
-      }
-    );
+    });
     
   });
 
@@ -72,8 +76,12 @@ module.exports = function(app, passport, jwtauth) {
     console.log('user id ' + user);
     console.log('requested ' + sought);
 
+    // allow only admins and the user whose record this is
+
     if (!isAdmin(req.user.permission) || user !== sought) 
       return res.status(401);
+
+    // find and return user's basic attributes
 
     UserModel.findOne({'_id': req.params.id},  {basic : true, name : true}, 
       function (err, user) {
@@ -84,6 +92,7 @@ module.exports = function(app, passport, jwtauth) {
 
   });
 
+
   /**
    *  Update User
    */
@@ -93,14 +102,25 @@ module.exports = function(app, passport, jwtauth) {
     var user = req.user;
     var update = req.body;
 
+    // remove id so that the update does not attempt to overwrite
+
     delete update._id;
+
+    // only allow admins and the user whose record this is to update it
 
     if (!isAdmin(req.user.permission) || user._id !== update._id) 
       return res.status(401);
 
+    // is it is the current user's record, and user is not an admin
+    // do not allow them to modify permission
+  
     if (!isAdmin(req.user.permission) && user._id === update._id)
       delete update.permission;
 
+    console.log('permission:'+update.permission);
+
+    // find and update
+    
     UserModel.findONe({'_id':req.params.id}, function (err, user) {
 
       user.email = update.email;
@@ -109,7 +129,8 @@ module.exports = function(app, passport, jwtauth) {
 
       user.save(function (err, updatedUser) {
         if (err) return res.status(500).json(err);
-        else return res.status(200).send(updatedUser);
+        console.log(updatedUser);
+        return res.status(200).json({'msg':'success'});
       });
     });
 
@@ -118,13 +139,14 @@ module.exports = function(app, passport, jwtauth) {
   /**
    *  Delete One User
    */
+  
   app.delete(apiRoute + '/:id', jwtauth, function (req, res) {
 
     if (!isAdmin(req.user.permission)) return res.status(401);
 
-    UserModel.remove({'_id': req.params.id}, function (err, user) {
+    UserModel.remove({'_id': req.params.id}, function (err, response) {
       if (err) return res.status(500).json(err);
-      else return res.status(200).send(user);
+      else return res.status(200).send(response);
     });
 
   });

@@ -1,0 +1,68 @@
+<h3>Front Page Content</h3>
+
+<div class="glass-ceiling" data-ng-show="freezePage"></div>
+
+<div data-ng-repeat="item in frontpage.items">
+
+  <h4 class="item-form">Edit "{{mapNumeral($index) }}"</h4>
+
+  <ul class="item-actions">
+    <li>
+      <button data-ng-click="item.enable = !item.enable">
+        {{ item.enable ? 'Enabled' : 'Disabled'}}
+      </button>
+    </li>
+    <li>
+      <button data-ng-click="frontpage.update($index)">Update</button>
+    </li>
+    <li>
+      <button data-ng-click="frontpage.delete($index)">Destroy</button>
+    </li>
+  </ul>
+  
+  <form data-ng-submit="frontpage.update($index)">
+
+    <input type="hidden" value="{{ item._id }}" data-ng-model="item.id"/>
+    <input data-ng-model="item.enable" type="hidden" />
+
+    <label>Title</label>
+    <input type="text" value="{{ item.title }}" data-ng-model="item.title"/>
+
+    <label>Content</label>
+    <textarea name="content" data-ng-model="item.content" rows="3">
+      {{ item.content }}
+    </textarea>
+    
+  </form>
+
+  <div class="preview">
+    <li class="menu-item active {{ mapNumeral($index) }}">
+      <a>{{ item.title }}</a>
+      <div class="pull-down active" 
+        data-ng-bind-html="item.content">
+      </div>
+    </li>
+  </div>
+
+  <p class="divider">***</p>
+
+</div>
+
+
+<h4>Create New Section</h4>
+
+<div class="cms-form-wrapper">
+
+  <form data-ng-submit="frontpage.create()">
+
+    <label>Title</label>
+    <input  data-ng-model="frontpage.newItem.title" type="text" />
+    
+    <label>Content</label>
+    <textarea data-ng-model="frontpage.newItem.content"></textarea>
+    
+    <input type="submit" value="Create" />
+
+  </form>
+
+</div>

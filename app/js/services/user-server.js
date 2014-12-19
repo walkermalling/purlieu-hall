@@ -17,7 +17,7 @@ module.exports = function(app) {
     };
 
     userServer.getOne = function (id) {
-      return $http.get(userRoute + '/' + id);
+      return $http.get(userRoute + '/' + id)
         .error(logError);
     };
 
@@ -31,7 +31,7 @@ module.exports = function(app) {
         .error(logError);
     };
 
-    cmsServer.destroy = function (id) {
+    userServer.destroy = function (id) {
       return $http.delete(userRoute + '/' + id)
         .error(logError);
     };

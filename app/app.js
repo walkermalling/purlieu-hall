@@ -40,9 +40,12 @@ require('./js/admin/admin-controller')(purlieu);
 // Directives
 
 require('./js/partials/footer/footer-directive')(purlieu);
+require('./js/partials/dividers/admin-section-divider-directive')(purlieu);
+
 require('./js/account/signin/signin-directive')(purlieu);
 require('./js/account/new-user/new-user-directive')(purlieu);
 require('./js/partials/helpers/on-finish-render-directive')(purlieu);
+require('./js/cms/cms-directive')(purlieu);
 
 // Routes
 
@@ -57,11 +60,7 @@ purlieu.config([ '$routeProvider', '$locationProvider',
         templateUrl: 'views/dtosaua.html',
         controller: 'dtosauaController'
       })
-      .when('/cms', {
-        templateUrl: 'views/cms-view.html',
-        controller: 'cmsController'
-      })
-      .when('/admin', {
+      .when('/dodo', {
         templateUrl: 'views/admin-view.html',
         controller: 'adminController'
       })

@@ -1,26 +1,27 @@
-.cms h3{
+/* form style */
+.admin h3{
   padding:0 0 0.5em 0;}
 
-.cms h4{
+.admin h4{
   font-family: Helvetica, Arial, sans-serif;
   margin:0;
   padding:0.5em 0;}
 
-  .cms h4.item-form{
+  .admin h4.item-form{
     padding-top:4em;}
 
-.cms p.divider{
+.admin p.divider{
   text-align:center;
   padding:2em 0;}
 
-.cms label{
+.admin label{
   display:block;
   padding: .25em 0;
   font-size:.95em;
   color: #333426;}
 
-.cms input[type="text"],
-.cms textarea {
+.admin input[type="text"],
+.admin textarea {
   border:none;
   background-color: #c9c695;
   color:#111;
@@ -35,8 +36,8 @@
   width:100%;
   box-style:border-box;}
 
-.cms input[type="submit"],
-.cms button{
+.admin input[type="submit"],
+.admin button{
   border:none;
   background-color: #c9c695;
   color:#222;
@@ -51,23 +52,38 @@
   font-weight:normal;
 }
 
-.cms input[type="submit"]:hover,
-.cms button:hover{
+.admin input[type="submit"]:hover,
+.admin button:hover{
   transition:all 200ms ease-in;
   background-color:#b2af84;}
 
-.cms input[type="checkbox"]{
+.admin input[type="checkbox"]{
   margin:0 0 1em 0;}
 
-.cms .editing-area .glass-ceiling{
+.admin .editing-area .glass-ceiling{
   position:absolute;
   top:0; right:0; bottom:0; left:0;
   z-index:100;
   background-color:#fff;
   opacity:.4;}
 
-.cms ul.item-actions{
+.admin ul.item-actions{
   text-align: left;}
 
-.cms ul.item-actions li{
+.admin ul.item-actions li{
   display:inline-block;}
+
+
+/* layout */
+
+.admin section{
+  padding:2em 0;}
+
+.admin .divider{
+  width: -moz-calc(100% + 4em);
+  width: -webkit-calc(100% + 4em);
+  width: calc(100% + 4em);
+  margin:0 0 0 -2em;
+  position:relative;
+  height:auto;}
+
