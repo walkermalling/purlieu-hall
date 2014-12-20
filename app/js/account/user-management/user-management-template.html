@@ -1,12 +1,64 @@
 <div data-ng-repeat="user in users" class="user">
-  <p>Name {{ user.name }}</p>
-  <p>Email {{ user.basic.email }}</p>
-  <p>Phone {{ user.phone }}</p>
-  <p>Permission {{ user.permission }}</p>
-  <p>Created {{ user.createdAt | date : 'medium' }}</p>
-  <p>Updated {{ user.updatedAt | date : 'medium' }}</p>
+
+  <form>
+
+    <input type="hidden" value="{{ user._id }}" data-ng-model="user._id"/>
+
+    <label>First Name</label>
+    <input type="text" value="{{ user.firstname }}" data-ng-model="user.firstname"/>
+
+    <label>Last Name</label>
+    <input type="text" value="{{ user.lastname }}" data-ng-model="user.lastname"/>
+
+    <label>Email</label>
+    <input type="text" value="{{ user.basic.email }}" data-ng-model="user.basic.email"/>
+
+    <label>Phone Number</label>
+    <input type="text" value="{{ user.phone }}" data-ng-model="user.phone"/>
+
+    <label>Address</label>
+    <input type="text" value="{{ user.address }}" data-ng-model="user.address"/>
+
+    <label>City</label>
+    <input type="text" value="{{ user.city }}" data-ng-model="user.city"/>
+
+    <label>State</label>
+    <input type="text" value="{{ user.state }}" data-ng-model="user.state"/>
+
+    <label>Zip</label>
+    <input type="text" value="{{ user.zip }}" data-ng-model="user.zip"/>
+
+    <label>Member Type</label>
+    <a 
+      data-ng-repeat="type in types"
+      class="check-box {{ user.type == type ? 'enabled' : 'disabled'}}"
+      data-ng-click="user.type = type">
+      {{ type }}
+    </a>
+    
+
+    <label>Member Id Number</label>
+    <input type="text" value="{{ user.number }}" data-ng-model="user.number"/>
+
+    <label>Site Permission</label>
+    <a 
+      data-ng-repeat="p in permissions"
+      class="check-box {{ user.permission == p ? 'enabled' : 'disabled'}}"
+      data-ng-click="user.permission = p">
+      {{ p }}
+    </a>
+
+  </form>
+
+  <ul class="item-actions">
+    <li><button data-ng-click="update($index)">Update</button></li>
+    <li><button data-ng-click="remove(user._id)">Remove</button></li>
+  </ul>
+  
+  
+
 </div>
-<p>***</p>
+
 <style type="text/css">
   .admin .user{
     padding:1em 0;}

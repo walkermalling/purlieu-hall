@@ -6,7 +6,8 @@ module.exports = function(app){
     return {
       restrict: 'EA',
       templateUrl: 'js/cms/cms-template.html',
-      controller: 'cmsController'
+      controller: 'cmsController',
+      scope: {}
     };
   });
 

@@ -10,9 +10,17 @@ var UserSchema = mongoose.Schema({
     email: String,
     password: String
   },
-  name: {type: String, default: 'Fellow'},
   jwt: String,
-  permission: {type: String, default: 'denied'},
+  type: String,
+  number: Number,
+  firstname: String,
+  lastname: String,
+  phone: String,
+  address: String,
+  city: String,
+  state: String,
+  zip:String,
+  permission: {type: String, default: 'dodo'}, 
   createdAt: {type: Date, default: Date.now },
   updatedAt: {type: Date, default: Date.now }
 });
@@ -39,7 +47,6 @@ UserSchema.methods.validPassword = function(password) {
 // Create JWT Token
 
 UserSchema.methods.createToken = function(app) {
-  console.dir('creating token');
 
   var expires = moment().add(7, 'days').valueOf(); 
   var self = this;
@@ -49,10 +56,23 @@ UserSchema.methods.createToken = function(app) {
     expires: expires,
     permission: self.permission
   }, app.get('jwtTokenSecret'));
-  
-  console.dir(token);
 
   return token;
+};
+
+// Convenience Methods
+
+UserSchema.methods.fullName = function () {
+  return this.firstname + ' ' + this.lastname;
+};
+
+UserSchema.methods.memberId = function () {
+  var map = {'town': 'T', 'dodo': 'D', 'country' : 'C'};
+  return map[this.type] + this.number;
+};
+
+UserSchema.methods.fullAddress = function () {
+  return this.address + ' ' + this.city + ' ' + this.state + ' ' + this.zip;
 };
 
 module.exports = mongoose.model('User', UserSchema);

@@ -27,6 +27,8 @@ module.exports = function(app) {
     };
 
     userServer.update = function (user) {
+      console.log('user server service updating ...');
+      console.log(user);
       return $http.put(userRoute + '/' + user._id, user)
         .error(logError);
     };

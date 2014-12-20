@@ -15,10 +15,12 @@
 
   <ul class="item-actions">
     <li>
-      <div 
-        class="toggle-box {{ item.enable ? 'enabled' : 'disabled'}}"
+      <button 
+        class="check-box {{ item.enable ? 'enabled' : 'disabled'}}"
         data-ng-click="item.enable = !item.enable">
-      </div>
+      </button>
+    </li>
+    <li>
       <button data-ng-click="item.enable = !item.enable">
         {{ item.enable ? 'Enabled' : 'Disabled'}}
       </button>
