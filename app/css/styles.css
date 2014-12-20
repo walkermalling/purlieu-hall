@@ -533,6 +533,9 @@ main.admin {
   font-size: 0.95em;
   padding: 1em 0; }
 
+/*.admin section.ng-hide{
+  display:none;
+}*/
 /* header style */
 .admin h2, h3, h4 {
   font-family: 'MarketDeco';

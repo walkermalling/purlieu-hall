@@ -4,9 +4,9 @@
   <div id="second-top-border-green"></div>
 
   <ul>
-    <li><a href="#content-management">Content</a></li>
-    <li><a href="#event-management">Events</a></li>
-    <li><a href="#user-management">Users</a></li>
+    <li><a data-ng-click="goTo('cms')">Content</a></li>
+    <li><a data-ng-click="goTo('events')">Events</a></li>
+    <li><a data-ng-click="goTo('users')">Users</a></li>
   </ul>
 
   <div class="inverted-border left"></div>
@@ -16,21 +16,16 @@
 
 <main class="admin">
 
-  <section id="content-management">
+  <section data-ng-show="sections.cms">
     <content-management></content-management>
   </section>
   
-  <section-divider></section-divider>
-  
-
-  <section id="event-management">
+  <section data-ng-show="sections.events">
     <h3>Events</h3>
     <p>Under construction.</p>
   </section>
 
-  <section-divider></section-divider>
-
-  <section id="user-management">
+  <section data-ng-show="sections.users">
     <user-management></user-management>
   </section>
   
