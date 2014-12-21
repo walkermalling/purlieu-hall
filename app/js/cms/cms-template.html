@@ -15,21 +15,21 @@
 
   <ul class="item-actions">
     <li>
+      <button data-ng-click="frontpage.update($index)">Update</button>
+    </li>
+    <li>
+      <button data-ng-click="frontpage.delete($index)">Destroy</button>
+    </li>
+    <li>
       <button 
         class="check-box {{ item.enable ? 'enabled' : 'disabled'}}"
         data-ng-click="item.enable = !item.enable">
       </button>
     </li>
     <li>
-      <button data-ng-click="item.enable = !item.enable">
+      <a data-ng-click="item.enable = !item.enable" class="dark">
         {{ item.enable ? 'Enabled' : 'Disabled'}}
-      </button>
-    </li>
-    <li>
-      <button data-ng-click="frontpage.update($index)">Update</button>
-    </li>
-    <li>
-      <button data-ng-click="frontpage.delete($index)">Destroy</button>
+      </a>
     </li>
   </ul>
   

@@ -114,6 +114,19 @@ main.admin{
   .check-box.disabled{
     background-image: url(/images/checkbox-disabled.png);  }
 
+.admin a.dark{
+  font-size:0.8em;
+  text-transform: uppercase;
+  font-family: 'MarketDeco';
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-weight:normal;
+  color:#222;}
+
+  .admin a.dark:hover{
+    color:#000;}
+
 .admin ul.item-actions{
   text-align: left;}
 
