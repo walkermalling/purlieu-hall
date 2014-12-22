@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ *  Service used only for GET requests to site content
+ */
+
 module.exports = function(app) {
   app.factory('contentServer', function($http) {
 

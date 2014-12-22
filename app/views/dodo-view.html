@@ -1,0 +1,30 @@
+<nav class="dtosaua dodo">
+
+  <div id="first-top-border-green"></div>
+  <div id="second-top-border-green"></div>
+
+  <div id="dtosaua-nav">
+
+    <ul class="">
+      <li data-ng-repeat="item in menu.items">
+        <a data-ng-click="select(item.name)" class="{{ item.active ? 'active' : ''  }}">{{ item.name }}</a>
+      </li>
+    </ul>
+
+  </div>      
+  
+  <div class="inverted-border left"></div>
+  <div class="inverted-border right"></div>
+
+</nav>
+
+<main>
+  
+  <div data-ng-repeat="item in menu.items" data-ng-if="item.active">
+    <div data-ng-repeat="subitem in item.submenu" data-ng-if="subitem.active" class="section-content">
+      <h3 data-ng-bind-html="subitem.header"></h3>
+      <div data-ng-bind-html="subitem.content"></div>
+    </div>
+  </div>
+
+</main>
