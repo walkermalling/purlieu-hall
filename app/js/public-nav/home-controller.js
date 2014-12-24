@@ -21,12 +21,21 @@ module.exports = function(app){
       $scope.frontpage.getItems = function () {
         contentServer.frontPageItem.getAll()
           .success(function (items) {
+            if (items.length === 0) navigationInit(); // 
+
             $scope.frontpage.items = items;
+
             console.log(items);
           });
       };
 
-      // Helpers
+      /**
+       *  Helpers
+       */
+      
+      /**
+       *  Quick Map for indecies to named ranks
+       */
 
       $scope.mapNumeral = function (numeral) {
         var map = {
@@ -39,28 +48,33 @@ module.exports = function(app){
         return map[numeral] || numeral;
       };
 
-      // Animation
-      
-      $scope.$on('ngRepeatFinished', function (event) { /*jshint ignore:line*/
+      /**
+       *  Configure sliding navigation behavior
+       */
 
-        var menuLinks = $('nav .menu-item > a');
-        var menuItems = $('nav .menu-item');
+      function navigationInit () {
 
-        console.log(menuItems);
+        $scope.menuLinks = $('nav .menu-item > a');
+        $scope.menuItems = $('nav .menu-item');
 
-        menuLinks.on('click', function(){
+        $scope.menuLinks.on('click', function(){
 
           var $this = $(this);
 
+          // Link is already Active
           if ($this.parents('.menu-item').hasClass('active')){
             $this.parents('.menu-item')
               .removeClass('active');
-            menuItems
+            $scope.menuItems
               .removeClass('supress');
+
+          // link is Supressed, prevent action
           } else if ( $this.parents('.menu-item').hasClass('supress')){
             // do nothing
+          
+          // Link is inactive, Activate
           } else {
-            menuItems
+            $scope.menuItems
               .removeClass('active')
                 .not($this.parents('.menu-item'))
                 .addClass('supress');
@@ -69,9 +83,24 @@ module.exports = function(app){
           }
 
         });
+      }
+
+      /**
+       *  Call navigation config once items are loaded
+       */
+      
+      $scope.$on('ngRepeatFinished', function (event) { /*jshint ignore:line*/
+
+        $scope.menuLinks.unbind('click');
+
+        navigationInit();
+
+        
       });
 
-      // Init Execute
+      /**
+       * Initialize the Page
+       */
       
       $scope.frontpage.getItems();
 
