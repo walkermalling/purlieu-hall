@@ -17,7 +17,6 @@ module.exports = function(app){
 
     $scope.goTo = function (selection) {
       for (var key in $scope.sections) {
-        console.log(key);
         if (key === selection) $scope.sections[key] = true;
         else $scope.sections[key] = false;
       }

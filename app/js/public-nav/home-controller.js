@@ -21,22 +21,20 @@ module.exports = function(app){
       $scope.frontpage.getItems = function () {
         contentServer.frontPageItem.getAll()
           .success(function (items) {
-            if (items.length === 0) navigationInit(); // 
-
+            // if no items are loaded, initialize
+            if (items.length === 0) navigationInit();
+            // save fetched items to scope
             $scope.frontpage.items = items;
-
-            console.log(items);
           });
       };
 
-      /**
-       *  Helpers
-       */
+
+      // Helper Routines
+      
       
       /**
        *  Quick Map for indecies to named ranks
        */
-
       $scope.mapNumeral = function (numeral) {
         var map = {
           0 : 'primary',
@@ -47,6 +45,7 @@ module.exports = function(app){
         };
         return map[numeral] || numeral;
       };
+
 
       /**
        *  Configure sliding navigation behavior
@@ -91,11 +90,8 @@ module.exports = function(app){
       
       $scope.$on('ngRepeatFinished', function (event) { /*jshint ignore:line*/
 
-        $scope.menuLinks.unbind('click');
-
         navigationInit();
 
-        
       });
 
       /**

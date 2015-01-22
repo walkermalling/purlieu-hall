@@ -3,14 +3,29 @@
   <div id="first-top-border-green"></div>
   <div id="second-top-border-green"></div>
 
-  <ul>
-    <li><a data-ng-click="goTo('cms')">Content</a></li>
-    <li><a data-ng-click="goTo('events')">Events</a></li>
-    <li><a data-ng-click="goTo('users')">Users</a></li>
-  </ul>
+  <div class="admin-nav">
 
-  <div class="inverted-border left"></div>
-  <div class="inverted-border right"></div>
+    <ul>
+      <li><a data-ng-click="goTo('cms')">Content</a></li>
+      <li><a data-ng-click="goTo('events')">Events</a></li>
+      <li><a data-ng-click="goTo('users')">Users</a></li>
+    </ul>
+
+    <ul class="sub-menu">
+      <div class="sub-menu-container">
+        <li><a href="">Front Page</a></li>
+        <li><a href="">Internal Content</a></li>
+      </div>
+
+      <div class="inverted-border left"></div>
+      <div class="inverted-border right"></div>
+    
+    </ul>
+
+    <div class="inverted-border left"></div>
+    <div class="inverted-border right"></div>
+
+  </div>
 
 </nav>
 

@@ -22,6 +22,24 @@ module.exports = function(app) {
     };
 
     /**
+     *  Dtosaua
+     */
+    
+    var dtosauaRoute = '/api/dtosaua';
+    contentServer.dtosauaSection = {};
+    contentServer.dtosauaItem = {};
+
+    contentServer.dtosauaSection.getAll = function () {
+      return $http.get(dtosauaRoute + '/sections')
+        .error(logError);
+    };
+
+    contentServer.dtosauaItem.getAll = function () {
+      return $http.get(dtosauaRoute + '/items')
+        .error(logError);
+    };
+
+    /**
      *  Helpers
      */
 
