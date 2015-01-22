@@ -19,6 +19,10 @@ module.exports = function(app){
     /**
      *  Routines
      */
+    
+    // TODO
+    // Process to Invite new users
+    // Invite will replace the new user directive
 
     $scope.getAll = function () {
       userServer.getAll().success(function (users) {

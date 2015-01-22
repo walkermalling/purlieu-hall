@@ -2,25 +2,26 @@
 
 module.exports = function(app){
 
-  app.controller('cmsController', 
+  app.controller('frontpageCmsController', 
     ['$scope', '$cookies', '$location', 'cmsServer',
     function($scope, $cookies, $location, cmsServer) {
 
-    console.log('loading cms controller');
-
+    // initialize 
     $scope.frontpage = {};
     $scope.frontpage.newItem = {};
+    $scope.dtosaua = {};
 
     // routines
 
-    // CRUD
+    /**
+     * Frontpage CRUD
+     */
 
     $scope.frontpage.getItems = function () {
       $scope.frontpage.newItem = {};
       cmsServer.frontPageItem.getAll()
         .success(function (items) {
           $scope.frontpage.items = items;
-          console.log(items);
         });
     };
 
@@ -49,6 +50,10 @@ module.exports = function(app){
           $scope.frontpage.getItems();
         });
     };
+
+    /**
+     * DTOSAUA CRUD
+     */
 
     // Helpers
     
