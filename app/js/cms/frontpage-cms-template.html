@@ -1,81 +1,72 @@
 <h3><span>CMS </span> Front Page Content</h3>
 
-<div class="instructions">
+<div class="instructions" data-ng-show="verbose">
   <p>Directions: The front page can only comfortably contain three sections.  Make sure that only three are enabled.  You may, for example, maintain more than three, to be ready to swap out sections by enabling and disabling.</p>
 
   <p>Regarding content: insert either plain text or HTML into the content field; it will live preview in the box below.  Use the preview to assess length: it is based off the same style constraints as the homepage, and will accurately render in mobile view.</p>
 
   <p>Regarding ordering: currently the three enabled here will appear at the top of the list on the front page, with custom sections for the Calendar and Login appearing below.  In the future we will have the ability to control the order of the first three from here, but for now, they are orderd as they appear.</p>
 </div>
+<a class="dark" data-ng-click="verbose = !verbose">
+  {{ verbose ? 'Hide' : 'Read'}} Instructions
+</a>
 
 
 <div data-ng-repeat="item in frontpage.items">
-
-  <h4 class="item-form">Edit "{{mapNumeral($index) }}"</h4>
-
-  <ul class="item-actions">
-    <li>
-      <button data-ng-click="frontpage.update($index)">Update</button>
-    </li>
-    <li>
-      <button data-ng-click="frontpage.delete($index)">Destroy</button>
-    </li>
-    <li>
-      <button 
-        class="check-box {{ item.enable ? 'enabled' : 'disabled'}}"
-        data-ng-click="item.enable = !item.enable">
-      </button>
-    </li>
-    <li>
-      <a data-ng-click="item.enable = !item.enable" class="dark">
-        {{ item.enable ? 'Enabled' : 'Disabled'}}
-      </a>
-    </li>
-  </ul>
-  
-  <form data-ng-submit="frontpage.update($index)">
-
-    <input type="hidden" value="{{ item._id }}" data-ng-model="item.id"/>
-    <input data-ng-model="item.enable" type="hidden" />
-
-    <label>Title</label>
-    <input type="text" value="{{ item.title }}" data-ng-model="item.title"/>
-
-    <label>Content</label>
-    <textarea name="content" data-ng-model="item.content" rows="3">
-      {{ item.content }}
-    </textarea>
+  <h4 class="item-form" data-ng-click="item.active = !item.active">
+    {{ mapNumeral($index) }}: "{{ item.title }}"
+  </h4>
+  <div class="frontpage-item-wrapper" data-ng-show="item.active">
+    <ul class="item-actions">
+      <li><button data-ng-click="frontpage.update($index)">Update</button></li>
+      <li><button data-ng-click="frontpage.delete($index)">Destroy</button></li>
+      <li>
+        <button 
+          class="check-box {{ item.enable ? 'enabled' : 'disabled'}}"
+          data-ng-click="item.enable = !item.enable">
+        </button>
+      </li>
+      <li>
+        <a data-ng-click="item.enable = !item.enable" class="dark">
+          {{ item.enable ? 'Enabled' : 'Disabled'}}
+        </a>
+      </li>
+    </ul>
     
-  </form>
+    <form data-ng-submit="frontpage.update($index)">
+      <input type="hidden" value="{{ item._id }}" data-ng-model="item.id"/>
+      <input data-ng-model="item.enable" type="hidden" />
+      <label>Title</label>
+      <input type="text" value="{{ item.title }}" data-ng-model="item.title"/>
+      <label>Content</label>
+      <textarea name="content" data-ng-model="item.content" rows="3">
+        {{ item.content }}
+      </textarea>
+    </form>
 
-  <div class="preview">
-    <li class="menu-item active {{ mapNumeral($index) }}">
-      <a>{{ item.title }}</a>
-      <div class="pull-down active" 
-        data-ng-bind-html="item.content">
-      </div>
-    </li>
+    <div class="preview">
+      <li class="menu-item active {{ mapNumeral($index) }}">
+        <a>{{ item.title }}</a>
+        <div class="pull-down active" 
+          data-ng-bind-html="item.content">
+        </div>
+      </li>
+    </div>
   </div>
-
-  <p class="divider">***</p>
-
 </div>
 
+<!-- Create a new section -->
 
-<h4>Create New Section</h4>
+<h4 style="padding-top:40px; margin-top:40px; border-top:2px solid black;">
+  Create New Section
+</h4>
 
 <div class="cms-form-wrapper">
-
   <form data-ng-submit="frontpage.create()">
-
     <label>Title</label>
     <input  data-ng-model="frontpage.newItem.title" type="text" />
-    
     <label>Content</label>
     <textarea data-ng-model="frontpage.newItem.content"></textarea>
-    
     <input type="submit" value="Create" />
-
   </form>
-
 </div>

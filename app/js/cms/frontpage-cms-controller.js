@@ -6,12 +6,14 @@ module.exports = function(app){
     ['$scope', '$cookies', '$location', 'cmsServer',
     function($scope, $cookies, $location, cmsServer) {
 
-    // initialize 
+    /**
+     * Initialize variables on the scope
+     */
+    
     $scope.frontpage = {};
     $scope.frontpage.newItem = {};
-    $scope.dtosaua = {};
-
-    // routines
+    // 'verbose' controls display of instructions
+    $scope.verbose = false; 
 
     /**
      * Frontpage CRUD
@@ -21,7 +23,12 @@ module.exports = function(app){
       $scope.frontpage.newItem = {};
       cmsServer.frontPageItem.getAll()
         .success(function (items) {
+          // save items to the scope
           $scope.frontpage.items = items;
+          // set visibility to false
+          $scope.frontpage.items.forEach( function (i) {
+            i.active = false;
+          });
         });
     };
 
@@ -51,10 +58,6 @@ module.exports = function(app){
         });
     };
 
-    /**
-     * DTOSAUA CRUD
-     */
-
     // Helpers
     
     $scope.mapNumeral = function (numeral) {
@@ -68,10 +71,9 @@ module.exports = function(app){
       return map[numeral] || numeral;
     };
 
-    // init: execute
+    // init: fetch content
 
     $scope.frontpage.getItems();
-
 
   }]);
 };

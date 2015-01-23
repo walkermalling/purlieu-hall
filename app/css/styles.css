@@ -17,6 +17,12 @@ a {
   text-decoration: none;
   color: #f8f8cb; }
 
+a.dark {
+  color: #333426; }
+
+a.dark:hover {
+  color: #727152; }
+
 a:hover {
   cursor: pointer; }
 
