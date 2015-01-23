@@ -20,16 +20,18 @@ var purlieu = angular.module('purlieu', [
   'ngSanitize',
 ]);
 
-// Services
-
+/**
+ * Services
+ */
 require('./js/services/account-server')(purlieu);
 require('./js/services/user-server')(purlieu);
 require('./js/services/cms-server')(purlieu);
 require('./js/services/content-server')(purlieu);
 require('./js/services/auth-service')(purlieu);
 
-// Controllers
-
+/**
+ * Controllers
+ */
 require('./js/public-nav/home-controller')(purlieu);
 require('./js/account/signin/signin-controller')(purlieu);
 require('./js/account/new-user/new-user-controller')(purlieu);
@@ -38,18 +40,22 @@ require('./js/cms/frontpage-cms-controller')(purlieu);
 require('./js/admin/admin-controller')(purlieu);
 require('./js/account/user-management/user-management-controller')(purlieu);
 
-// Directives
-
-require('./js/partials/footer/footer-directive')(purlieu);
-require('./js/partials/dividers/admin-section-divider-directive')(purlieu);
+/**
+ * Directives
+ */
 require('./js/account/signin/signin-directive')(purlieu);
 require('./js/account/new-user/new-user-directive')(purlieu);
-require('./js/partials/helpers/on-finish-render-directive')(purlieu);
 require('./js/cms/frontpage-cms-directive')(purlieu);
 require('./js/account/user-management/user-management-directive')(purlieu);
+          // partials
+require('./js/partials/footer/footer-directive')(purlieu);
+require('./js/partials/dividers/admin-section-divider-directive')(purlieu);
+require('./js/partials/helpers/on-finish-render-directive')(purlieu);
+require('./js/partials/dividers/inverted-border-directive')(purlieu);
 
-// Routes
-
+/**
+ * Routes
+ */
 purlieu.config([ '$routeProvider', '$locationProvider', 
   function($routeProvider) {
     $routeProvider
@@ -72,5 +78,4 @@ purlieu.config([ '$routeProvider', '$locationProvider',
       .otherwise({
         redirectTo: '/'
       });
-
 } ]);

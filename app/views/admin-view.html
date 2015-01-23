@@ -6,42 +6,52 @@
   <div class="admin-nav">
 
     <ul>
-      <li><a data-ng-click="goTo('cms')">Content</a></li>
-      <li><a data-ng-click="goTo('events')">Events</a></li>
-      <li><a data-ng-click="goTo('users')">Users</a></li>
+      <li data-ng-repeat="(key,section) in sections">
+        <a data-ng-click="goTo(key)" class="{{ section.active ? 'active' : ''  }}">
+          {{ key | uppercase }}
+        </a>
+      </li>
     </ul>
 
     <ul class="sub-menu">
-      <div class="sub-menu-container">
-        <li><a href="">Front Page</a></li>
-        <li><a href="">Internal Content</a></li>
+      <div data-ng-repeat="(key,section) in sections" data-ng-if="section.active" 
+        class="sub-menu-container">
+        <li data-ng-repeat="(subkey,subitem) in section.subitems">
+          <a data-ng-click="goTo(key, subkey)" class="{{ subitem.active ? 'active' : ''  }}">
+            {{ subkey | uppercase }}
+          </a>
+        </li>
       </div>
-
-      <div class="inverted-border left"></div>
-      <div class="inverted-border right"></div>
-    
+      <inverted-border></inverted-border>
     </ul>
 
-    <div class="inverted-border left"></div>
-    <div class="inverted-border right"></div>
-
   </div>
-
+  <inverted-border></inverted-border>
 </nav>
 
 <main class="admin">
 
-  <section data-ng-show="sections.cms">
-    <frontpage-cms></frontpage-cms>
+  <section data-ng-show="sections.cms.active">
+    <frontpage-cms
+      data-ng-show="sections.cms.subitems.frontpage.active">
+    </frontpage-cms>
+    <div data-ng-show="sections.cms.subitems.internal.active">
+      <p>Internal Content</p>
+    </div>
   </section>
   
-  <section data-ng-show="sections.events">
+  <section data-ng-show="sections.events.active">
     <h3>Events</h3>
-    <p>Under construction.</p>
+    <p>Manage upcoming events.</p>
   </section>
 
-  <section data-ng-show="sections.users">
-    <user-management></user-management>
+  <section data-ng-show="sections.users.active">
+    <user-management 
+      data-ng-show="sections.users.subitems.rolls.active">
+    </user-management>
+    <div data-ng-show="sections.users.subitems.invite.active">
+      <p>Invite a user</p>
+    </div>
   </section>
 
 </main>
