@@ -1,11 +1,25 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var itemSchema = require('./dtosaua-item');
 
+/**
+ * Define the Subdocument Schema 
+ */
+var DtosauaItemSchema = mongoose.Schema({
+  subtitle: {type: String},
+  content: {type: String},
+  position: {type: Number, default: 0},
+  enable: {type: Boolean, default: false},
+  createdAt: {type: Date, default: Date.now },
+  updatedAt: {type: Date, default: Date.now }
+});
+
+/**
+ * Define the Section Schema
+ */
 var DtosauaSectionSchema = mongoose.Schema({
   title: {type: String, unique: true},
-  items: [itemSchema],
+  items: [DtosauaItemSchema],
   enable: {type: Boolean, default: false},
   position: {type: Number, default: 0},
   accesslevel: {type: String, default: 'member'},

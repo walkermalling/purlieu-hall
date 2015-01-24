@@ -9,42 +9,59 @@ module.exports = function(app){
     // if authorized, set header or redirect
     auth.sendJWT(); 
 
-    $scope.dtosaua = {}; // initalize content namespace
-
-    var dtosaua = $scope.dtosaua;
+    $scope.dtosauaContent = {}; // initalize content namespace
+    var dsecs;
 
     function getPageContent () {
-      dtosaua.sections = false;
-      dtosaua.items = false;
-
-      contentServer.dtosauaSection.getAll()
+      contentServer.dtosauaSections.getAll()
         .success(function (sections) {
           console.log(sections);
-          dtosaua.sections = sections;
-          initializeNavigation();
+          $scope.dtosauaContent.sections = sections;
+          dsecs = $scope.dtosauaContent.sections;
+          prep();
         });
-
-      contentServer.dtosauaItem.getAll()
-        .success(function (items) {
-          console.log(items);
-          dtosaua.items = items;
-          initializeNavigation();
-        });
-
     }
 
-    function initializeNavigation () {
-      if (dtosaua.sections && dtosaua.items) {
-        console.log('both are sections and items are fetched');
-      } else {
-        console.log('content not yet loaded');
+    /**
+     * With one or two arguments, will handle status of primary and secondary
+     * navigation layers
+     */
+    $scope.goTo = function (parent, child) {
+
+      dsecs.forEach(function (section) {
+        if (section.title === parent) andTryChildof(section);
+        else section.active = false;
+      });
+
+      function andTryChildof (section) {
+        section.active = true;
+        section.items.forEach(function (item) {
+          if (!!child && item.subtitle === child) item.active = true;
+          else if (!!child) item.active = false;
+        }); 
       }
+    };
+
+    /**
+     * prepare sections:
+     * - add 'active' property to assist in ui logic
+     * - set position property of new item
+     */
+    function prep () {
+      // set visibility on each section and subitem
+      dsecs.forEach(function (sec, secIndex) {
+        if (secIndex === 0) sec.active = true;
+        else sec.active = false;
+        sec.items.forEach(function (item, itemIndex) {
+          if (itemIndex === 0) item.active = true;
+          else item.active = false;
+        });
+      });
     }
 
     // init
     
     getPageContent();
-
 
   }]);
 };

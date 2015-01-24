@@ -1,0 +1,103 @@
+<h4>Sections</h4>
+<p>Click to show/hide</p>
+<!-- Show and Hide Each Section -->
+<ul class="inline button">
+  <li data-ng-repeat="section in dtosaua.sections">
+    <a class="dark" data-ng-click="section.active = !section.active">
+      {{ section.title }}
+    </a>
+  </li>
+</ul>
+
+<!-- Edit Each Section and its Subitems -->
+<div data-ng-repeat="section in dtosaua.sections" data-ng-show="section.active">
+
+  <!-- Section Title -->
+  <h4 class="item-form" data-ng-click="section.active = !section.active">
+    "{{ section.title }}"
+  </h4>
+
+  <!-- Action Buttons: Update, Delete, Enable -->
+  <ul class="item-actions">
+    <li><button data-ng-click="dtosaua.update($index)">Update</button></li>
+    <li>
+      <button 
+        class="check-box {{ section.enable ? 'enabled' : 'disabled'}}"
+        data-ng-click="section.enable = !section.enable">
+      </button>
+    </li>
+    <li>
+      <a data-ng-click="section.enable = !section.enable" class="dark">
+        {{ section.enable ? 'Enabled' : 'Disabled'}}
+      </a>
+    </li>
+  </ul>
+
+  <!-- Section Editor -->
+  <form data-ng-submit="section.update($index)">
+    <input type="hidden" value="{{ section._id }}" data-ng-model="section.id"/>
+    <input data-ng-model="section.enable" type="hidden" />
+
+    <label>Title</label>
+    <input type="text" value="{{ section.title }}" data-ng-model="section.title"/>
+
+    <label>Adjust Position ({{ enumerate(section.position) }})</label>
+    <ul class="inline">
+      <button data-ng-click="moveLeft($index)">Move Left</button>
+      <button data-ng-click="moveRight($index)">Move Right</button>
+    </ul>
+
+    <!-- Edit each Subitem -->
+    <ul class="inline">
+      <li data-ng-repeat="item in section.items">
+        <a class="dark" data-ng-click="item.active = !item.active">
+          {{ item.subtitle }}
+        </a>
+      </li>
+    </ul>
+      
+    <div data-ng-repeat="item in section.items" data-ng-show="item.active">
+      <label>Subtitle</label>
+      <input type="text" 
+        value="{{ section.items[$index].subtitle }}" 
+        data-ng-model="section.items[$index].subtitle"/>
+
+      <label>Content</label>
+      <input type="text" 
+        value="{{ section.items[$index].content }}" 
+        data-ng-model="section.items[$index].content"/>
+
+      <label>Enable</label>
+      <p>
+        <button 
+          class="check-box {{ section.items[$index].enable ? 'enabled' : 'disabled'}}"
+          data-ng-click="section.items[$index].enable = !section.items[$index].enable">
+        </button>
+        <a class="dark"
+          data-ng-click="section.items[$index].enable = !section.items[$index].enable" >
+          {{ section.items[$index].enable ? 'Enabled' : 'Disabled'}}
+        </a>
+      </p>
+    </div>
+
+    <div class="create-new-item">
+      <button data-ng-click="addItemTo($index)">Add New Section Item</button>
+    </div>
+
+  </form>
+</div>
+
+<!-- Create a new section -->
+
+<h4 style="padding-top:40px; margin-top:40px; border-top:2px solid black;">
+  Create New Section
+</h4>
+
+<div class="cms-form-wrapper">
+  <form data-ng-submit="dtosaua.create()">
+    <label>Title</label>
+    <input data-ng-model="dtosaua.newSection.title" type="text" />
+    <p><input type="submit" value="Create" /></p>
+    
+  </form>
+</div>

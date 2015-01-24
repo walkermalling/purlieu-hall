@@ -12,6 +12,7 @@ module.exports = function(app){
       $scope.user = {
         create: false,
         swap: function(){
+          // this can be depricated when invitations are implemented
           $scope.user.create = !$scope.user.create;
         }
       };

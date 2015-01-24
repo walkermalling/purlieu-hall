@@ -7,13 +7,11 @@
 
       <!-- repeat over cms-defined sections -->
 
-      <li
+      <li class="menu-item"
         data-ng-repeat="item in frontpage.items" 
-        on-finish-render
-        class="menu-item" >
+        on-finish-render>
         <a>{{ item.title }}</a>
-        <div class="pull-down" data-ng-bind-html="item.content">
-        </div>
+        <div class="pull-down" data-ng-bind-html="item.content"></div>
       </li>
 
       <!-- calendar -->
@@ -28,16 +26,17 @@
       <!-- login -->
 
       <li class="menu-item quinary">
-        <a>{{ !user.create ? 'Fellows' : 'Create Account'}}</a>
+        <!-- <a>{{ !user.create ? 'Fellows' : 'Create Account'}}</a> -->
+        <a>Fellows</a>
         <div class="pull-down">
           <div id="login">
             
             <signin-directive></signin-directive>
-            <new-user-directive></new-user-directive>
+            <!-- <new-user-directive></new-user-directive> -->
 
-            <a data-ng-click="user.swap()">
+            <!-- <a data-ng-click="user.swap()">
               {{ !user.create ? 'New Account' : 'Sign In'}}
-            </a>
+            </a> -->
 
           </div>
         </div>

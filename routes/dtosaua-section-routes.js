@@ -27,7 +27,9 @@ module.exports = function(app) {
       },{
         _id: false,
         title: true,
-        content: true
+        items: true,
+        position: true,
+        accesslevel: true
       },
       function (err, items) {
         var sortedItems = _.sortBy(items, 'position');

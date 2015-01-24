@@ -18,7 +18,7 @@ module.exports = function(app){
 
     $scope.sections.cms.subitems = {
       'frontpage' : {'active': true},
-      'internal' : {'active': false},
+      'dtosaua' : {'active': false},
     };
 
     $scope.sections.events.subitems = {
@@ -31,7 +31,6 @@ module.exports = function(app){
     };
 
     $scope.goTo = function (parent, child) {
-      console.log($scope.sections);
       for (var key in $scope.sections) {
         if (key === parent) {
           $scope.sections[key].active = true;

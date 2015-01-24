@@ -39,7 +39,8 @@ require('./routes/login-routes')(app, passport);
 require('./routes/frontpage-routes')(app);
 require('./routes/frontpage-cms-routes')(app, jwtauth.auth);
 require('./routes/dtosaua-section-routes')(app, jwtauth.auth);
-require('./routes/dtosaua-item-routes')(app, jwtauth.auth);
+// require('./routes/dtosaua-item-routes')(app, jwtauth.auth);
+require('./routes/dtosaua-cms-routes')(app, jwtauth.auth);
 
 // listen
 

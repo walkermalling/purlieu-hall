@@ -25,17 +25,11 @@ module.exports = function(app) {
      *  Dtosaua
      */
     
-    var dtosauaRoute = '/api/dtosaua';
-    contentServer.dtosauaSection = {};
-    contentServer.dtosauaItem = {};
+    var dtosauaRoute = '/api/dtosaua/sections';
+    contentServer.dtosauaSections = {};
 
-    contentServer.dtosauaSection.getAll = function () {
-      return $http.get(dtosauaRoute + '/sections')
-        .error(logError);
-    };
-
-    contentServer.dtosauaItem.getAll = function () {
-      return $http.get(dtosauaRoute + '/items')
+    contentServer.dtosauaSections.getAll = function () {
+      return $http.get(dtosauaRoute)
         .error(logError);
     };
 

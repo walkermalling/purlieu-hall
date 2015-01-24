@@ -6,16 +6,20 @@
   <div id="dtosaua-nav">
 
     <ul>
-      <li data-ng-repeat="item in menu.items">
-        <a data-ng-click="select(item.name)" class="{{ item.active ? 'active' : ''  }}">{{ item.name }}</a>
+      <li data-ng-repeat="section in dtosauaContent.sections">
+        <a data-ng-click="goTo(section.title)" class="{{ section.active ? 'active' : ''  }}">{{ section.title }}</a>
       </li>
     </ul>
 
     <ul class="sub-menu">
-      <div data-ng-repeat="item in menu.items" data-ng-if="item.active" class="sub-menu-container">
-        <li data-ng-repeat="subitem in item.submenu">
-          <a data-ng-click="getPage(item.name, subitem.name)" 
-            class="{{ subitem.active ? 'active' : ''  }}">{{ subitem.name }}</a>
+      <div class="sub-menu-container"
+        data-ng-repeat="section in dtosauaContent.sections"
+        data-ng-if="section.active">
+        <li data-ng-repeat="item in section.items">
+          <a data-ng-click="goTo(section.title, item.subtitle)" 
+            class="{{ item.active ? 'active' : ''  }}">
+            {{ item.subtitle }}
+          </a>
         </li>
       </div>
       <div class="inverted-border left"></div>
@@ -31,15 +35,10 @@
 
 <main>
   
-  <div data-ng-repeat="item in menu.items" data-ng-if="item.active">
-    <div data-ng-repeat="subitem in item.submenu" data-ng-if="subitem.active" class="section-content">
-      <h3 data-ng-bind-html="subitem.header"></h3>
-      <div data-ng-bind-html="subitem.content"></div>
+  <div data-ng-repeat="section in dtosauaContent.sections" data-ng-if="section.active">
+    <div data-ng-repeat="item in section.items" data-ng-if="item.active" class="section-content">
+      <div data-ng-bind-html="item.content"></div>
     </div>
-  </div>
-
-  <div data-ng-show="menu.items[3].active">
-    <p>3 is active</p>
   </div>
 
 </main>

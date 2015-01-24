@@ -37,6 +37,7 @@ require('./js/account/signin/signin-controller')(purlieu);
 require('./js/account/new-user/new-user-controller')(purlieu);
 require('./js/fellows-nav/dtosaua-controller')(purlieu);
 require('./js/cms/frontpage-cms-controller')(purlieu);
+require('./js/cms/dtosaua-cms-controller')(purlieu);
 require('./js/admin/admin-controller')(purlieu);
 require('./js/account/user-management/user-management-controller')(purlieu);
 
@@ -46,6 +47,7 @@ require('./js/account/user-management/user-management-controller')(purlieu);
 require('./js/account/signin/signin-directive')(purlieu);
 require('./js/account/new-user/new-user-directive')(purlieu);
 require('./js/cms/frontpage-cms-directive')(purlieu);
+require('./js/cms/dtosaua-cms-directive')(purlieu);
 require('./js/account/user-management/user-management-directive')(purlieu);
           // partials
 require('./js/partials/footer/footer-directive')(purlieu);

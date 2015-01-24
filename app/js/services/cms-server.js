@@ -47,6 +47,42 @@ module.exports = function(app) {
         .error(logError);
     };
 
+    /**
+     * Dtosaua (Internal Page) CRUD
+     */
+    
+    var dtosauaRoute = '/api/cms/dtosaua';
+    cmsServer.dtosauaSection = {};
+
+    cmsServer.dtosauaSection.create = function (item) {
+      return $http.post(dtosauaRoute, item)
+        .error(logError);
+    };
+
+    cmsServer.dtosauaSection.getOne = function (id) {
+      return $http.get(dtosauaRoute + '/' + id)
+        .error(logError);
+    };
+
+    cmsServer.dtosauaSection.getAll = function () {
+      return $http.get(dtosauaRoute)
+        .error(logError);
+    };
+
+    cmsServer.dtosauaSection.update = function (item) {
+      return $http.put(dtosauaRoute + '/' + item._id, item)
+        .error(logError);
+    };
+
+    cmsServer.dtosauaSection.destroy = function (item) {
+      return $http.delete(dtosauaRoute + '/' + item._id)
+        .error(logError);
+    };
+
+    /**
+     * Return CMS Server
+     */
+    
     return cmsServer;
 
   });

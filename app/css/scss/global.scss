@@ -44,6 +44,14 @@ ul{
   border:0;
   padding:0;
 }
+  ul.inline{
+    width:100%;}
+  ul.inline li{
+    display:inline-block;}
+
+  ul.button li {
+    border:1px solid #c9c695;
+    padding:0.25em 1em 0 0;}
 div{
   margin:0;
   border:0;
