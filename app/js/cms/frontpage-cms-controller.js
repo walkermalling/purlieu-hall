@@ -60,6 +60,14 @@ module.exports = function(app){
 
     // Helpers
     
+    $scope.select = function (itemTitle) {
+      var items = $scope.frontpage.items;
+      items.forEach(function (i) {
+        if (i.title === itemTitle) i.active = true;
+        else i.active = false;
+      });
+    };
+
     $scope.mapNumeral = function (numeral) {
       var map = {
         0 : 'primary',

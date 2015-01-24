@@ -7,16 +7,23 @@
 
   <p>Regarding ordering: currently the three enabled here will appear at the top of the list on the front page, with custom sections for the Calendar and Login appearing below.  In the future we will have the ability to control the order of the first three from here, but for now, they are orderd as they appear.</p>
 </div>
+
 <a class="dark" data-ng-click="verbose = !verbose">
   {{ verbose ? 'Hide' : 'Read'}} Instructions
 </a>
 
+<div class="selector">
+  <h4>Choose A Section to Edit</h4>
+  <li class="menu-item" data-ng-repeat="item in frontpage.items">
+    <a data-ng-click="select(item.title)">{{ item.title }}</a>
+  </li>
+</div>
 
-<div data-ng-repeat="item in frontpage.items">
-  <h4 class="item-form" data-ng-click="item.active = !item.active">
+<div data-ng-repeat="item in frontpage.items" data-ng-show="item.active">
+  <h4 class="item-form">
     {{ mapNumeral($index) }}: "{{ item.title }}"
   </h4>
-  <div class="frontpage-item-wrapper" data-ng-show="item.active">
+  <div class="frontpage-item-wrapper">
     <ul class="item-actions">
       <li><button data-ng-click="frontpage.update($index)">Update</button></li>
       <li><button data-ng-click="frontpage.delete($index)">Destroy</button></li>
