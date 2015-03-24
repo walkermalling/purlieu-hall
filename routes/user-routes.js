@@ -64,8 +64,7 @@ module.exports = function(app, passport, jwtauth) {
 
     if (!isAdmin(req.user.permission)) return res.status(401);
 
-    UserModel.find({}, {'basic.password':0, 'createdAt':0, 'updatedAt':0},
-      function (err, users) {
+    UserModel.find({}, function (err, users) {
         if (err) return res.status(500).json(err);
         else res.status(200).send(users);
       }
@@ -117,7 +116,7 @@ module.exports = function(app, passport, jwtauth) {
 
     // find and update
     
-    UserModel.findOne({'_id':req.params.id}, function (err, user) {
+    UserModel.find({'_id':req.params.id}, {}, function (err, user) {
 
       for (var key in update) {
         if (!!update[key]){
