@@ -6,10 +6,8 @@ var jwt = require('jwt-simple');
 var moment = require('moment');
 
 var UserSchema = mongoose.Schema({
-  basic: {
-    email: String,
-    password: String
-  },
+  email: String,
+  password: String,
   jwt: String,
   type: String,
   number: Number,
@@ -41,7 +39,7 @@ UserSchema.methods.generateHash = function(password) {
 // Validate Password
 
 UserSchema.methods.validPassword = function(password) {
-  return bcrypt.compareSync(password, this.basic.password);
+  return bcrypt.compareSync(password, this.password);
 };
 
 // Create JWT Token

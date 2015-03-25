@@ -21,27 +21,20 @@ module.exports = function(app, passport, jwtauth) {
 
   app.post(publicApi, function (req, res) {
 
-    UserModel.findOne({'basic.email': req.body.email}, function (err, user) {
+    UserModel.findOne({'email': req.body.email}, function (err, user) {
 
       if (err) return res.status(500).json(err);
 
-      // if user exists, return unauthorized 
-
       if (user) return res.status(401).json({'msg':'cannot create user'});
 
-      // otherwise, populate new model
-
       var newUser = new UserModel();
-      newUser.basic.email = req.body.email;
-      newUser.basic.password = newUser.generateHash(req.body.password);
-
-      // save new user
+      newUser.email = req.body.email;
+      newUser.password = newUser.generateHash(req.body.password);
 
       newUser.save(function (err, resUser) {
 
         if (err) return res.status(500).json(err);
 
-        // return with jwt 
         else return res.status(200).json({'jwt': resUser.createToken(app)});
 
       });
@@ -53,8 +46,6 @@ module.exports = function(app, passport, jwtauth) {
   /**
    *  Administrative User Routes
    */
-
-
 
   /**
    * Get All Users
@@ -80,7 +71,7 @@ module.exports = function(app, passport, jwtauth) {
 
     // find and return user's basic attributes
 
-    UserModel.findOne({'_id': req.params.id},  {'basic.email': 1, 'name': 1}, 
+    UserModel.findOne({'_id': req.params.id},  {'email': 1, 'name': 1}, 
       function (err, user) {
         if (err) return res.status(500).json(err);
         else res.status(200).send(user);
