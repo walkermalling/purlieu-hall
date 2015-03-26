@@ -1,6 +1,5 @@
 {
   "node": true,
-  "curly": true,
   "eqeqeq": true,
   "immed": true,
   "laxcomma": true,

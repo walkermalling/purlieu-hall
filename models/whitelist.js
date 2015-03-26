@@ -2,12 +2,13 @@
 
 var mongoose = require('mongoose');
 var mailer = require('../lib/mailer');
+var accountTypes = require('../config/permissions');
 var cuid = require('cuid');
 
 var WhiteList = mongoose.Schema({
   firstname: String,
   lastname: String,
-  email: String,
+  email: String, // should be unique
   token: String,
   permission: {type: String, default: 'guest'}
 });
@@ -18,11 +19,13 @@ WhiteList.methods.generateToken = function () {
 
 WhiteList.methods.invite = function (type) {
   this.token = this.generateToken();
-
+  var accountType = accountTypes.validate(type) ? type : 'guest';
   var message = [
     '<h3>Invitation to the purlieuhall.com</h3>',
     '<p>Dear ', this.firstname, ',</p>',
-    '<p>Please create your account at purlieuhall.com by following this link:</p>',
+    '<p>Please create your ',
+    accountType,
+    'account at purlieuhall.com by following this link:</p>',
     '<p><a href="http://purlieuhall.com/activate?token=',
     this.token,
     '"></a></p>',

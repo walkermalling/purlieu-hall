@@ -6,7 +6,7 @@ var jwt = require('jwt-simple');
 var moment = require('moment');
 
 var UserSchema = mongoose.Schema({
-  email: String,
+  email: String, // should be unique
   password: String,
   jwt: String,
   type: String,
