@@ -9,13 +9,13 @@ module.exports = function(app){
 
       $scope.frontpage = {};
       $scope.frontpage.items = {};
-      $scope.user = {
-        create: false,
-        swap: function(){
-          // this can be depricated when invitations are implemented
-          $scope.user.create = !$scope.user.create;
-        }
-      };
+      // $scope.user = {
+      //   create: false,
+      //   swap: function(){
+      //     // this can be depricated when invitations are implemented
+      //     $scope.user.create = !$scope.user.create;
+      //   }
+      // };
 
       // API
 
@@ -23,7 +23,10 @@ module.exports = function(app){
         contentServer.frontPageItem.getAll()
           .success(function (items) {
             // if no items are loaded, initialize
-            if (items.length === 0) navigationInit();
+            if (items.length === 0) {
+              console.log('no fontpage items, invoking init');
+              navigationInit();
+            }
             // save fetched items to scope
             $scope.frontpage.items = items;
           });
@@ -88,11 +91,13 @@ module.exports = function(app){
       /**
        *  Call navigation config once items are loaded
        */
+
+
       
       $scope.$on('ngRepeatFinished', function (event) { /*jshint ignore:line*/
-
+        console.log(new Date());
+        console.log(event);
         navigationInit();
-
       });
 
       /**

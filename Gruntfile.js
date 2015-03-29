@@ -58,12 +58,12 @@ module.exports = function(grunt) {
       }
     },
 
-    jshint: {
-      all: allJavaScriptFilePaths,
-      options: {
-        jshintrc: true
-      }
-    },
+    // jshint: {
+    //   all: allJavaScriptFilePaths,
+    //   options: {
+    //     jshintrc: true
+    //   }
+    // },
 
     browserify: {
       dev: {
@@ -116,7 +116,6 @@ module.exports = function(grunt) {
           '.jshintrc'
         ],
         tasks: [
-          'jshint',
           'clean:dev',
           'browserify:dev',
           'sass:build',
@@ -149,7 +148,6 @@ module.exports = function(grunt) {
 
   // register tasks
   grunt.registerTask('default', [
-      'jshint',
       'clean:dev',
       'browserify:dev',
       'sass:build',
@@ -158,7 +156,6 @@ module.exports = function(grunt) {
     ]);
 
   grunt.registerTask('build', [
-      'jshint',
       'clean:dev',
       'browserify:dev',
       'sass:build',

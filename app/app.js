@@ -78,6 +78,6 @@ purlieu.config([ '$routeProvider', '$locationProvider',
         controller: 'signinController'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/#/' 
       });
 } ]);

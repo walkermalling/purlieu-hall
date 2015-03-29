@@ -1,5 +1,7 @@
 'use strict';
 
+var util = require('util');
+
 module.exports = function(app){
 
   app.controller('dtosauaCmsController', 
@@ -45,6 +47,16 @@ module.exports = function(app){
         });
     };
 
+    function updateAll () {
+      $scope.dtosaua.sections.forEach(function updateEach (s) {
+        cmsServer.dtosauaSection.update(s)
+          .success(function (response) {
+            console.log(response);
+            $scope.dtosaua.getSections();
+          });
+      });
+    }
+
     /**
      * UI Utilities
      */
@@ -79,20 +91,46 @@ module.exports = function(app){
       $scope.dtosaua.newSection.position = $scope.dtosaua.sections.length;
     }
 
+    function sortSections (pos, direction) {
+      var sortedArr = [];
+      $scope.dtosaua.sections.forEach(function sort (s, index) {
+        sortedArr[s.position] = s;
+      });
+
+      // check if there is room in the direction requested
+      if (sortedArr[pos + direction]) {
+        console.log('There is room:');
+        console.log(sortedArr[pos + direction]);
+      } else {
+        console.log('No room to adjust position.');
+        return;
+      }
+
+      // swap
+
+      sortedArr[pos].position += direction;
+      sortedArr[pos + direction].position -= direction;
+
+      updateAll();
+
+    }
+
     $scope.moveLeft = function (sectionIndex) {
       // ensure there is room to the left
-      if (sectionIndex <= 0 ) return;
+      // if (sectionIndex <= 0 ) return;
       // swape current with left neighbor
-      $scope.dtosaua.sections[sectionIndex].position--;
-      $scope.dtosaua.sections[sectionIndex - 1].position++;
+      // $scope.dtosaua.sections[sectionIndex].position--;
+      // $scope.dtosaua.sections[sectionIndex - 1].position++;
+      sortSections($scope.dtosaua.sections[sectionIndex].position, -1);
     };
 
     $scope.moveRight = function (sectionIndex) {
       // ensure there is room to the right
-      if (sectionIndex >= $scope.dtosaua.sections.length - 1) return;
+      // if (sectionIndex >= $scope.dtosaua.sections.length - 1) return;
       // swap current with right neighbor
-      $scope.dtosaua.sections[sectionIndex].position++;
-      $scope.dtosaua.sections[sectionIndex + 1].position--;
+      // $scope.dtosaua.sections[sectionIndex].position++;
+      // $scope.dtosaua.sections[sectionIndex + 1].position--;
+      sortSections($scope.dtosaua.sections[sectionIndex].position, 1);
     };
 
     /**
@@ -110,7 +148,5 @@ module.exports = function(app){
 
     $scope.dtosaua.getSections();
     
-    console.log($scope.dtosaua.sections);
-
   }]);
 };

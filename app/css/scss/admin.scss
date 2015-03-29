@@ -123,10 +123,13 @@ main.admin{
   -moz-font-smoothing: antialiased;
   font-smoothing: antialiased;
   font-weight:normal;
-  color:#222;}
+  color:#727152;}
 
-  .admin a.dark:hover{
-    color:#000;}
+/*  .admin a.dark:hover{
+    color:#000;}*/
+
+    .admin a.dark.active {
+      color:#000;}
 
 .admin ul.item-actions{
   text-align: left;}
@@ -136,6 +139,12 @@ main.admin{
 
   .admin ul.item-actions li:last-child button{
     margin-right:0;}
+
+.admin ul.subsection-handles {
+  margin-top:1em;}
+
+.admin ul.subsection-handles li a {
+  padding: .25em;}
 
 
 

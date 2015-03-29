@@ -105,21 +105,21 @@ module.exports = function(app, passport, jwtauth) {
 
     delete update._id;
 
+    // make updatedAt current
+
+    update.updatedAt = new Date();
+
     // find and update
-    
-    UserModel.find({'_id':req.params.id}, {}, function (err, user) {
 
-      for (var key in update) {
-        if (!!update[key]){
-          user[key] = update[key];
-        }
+    UserModel.findOneAndUpdate({
+        '_id': req.params.id
+      }, 
+      update, 
+      function(err, data) {
+        if (err) return res.status(500).send('there was an error');
+        else return res.status(200).json({'msg':data});
       }
-
-      user.save(function (err, updatedUser) { /* jshint ignore:line  */
-        if (err) return res.status(500).json(err);
-        else return res.status(200).json({'msg':'success'});
-      });
-    });
+    );
 
   });
 

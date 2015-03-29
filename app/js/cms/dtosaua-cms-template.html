@@ -1,5 +1,4 @@
 <h4>Sections</h4>
-<p>Click to show/hide</p>
 <!-- Show and Hide Each Section -->
 <ul class="inline button">
   <li data-ng-repeat="section in dtosaua.sections">
@@ -19,7 +18,15 @@
 
   <!-- Action Buttons: Update, Delete, Enable -->
   <ul class="item-actions">
-    <li><button data-ng-click="dtosaua.update($index)">Update</button></li>
+    <li>
+      <button data-ng-click="dtosaua.update($index)">Update</button>
+    </li>
+    <li>
+      <button data-ng-click="moveLeft($index)">Move Left</button>
+    </li>
+    <li>
+      <button data-ng-click="moveRight($index)">Move Right</button>
+    </li>
     <li>
       <button 
         class="check-box {{ section.enable ? 'enabled' : 'disabled'}}"
@@ -37,20 +44,16 @@
   <form data-ng-submit="section.update($index)">
     <input type="hidden" value="{{ section._id }}" data-ng-model="section.id"/>
     <input data-ng-model="section.enable" type="hidden" />
-
     <label>Title</label>
     <input type="text" value="{{ section.title }}" data-ng-model="section.title"/>
 
-    <label>Adjust Position ({{ enumerate(section.position) }})</label>
-    <ul class="inline">
-      <button data-ng-click="moveLeft($index)">Move Left</button>
-      <button data-ng-click="moveRight($index)">Move Right</button>
-    </ul>
-
     <!-- Edit each Subitem -->
-    <ul class="inline">
+    <ul class="inline subsection-handles">
+      <li>
+        <p>Subsections: </p>
+      </li>
       <li data-ng-repeat="item in section.items">
-        <a class="dark" data-ng-click="item.active = !item.active">
+        <a class="dark {{ item.active ? 'active' : ''}}" data-ng-click="item.active = !item.active">
           {{ item.subtitle }}
         </a>
       </li>
@@ -81,7 +84,7 @@
     </div>
 
     <div class="create-new-item">
-      <button data-ng-click="addItemTo($index)">Add New Section Item</button>
+      <button data-ng-click="addItemTo($index)">Add New Sub-Item</button>
     </div>
 
   </form>
