@@ -8,7 +8,7 @@ module.exports = function(app, passport, jwtauth) {
   var adminApi = '/api/admin/users';
 
   function isAdmin (permission) {
-    if (['dodo','admin'].indexOf(permission) != -1) return true;
+    if (['dodo','admin'].indexOf(permission) !== -1) return true;
     else return false;
   }
 

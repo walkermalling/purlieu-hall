@@ -1,5 +1,7 @@
 'use strict';
 
+var util = require('util');
+
 /**
  *  Service used only for GET requests to site content
  */
@@ -38,9 +40,11 @@ module.exports = function(app) {
      */
 
     function logError (data, status) {
-      console.log('Error in Content Server Operation:');
-      console.log(data);
-      console.log(status);
+      console.warn(util.format(
+        'Error in Content Server Operation:\nData: %s\nStatus: %s',
+        data,
+        status
+      ));
     }
 
     /**

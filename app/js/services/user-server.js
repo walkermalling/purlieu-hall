@@ -1,5 +1,7 @@
 'use strict';
 
+var util = require('util');
+
 module.exports = function(app) {
   app.factory('userServer', function($http) {
 
@@ -43,9 +45,11 @@ module.exports = function(app) {
      */
 
     function logError (data, status) {
-      console.log('Error in User Server Operation:');
-      console.log(data);
-      console.log(status);
+      console.warn(util.format(
+        'Error in Calendar Server Operation:\nData: %s\nStatus: %s',
+        data,
+        status
+      ));
     }
 
     /**

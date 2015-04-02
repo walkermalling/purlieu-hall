@@ -9,7 +9,6 @@ module.exports = function (app) {
         if (scope.$last === true) {
           $timeout(function () {
             scope.$emit('ngRepeatFinished');
-            console.log('ngRepeat Emitted');
           });
         }
       }

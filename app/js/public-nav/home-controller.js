@@ -95,8 +95,6 @@ module.exports = function(app){
 
       
       $scope.$on('ngRepeatFinished', function (event) { /*jshint ignore:line*/
-        console.log(new Date());
-        console.log(event);
         navigationInit();
       });
 
