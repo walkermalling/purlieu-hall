@@ -11,7 +11,11 @@
         data-ng-repeat="item in frontpage.items" 
         on-finish-render>
         <a>{{ item.title }}</a>
-        <div class="pull-down" data-ng-bind-html="item.content"></div>
+
+        <div class="pull-down" data-ng-if="item.title == 'library'">
+          <library></library>
+        </div>
+        <div class="pull-down" data-ng-if="item.title != library" data-ng-bind-html="item.content"></div>
       </li>
 
       <!-- calendar -->
