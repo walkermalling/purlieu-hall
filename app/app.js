@@ -42,6 +42,7 @@ require('./js/cms/dtosaua-cms-controller')(purlieu);
 require('./js/admin/admin-controller')(purlieu);
 require('./js/account/user-management/user-management-controller')(purlieu);
 require('./js/calendar/public-calendar-controller')(purlieu);
+require('./js/library/library-controller')(purlieu);
 
 /**
  * Directives
@@ -52,6 +53,7 @@ require('./js/cms/frontpage-cms-directive')(purlieu);
 require('./js/cms/dtosaua-cms-directive')(purlieu);
 require('./js/account/user-management/user-management-directive')(purlieu);
 require('./js/calendar/public-calendar-directive')(purlieu);
+require('./js/library/library-directive')(purlieu);
           // partials
 require('./js/partials/footer/footer-directive')(purlieu);
 require('./js/partials/dividers/admin-section-divider-directive')(purlieu);

@@ -9,13 +9,6 @@ module.exports = function(app){
 
       $scope.frontpage = {};
       $scope.frontpage.items = {};
-      // $scope.user = {
-      //   create: false,
-      //   swap: function(){
-      //     // this can be depricated when invitations are implemented
-      //     $scope.user.create = !$scope.user.create;
-      //   }
-      // };
 
       // API
 
@@ -32,9 +25,36 @@ module.exports = function(app){
           });
       };
 
-
       // Helper Routines
-      
+
+      /**
+       *  Check string against custom directive names
+       */
+
+      $scope.isCustomDirective = function (sectionName) {
+        var cds = ['calendar','public-calendar','library','demo-library'];
+        var itemName = sectionName.toLowerCase().replace(' ', '-');
+        if (cds.indexOf(itemName) > -1) {
+          return true;
+        } else {
+          return false;
+        }
+      };
+
+      /**
+       *  Normalize String For Comparison
+       */
+
+      $scope.matchKey = function (key, str) {
+        var normalizedKey = key.toLowerCase().replace(' ','-');
+        if (normalizedKey === str) {
+          console.log(key + 'matches ' + str);
+          return true;
+        } else {
+          console.log(key + ' does not');
+          return false;
+        }
+      };
       
       /**
        *  Quick Map for indecies to named ranks
@@ -92,8 +112,6 @@ module.exports = function(app){
        *  Call navigation config once items are loaded
        */
 
-
-      
       $scope.$on('ngRepeatFinished', function (event) { /*jshint ignore:line*/
         navigationInit();
       });

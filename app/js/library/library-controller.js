@@ -8,5 +8,7 @@ module.exports = function(app){
     ['$scope', '$cookies', '$location',
     function($scope, $cookies, $location) {
 
+    console.log('loading library');
+
   }]);
 };

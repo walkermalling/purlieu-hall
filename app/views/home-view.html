@@ -12,21 +12,12 @@
         on-finish-render>
         <a>{{ item.title }}</a>
 
-        <div class="pull-down" data-ng-if="item.title == 'library'">
-          <library></library>
+        <div class="pull-down" data-ng-if="matchKey(item.title, 'public-calendar')">
+          <div data-ng-bind-html="item.content"></div>
+          <public-calendar></public-calendar>
         </div>
-        <div class="pull-down" data-ng-if="item.title != library" data-ng-bind-html="item.content"></div>
-      </li>
-
-      <!-- calendar -->
-
-      <li class="menu-item quaternary">
-        <a>Public Events</a>
-        <div class="pull-down">
-          <div>
-            <public-calendar></public-calendar>
-          </div>
-        </div>
+        
+        <div class="pull-down" data-ng-if="!isCustomDirective(item.title)" data-ng-bind-html="item.content"></div>
       </li>
 
       <!-- login -->
