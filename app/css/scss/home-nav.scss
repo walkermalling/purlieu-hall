@@ -68,7 +68,18 @@ nav{
         .pull-down p{
           letter-spacing:1px;
           text-align: justify;
+          font-size:1.1em;
         }
+        .pull-down h4 {
+          font-weight:100;
+          font-size:0.9em;}
+
+        .pull-down a {
+          font-weight:bold;}
+
+        .pull-down a:hover {
+          opacity:.6; }
+
         @media screen and (max-width: 800px){
           .pull-down p{
             font-size: .9em;
