@@ -97,39 +97,22 @@ module.exports = function(app){
         sortedArr[s.position] = s;
       });
 
-      // check if there is room in the direction requested
-      if (sortedArr[pos + direction]) {
-        console.log('There is room:');
-        console.log(sortedArr[pos + direction]);
-      } else {
+      if (!sortedArr[pos + direction]) {
         console.log('No room to adjust position.');
         return;
       }
-
-      // swap
 
       sortedArr[pos].position += direction;
       sortedArr[pos + direction].position -= direction;
 
       updateAll();
-
     }
 
     $scope.moveLeft = function (sectionIndex) {
-      // ensure there is room to the left
-      // if (sectionIndex <= 0 ) return;
-      // swape current with left neighbor
-      // $scope.dtosaua.sections[sectionIndex].position--;
-      // $scope.dtosaua.sections[sectionIndex - 1].position++;
       sortSections($scope.dtosaua.sections[sectionIndex].position, -1);
     };
 
     $scope.moveRight = function (sectionIndex) {
-      // ensure there is room to the right
-      // if (sectionIndex >= $scope.dtosaua.sections.length - 1) return;
-      // swap current with right neighbor
-      // $scope.dtosaua.sections[sectionIndex].position++;
-      // $scope.dtosaua.sections[sectionIndex + 1].position--;
       sortSections($scope.dtosaua.sections[sectionIndex].position, 1);
     };
 

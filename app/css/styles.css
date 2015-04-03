@@ -242,7 +242,8 @@ li.menu-item:hover > a {
 .pull-down p {
   letter-spacing: 1px;
   text-align: justify;
-  font-size: 1.1em; }
+  font-size: 1.1em;
+  padding-bottom: 0.5em; }
 
 .pull-down h4 {
   font-weight: 100;
@@ -660,6 +661,9 @@ main.admin {
     color:#000;}*/
 .admin a.dark.active {
   color: #000; }
+
+.admin ul.section-headings {
+  margin: 0 1em; }
 
 .admin ul.item-actions {
   text-align: left; }

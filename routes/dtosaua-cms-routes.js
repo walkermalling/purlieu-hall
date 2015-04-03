@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('lodash');
+
 var DtosauaSection = require('../models/dtosaua-section');
 // var DtosauaItem = require('../models/dtosaua-item');
 
@@ -22,7 +24,9 @@ module.exports = function(app, jwtauth) {
 
     DtosauaSection.find({}, function (err, sections) {
       if (err) return res.status(500).json(err);
-      else res.status(200).send(sections);
+
+      var sortedItems = _.sortBy(sections, 'position');
+      res.status(200).send(sortedItems);
     });
 
   });
