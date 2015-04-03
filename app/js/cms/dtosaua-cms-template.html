@@ -1,7 +1,7 @@
 <h4>Sections</h4>
 <!-- Show and Hide Each Section -->
 <ul class="inline button section-heading">
-  <li data-ng-repeat="section in dtosaua.sections">
+  <li data-ng-repeat="section in dtosaua.sections" class="{{ section.active ? 'active' : '' }}">
     <a class="dark" data-ng-click="section.active = !section.active">
       {{ section.title }}
     </a>
@@ -13,7 +13,7 @@
 
   <!-- Section Title -->
   <h4 class="item-form" data-ng-click="section.active = !section.active">
-    "{{ section.title }}"
+    <span style="font-weight:100; color:#727152">Edit</span> "{{ section.title }}"
   </h4>
 
   <!-- Action Buttons: Update, Delete, Enable -->
@@ -48,7 +48,7 @@
     <input type="text" value="{{ section.title }}" data-ng-model="section.title"/>
 
     <!-- Edit each Subitem -->
-    <ul class="inline subsection-handles">
+    <!-- <ul class="inline subsection-handles">
       <li>
         <p>Subsections: </p>
       </li>
@@ -57,18 +57,13 @@
           {{ item.subtitle }}
         </a>
       </li>
-    </ul>
+    </ul> -->
       
-    <div data-ng-repeat="item in section.items" data-ng-show="item.active">
+    <div data-ng-repeat="item in section.items" class="edit-subsection">
       <label>Subtitle</label>
       <input type="text" 
         value="{{ section.items[$index].subtitle }}" 
         data-ng-model="section.items[$index].subtitle"/>
-
-      <label>Content</label>
-      <input type="text" 
-        value="{{ section.items[$index].content }}" 
-        data-ng-model="section.items[$index].content"/>
 
       <label>Enable</label>
       <p>
@@ -81,6 +76,19 @@
           {{ section.items[$index].enable ? 'Enabled' : 'Disabled'}}
         </a>
       </p>
+
+      <label>Content</label>
+      <textarea
+        value="{{ section.items[$index].content }}" 
+        data-ng-model="section.items[$index].content">
+      </textarea>
+
+      <label>Preview {{section.items[$index].subtitle}}:</label>
+    
+      <div class="section-content">
+        <div data-ng-bind-html="section.items[$index].content"></div>
+      </div>
+
     </div>
 
     <div class="create-new-item">

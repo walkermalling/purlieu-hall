@@ -131,9 +131,18 @@ main.admin{
     .admin a.dark.active {
       color:#000;}
 
-.admin ul.section-headings li{
-  margin:0 1em;
-}
+.admin ul.section-heading {
+  margin-bottom: 1em;}
+
+  .admin ul.section-heading li{
+    margin:0 0.3em 0 0;}
+
+    .admin ul.section-heading li.active {
+      border-color: #222;}
+
+    .admin ul.section-heading li.active a {
+      color: #222}
+
 
 .admin ul.item-actions{
   text-align: left;}
@@ -150,6 +159,18 @@ main.admin{
 .admin ul.subsection-handles li a {
   padding: .25em;}
 
+.admin div.edit-subsection {
+  border-left:.5em solid #727152;
+  padding-left:1em;
+  padding-bottom:1em;
+  margin:1em 0;
+
+}
+
+.admin div.section-content {
+  border-top:1px solid #C9C695;
+  padding-top:1em;
+}
 
 
 
