@@ -48,10 +48,8 @@ module.exports = function(app){
       $scope.matchKey = function (key, str) {
         var normalizedKey = key.toLowerCase().replace(' ','-');
         if (normalizedKey === str) {
-          console.log(key + 'matches ' + str);
           return true;
         } else {
-          console.log(key + ' does not');
           return false;
         }
       };

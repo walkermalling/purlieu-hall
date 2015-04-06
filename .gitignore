@@ -3,5 +3,6 @@ app/bower_components/
 build/
 db/
 purlieu-db/
+app/init.js
 .sass-cache/
 .DS_Store

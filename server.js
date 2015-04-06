@@ -1,5 +1,7 @@
 'use strict';
 
+require('./app/init');
+
 var http = require('http');
 var express = require('express');
 var bodyparser = require('body-parser');
