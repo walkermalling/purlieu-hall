@@ -1,4 +1,5 @@
 var permissionTypes = [
+  'denied',
   'guest',
   'member',
   'dodo',
@@ -6,7 +7,7 @@ var permissionTypes = [
 ];
 
 function validate (type) {
-  if (permissionTypes.indexOf(type) !== -1) {
+  if (permissionTypes.indexOf(type) <= 0) {
     return true;
   } else {
     return false;

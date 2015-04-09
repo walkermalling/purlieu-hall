@@ -15,7 +15,7 @@ module.exports = function(app){
 
     $scope.users = {};
 
-    $scope.types = ['town', 'country', 'subscriber', 'dodo'];
+    $scope.types = ['fellow', 'wayfarer', 'subscriber', 'dodo'];
     $scope.permissions = ['denied', 'guest', 'member', 'dodo', 'admin'];
 
     /**
@@ -32,7 +32,6 @@ module.exports = function(app){
         (function prepDates () {
           $scope.users.forEach(function (u) {
             var created = moment(u.createdAt);
-            console.log(created);
             u.prettyDate = created.format("dddd, MMMM Do YYYY, h:mm:ss a");
           });
         }());
