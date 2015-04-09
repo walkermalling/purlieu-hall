@@ -3,68 +3,66 @@
   <p>Todo: accordion the users, so that only one is visible at a time</p>
   <p>Todo: implement an "invite" section</p>
 </div>
+
 <div data-ng-repeat="user in users" class="user">
 
-  <form>
+  <p>{{user.number}}: {{user.lastname}}, {{user.firstname}} ({{user.prettyDate}})</p>
 
-    <input type="hidden" value="{{ user._id }}" data-ng-model="user._id"/>
-
-    <label>First Name</label>
-    <input type="text" value="{{ user.firstname }}" data-ng-model="user.firstname"/>
-
-    <label>Last Name</label>
-    <input type="text" value="{{ user.lastname }}" data-ng-model="user.lastname"/>
-
-    <label>Email</label>
-    <input type="text" value="{{ user.email }}" data-ng-model="user.email"/>
-
-    <label>Phone Number</label>
-    <input type="text" value="{{ user.phone }}" data-ng-model="user.phone"/>
-
-    <label>Address</label>
-    <input type="text" value="{{ user.address }}" data-ng-model="user.address"/>
-
-    <label>City</label>
-    <input type="text" value="{{ user.city }}" data-ng-model="user.city"/>
-
-    <label>State</label>
-    <input type="text" value="{{ user.state }}" data-ng-model="user.state"/>
-
-    <label>Zip</label>
-    <input type="text" value="{{ user.zip }}" data-ng-model="user.zip"/>
-
-    <label>Member Type</label>
-    <a 
-      data-ng-repeat="type in types"
-      class="check-box {{ user.type == type ? 'enabled' : 'disabled'}}"
-      data-ng-click="user.type = type">
-      {{ type }}
-    </a>
-    
-
-    <label>Member Id Number</label>
-    <input type="text" value="{{ user.number }}" data-ng-model="user.number"/>
-
-    <label>Site Permission</label>
-    <a 
-      data-ng-repeat="p in permissions"
-      class="check-box {{ user.permission == p ? 'enabled' : 'disabled'}}"
-      data-ng-click="user.permission = p">
-      {{ p }}
-    </a>
-
-  </form>
-
-  <ul class="item-actions">
+  <ul class="item-actions" id="{{user.email}}">
     <li><button data-ng-click="update($index)">Update</button></li>
     <li><button data-ng-click="remove(user._id)">Remove</button></li>
   </ul>
-  
-  
 
+  <form>
+    <input type="hidden" value="{{ user._id }}" data-ng-model="user._id"/>
+
+    <div class="contact-info">
+      <label>First Name</label>
+      <input type="text" value="{{ user.firstname }}" data-ng-model="user.firstname"/>
+
+      <label>Last Name</label>
+      <input type="text" value="{{ user.lastname }}" data-ng-model="user.lastname"/>
+
+      <label>Email</label>
+      <input type="text" value="{{ user.email }}" data-ng-model="user.email"/>
+
+      <label>Phone Number</label>
+      <input type="text" value="{{ user.phone }}" data-ng-model="user.phone"/>
+
+      <label>Address</label>
+      <input type="text" value="{{ user.address }}" data-ng-model="user.address"/>
+
+      <label>City</label>
+      <input type="text" value="{{ user.city }}" data-ng-model="user.city"/>
+
+      <label>State</label>
+      <input type="text" value="{{ user.state }}" data-ng-model="user.state"/>
+
+      <label>Zip</label>
+      <input type="text" value="{{ user.zip }}" data-ng-model="user.zip"/>
+    </div>
+
+    <div class="membership-info">
+      <label>Member Id Number</label>
+      <input type="text" value="{{ user.number }}" data-ng-model="user.number"/>
+
+      <label>Member Type</label>
+      <a 
+        data-ng-repeat="type in types"
+        class="check-box {{ user.type == type ? 'enabled' : 'disabled'}}"
+        data-ng-click="user.type = type">
+        {{ type }}
+      </a>
+
+      <label>Site Permission</label>
+      <a 
+        data-ng-repeat="p in permissions"
+        class="check-box {{ user.permission == p ? 'enabled' : 'disabled'}}"
+        data-ng-click="user.permission = p">
+        {{ p }}
+      </a>
+    </div>
+
+  </form>
+  <div style="clear:both; width:100%;"></div>  
 </div>
-
-<style type="text/css">
-  .admin .user{
-    padding:1em 0;}
-</style>

@@ -1,11 +1,12 @@
 'use strict';
 var util = require('util');
+var moment = require('moment');
 
 module.exports = function(app){
 
   app.controller('userManagementController',
-    ['$scope', '$cookies', 'userServer', 'auth',
-    function($scope, $cookies, userServer, auth){
+    ['$scope','$location', '$anchorScroll','$cookies', 'userServer', 'auth',
+    function($scope, $location, $anchorScroll, $cookies, userServer, auth){
 
     console.log('loading user management controller');
 
@@ -28,6 +29,13 @@ module.exports = function(app){
     $scope.getAll = function () {
       userServer.getAll().success(function (users) {
         $scope.users = users;
+        (function prepDates () {
+          $scope.users.forEach(function (u) {
+            var created = moment(u.createdAt);
+            console.log(created);
+            u.prettyDate = created.format("dddd, MMMM Do YYYY, h:mm:ss a");
+          });
+        }());
       });
     };
 
@@ -42,12 +50,16 @@ module.exports = function(app){
     };
 
     $scope.remove = function (id) {
-      userServer.destroy(id).success(function (u) {
-        console.log('success');
-        console.log(u);
+      userServer.destroy(id).success(function (responseStatus) {
+        // console.log('Success. Server response: ' + responseStatus);
         $scope.getAll();
       });
     };
+
+    // $scope.goto = function (id) {
+    //   $location.hash(id);
+    //   $anchorScroll();
+    // };
 
     /**
      *  Init Execute

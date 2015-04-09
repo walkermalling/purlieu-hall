@@ -93,7 +93,7 @@ module.exports = function(app, passport, jwtauth) {
     // only allow admins and the user whose record this is to update it
 
     if (!isAdmin(req.user.permission) && user._id !== update._id)
-      return res.status(401).end();
+      return res.statusStatus(401);
 
     // is it is the current user's record, and user is not an admin
     // do not allow them to modify permission
@@ -133,7 +133,7 @@ module.exports = function(app, passport, jwtauth) {
 
     UserModel.remove({'_id': req.params.id}, function (err, response) {
       if (err) return res.status(500).json(err);
-      else return res.status(200).send(response);
+      else return res.sendStatus(200);
     });
 
   });

@@ -9,10 +9,10 @@ module.exports = function(app, jwtauth) {
 
   var route = '/api/cms/dtosaua';
 
-  // function isAdmin (permission) {
-  //   if (['dodo','admin'].indexOf(permission) != -1) return true;
-  //   else return false;
-  // }
+  function isAdmin (permission) {
+    if (['dodo','admin'].indexOf(permission) != -1) return true;
+    else return false;
+  }
 
   /**
    * Get All
@@ -20,7 +20,7 @@ module.exports = function(app, jwtauth) {
   
   app.get(route, jwtauth, function (req,res){
 
-    // if (!isAdmin(req.user.permission)) return res.status(401);
+    if (!isAdmin(req.user.permission)) return res.status(401);
 
     DtosauaSection.find({}, function (err, sections) {
       if (err) return res.status(500).json(err);
@@ -37,7 +37,7 @@ module.exports = function(app, jwtauth) {
   
   app.get(route + '/:id', jwtauth, function (req,res){
 
-    // if (!isAdmin(req.user.permission)) return res.status(401);
+    if (!isAdmin(req.user.permission)) return res.status(401);
 
     DtosauaSection.find({'_id': req.params.id}, function (err, sections) {
       if (err) return res.status(500).json(err);
@@ -52,7 +52,7 @@ module.exports = function(app, jwtauth) {
 
   app.post(route, jwtauth, function (req,res){
 
-    // if (!isAdmin(req.user.permission)) return res.status(401);
+    if (!isAdmin(req.user.permission)) return res.status(401);
 
     var section = new DtosauaSection(req.body);
     section.save(function (err, section) {
@@ -68,7 +68,7 @@ module.exports = function(app, jwtauth) {
   
   app.put(route + '/:id', jwtauth, function (req,res) {
 
-    // if (!isAdmin(req.user.permission)) return res.status(401);
+    if (!isAdmin(req.user.permission)) return res.status(401);
 
     var section = req.body;
     delete section._id;
@@ -99,7 +99,7 @@ module.exports = function(app, jwtauth) {
 
   app.delete(route + '/:id', jwtauth, function(req, res) {
 
-    // if (!isAdmin(req.user.permission)) return res.status(401);
+    if (!isAdmin(req.user.permission)) return res.status(401);
 
     DtosauaSection.remove({'_id': req.params.id}, function(err) {
       if (err) return res.status(500).send('there was an error');

@@ -18,7 +18,6 @@ module.exports = function(app){
       calServer.getAll()
         .success(function (calEvents) {
           $scope.calendar.calEvents = calEvents;
-          console.log(util.format('Events: %s',calEvents));
         });
     };
 

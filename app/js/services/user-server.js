@@ -46,7 +46,7 @@ module.exports = function(app) {
 
     function logError (data, status) {
       console.warn(util.format(
-        'Error in Calendar Server Operation:\nData: %s\nStatus: %s',
+        'Error in User Server Operation:\nData: %s\nStatus: %s',
         data,
         status
       ));

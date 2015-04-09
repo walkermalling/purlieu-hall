@@ -10,5 +10,21 @@ module.exports = function(app){
 
     console.log('loading library');
 
+    /**
+     *  Methods
+     */
+
+    // send a search query
+
+    // get an index of collections
+
+    // get an index of authors
+
+    // get a randon artifact
+
+    // request a title
+
+    
+
   }]);
 };

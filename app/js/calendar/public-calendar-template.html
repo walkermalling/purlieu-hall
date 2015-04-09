@@ -1,5 +1,35 @@
-<div data-ng-repeat="item in calendar.calEvents" >
-  <p>{{item}}</p>
+<div data-ng-repeat="item in calendar.calEvents.items" >
+  <p>{{item.summary}}</p>
+  <p>Time: {{item.start.dateTime | date : 'medium'}}</p>
+  <p>Location: {{item.location}}</p>
+  <p><a href="{{item.htmlLink}}">View on Calendar</a></p>
 </div>
+
+<!--
+{ kind: 'calendar#events',
+  etag: '"1428338154751000"',
+  summary: 'Purlieu Hall Events',
+  description: 'Public Events and Variorum Happenings at Purlieu Hall',
+  timeZone: 'America/Los_Angeles',
+  items: 
+   [ { kind: 'calendar#event',
+       etag: '"2856676309502000"',
+       id: '5es8n5kqgsep4em8iis71l2nsk',
+       status: 'confirmed',
+       htmlLink: 'https://www.google.com/calendar/event?eid=NWVzOG41a3Fnc2VwNGVtOGlpczcxbDJuc2tfMjAxNTA0MDNUMDEwMDAwWiBsZWlkc21lczNvZnBtbXR0aWQ4MjFmZXR0MEBn',
+       created: '2015-03-30T00:33:40.000Z',
+       updated: '2015-04-06T16:35:54.751Z',
+       summary: 'First Thursday',
+       location: 'Purlieu Hall',
+       creator: [Object],
+       organizer: [Object],
+       start: [Object],
+       end: [Object],
+       recurrence: [Object],
+       transparency: 'transparent',
+       iCalUID: '5es8n5kqgsep4em8iis71l2nsk@google.com',
+       sequence: 1,
+       guestsCanSeeOtherGuests: false } ] }
+-->
 
 

@@ -698,3 +698,23 @@ main.admin {
 .admin div.section-content {
   border-top: 1px solid #C9C695;
   padding-top: 1em; }
+
+.admin div.user {
+  border-left: 0.5em solid #727152;
+  padding: 0 0 0 1em;
+  margin: 1em 0;
+  clear: both; }
+
+.admin div.user div.contact-info {
+  width: 50%;
+  max-width: 320px;
+  min-width: 200px;
+  padding: 0 1em 0 0;
+  float: left; }
+
+.admin div.user div.membership-info {
+  width: 50%;
+  max-width: 320px;
+  min-width: 200px;
+  padding: 0 1em 0 0;
+  float: left; }

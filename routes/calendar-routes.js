@@ -33,15 +33,25 @@ module.exports = function(app) {
 
   app.get(publicApi, function (req, res) {
 
-    console.log('Fetching public events');
+    function respond (err, body) {
+      if (err) {
+        console.log(err);
+        return res.send({'error':'google api took too long to respond'});
+      }
+      if (body) {
+        return res.send(body);
+      }
+    }
+
+    var timeout = setTimeout(respond, 2000);
 
     request.get(publicEventsList, function (err, response, body) {
       if (err) {
-        console.log(err);
+        respond(err);
       }
-      console.log(util.format('Reponse status: %s',response.status));
-      console.log(util.format('Response length %d', body.length));
-      res.send(body);
+      if (body) {
+        respond(null, body);
+      }
     });
 
   });
