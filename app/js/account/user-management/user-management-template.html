@@ -6,7 +6,8 @@
 
 <div data-ng-repeat="user in users" class="user">
 
-  <p>{{user.number}}: {{user.lastname}}, {{user.firstname}} ({{user.prettyDate}})</p>
+  <p>Member Id: {{user.number}}</p>
+  <p>{{user.lastname}}, {{user.firstname}} ({{user.prettyDate}})</p>
 
   <ul class="item-actions" id="{{user.email}}">
     <li><button data-ng-click="update($index)">Update</button></li>
