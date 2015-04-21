@@ -1,7 +1,10 @@
 'use strict';
 
 var request = require('request');
+var xml2js = require('xml2js');
 var util = require('util');
+
+var parser = new xml2js.Parser();
 
 module.exports = function(app) {
 
@@ -13,47 +16,40 @@ module.exports = function(app) {
     else return false;
   }
 
-  // buld query
-
-  var params = {};
-  params.calId = 'leidsmes3ofpmmttid821fett0@group.calendar.google.com';
-  params.queryType = 'events';
-  params.fields = 'fields=description%2Cetag%2Citems%2Ckind%2Csummary%2CtimeZone&key=';
-  params.apiKey = process.env.GOOGLE_CAL_API_KEY;
-
-  var publicEventsList = util.format(
-      'https://www.googleapis.com/calendar/v3/calendars/%s/%s?%s%s',
-      params.calId,
-      params.queryType,
-      params.fields,
-      params.apiKey
-    );
-
   // get all public events
+  
+  var publicCal = 'https://www.google.com/calendar/feeds/leidsmes3ofpmmttid821fett0%40group.calendar.google.com/private-71b4e8a5fb8ed17992d6384490aa0b92/basic';
 
   app.get(publicApi, function (req, res) {
-
-    function respond (err, body) {
+    request.get(publicCal, function pubCalCallback(err, response, body) {
       if (err) {
-        console.log(err);
-        return res.send({'error':'google api took too long to respond'});
+        return res.send({msg:'error'});
       }
-      if (body) {
-        return res.send(body);
-      }
-    }
-
-    var timeout = setTimeout(respond, 2000);
-
-    request.get(publicEventsList, function (err, response, body) {
-      if (err) {
-        respond(err);
-      }
-      if (body) {
-        respond(null, body);
-      }
+      parser.parseString(body, function (err, result) {
+        if (err) {
+          return res.send({msg:'xml parse error'});
+        }
+        res.send(result);
+      });
     });
+  });
 
+  // private calendar
+  
+  var privateCal = 'https://www.google.com/calendar/feeds/purlieuhall%40gmail.com/private-8e56d734a16b55f5a882b72c1c0a0cd9/basic';
+    
+  app.get(adminApi, function (req, res) {
+    request.get(privateCal, function privateCalCallback (err, response, body) {
+      if (err) {
+        return res.send({msg:'error'});
+      }
+      parser.parseString(body, function (err, result) {
+        if (err) {
+          return res.send({msg:'xml parse error'});
+        }
+        res.send({});
+      });
+    });
   });
 
 };

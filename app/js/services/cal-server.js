@@ -6,13 +6,19 @@ module.exports = function (app) {
     var calServer = {};
 
     var calRoute = '/api/public/events';
+    var privateCalRoute = '/api/admin/calendar';
 
-
-
-    calServer.getAll = function () {
+    calServer.getAllPublic = function () {
       return $http.get(calRoute)
         .error(logError);
     };
+
+    calServer.getAllPrivate = function () {
+      return $http.get(privateCalRoute)
+        .error(logError);
+    };
+
+
 
     // calServer.getOne = function (id) {
     //   return $http.get(calRoute + '/' + id)
