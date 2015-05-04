@@ -12,12 +12,9 @@
     </ul>
 
     <ul class="sub-menu">
-      <div class="sub-menu-container"
-        data-ng-repeat="section in dtosauaContent.sections"
-        data-ng-if="section.active">
+      <div class="sub-menu-container" data-ng-repeat="section in dtosauaContent.sections" data-ng-if="section.active">
         <li data-ng-repeat="item in section.items">
-          <a data-ng-click="goTo(section.title, item.subtitle)" 
-            class="{{ item.active ? 'active' : ''  }}">
+          <a data-ng-click="goTo(section.title, item.subtitle)" class="{{ item.active ? 'active' : ''  }}">
             {{ item.subtitle }}
           </a>
         </li>
@@ -37,7 +34,21 @@
   
   <div data-ng-repeat="section in dtosauaContent.sections" data-ng-if="section.active">
     <div data-ng-repeat="item in section.items" data-ng-if="item.active" class="section-content">
-      <div data-ng-bind-html="item.content"></div>
+
+      <!-- insert custom sections -->
+      
+      <div data-ng-if="matchKey(item.subtitle, 'library')">
+        <div data-ng-bind-html="item.content"></div>
+        <library></library>
+      </div>
+
+      <div data-ng-if="matchKey(item.subtitle, 'paypal')">
+        <div data-ng-bind-html="item.content"></div>
+        <paypal></paypal>
+      </div>
+
+      <!-- cms sections -->
+      <div data-ng-if="!isCustomDirective(item.subtitle)" data-ng-bind-html="item.content"></div>
     </div>
   </div>
 

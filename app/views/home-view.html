@@ -7,9 +7,7 @@
 
       <!-- repeat over cms-defined sections -->
 
-      <li class="menu-item"
-        data-ng-repeat="item in frontpage.items" 
-        on-finish-render>
+      <li class="menu-item" data-ng-repeat="item in frontpage.items" on-finish-render>
         <a>{{ item.title }}</a>
 
         <div class="pull-down" data-ng-if="matchKey(item.title, 'public-calendar')">
@@ -20,7 +18,7 @@
         <div class="pull-down" data-ng-if="!isCustomDirective(item.title)" data-ng-bind-html="item.content"></div>
       </li>
 
-      <!-- login -->
+      <!-- login (don't inject into frontpage-items-repeater) -->
 
       <li class="menu-item quinary">
         <a>Fellows</a>

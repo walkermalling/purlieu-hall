@@ -58,6 +58,33 @@ module.exports = function(app){
         });
       });
     }
+    
+    /**
+     *  Normalize String For Comparison
+     */
+
+    $scope.matchKey = function (key, str) {
+      var normalizedKey = key.toLowerCase().replace(' ','-');
+      if (normalizedKey === str) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    /**
+     *  Check string against custom directive names
+     */
+
+    $scope.isCustomDirective = function (sectionName) {
+      var acceptedCustomDirectives = ['library','paypal'];
+      var itemName = sectionName.toLowerCase().replace(' ', '-');
+      if (acceptedCustomDirectives.indexOf(itemName) > -1) {
+        return true;
+      } else {
+        return false;
+      }
+    };
 
     // init
     
