@@ -71,6 +71,9 @@ div{
   position:relative;
 }
 
+textarea {
+  resize: vertical;}
+
 main{
   width:100%;
   margin:0 auto;
@@ -81,3 +84,9 @@ main{
   padding:5em 1em;
   min-height:300px;
 }
+
+  main a {
+    color: #727152;}
+
+  main a:hover {
+    color: #4D4C38;}

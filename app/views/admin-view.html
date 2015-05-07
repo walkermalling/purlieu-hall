@@ -31,28 +31,44 @@
 
 <main class="admin">
 
-  <section data-ng-show="sections.cms.active">
-    <frontpage-cms
-      data-ng-show="sections.cms.subitems.frontpage.active">
-    </frontpage-cms>
-
-    <dtosaua-cms
-      div data-ng-show="sections.cms.subitems.dtosaua.active">
-    </dtosaua-cms>
+  <!-- CMS -->
+  <section data-ng-show="sections.content.active">
+    <frontpage-cms data-ng-show="sections.content.subitems.frontpage.active"></frontpage-cms>
+    <dtosaua-cms div data-ng-show="sections.content.subitems.dtosaua.active"></dtosaua-cms>
   </section>
   
+  <!-- Events -->
   <section data-ng-show="sections.events.active">
     <h3>Events</h3>
     <p>Manage upcoming events.</p>
   </section>
 
+  <!-- Users -->
   <section data-ng-show="sections.users.active">
-    <user-management 
-      data-ng-show="sections.users.subitems.rolls.active">
-    </user-management>
+    <!-- User Management -->
+    <user-management data-ng-show="sections.users.subitems.rolls.active"></user-management>
+
+    <!-- Invite a User 
+      TODO: Make this a directive
+        args: name, email, invite-type, message-override
+          save email with token in whitelist or preemptively create user
+      -->
     <div data-ng-show="sections.users.subitems.invite.active">
       <p>Invite a user</p>
     </div>
+  </section>
+
+  <!-- Libarary Catalogue -->
+  <section data-ng-show="sections.library.active">
+
+    <div data-ng-show="sections.library.requests">
+      <p>Manage Requests for New Material</p>
+    </div>
+    
+    <div data-ng-show="sections.library.catalogue">
+      <p>CMS for Library Catalogue</p>
+    </div>
+
   </section>
 
 </main>

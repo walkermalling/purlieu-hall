@@ -13,6 +13,17 @@ module.exports = function(app){
     /**
      * calendar 
      */
+    
+    function parseShittyDate (dateString) {
+      var dStr = dateString.trim();
+      var date = dateString.slice(0,10);
+      var time = dateString.slice(11,19).split(',').map(function (item) {
+        return parseInt(item);
+      });
+      var d = new Date(date);
+      d.setHours(time[0] + (d.getTimezoneOffset() / 6), time[1]);
+      return d;
+    }
 
     $scope.calendar.getSections = function () {
       calServer.getAllPublic()
@@ -27,16 +38,16 @@ module.exports = function(app){
               var i = item.replace('\n','').split(':');
               var label = i.shift();
               var body = i.join().trim();
-              console.log(label);
+
               if (label === 'First start') {
-                newEntry.start = body;
+                var startDate = parseShittyDate(body);
+                newEntry.start = startDate;
               } else {
                 newEntry[label] = body;
               }
               
             });
             entries.push(newEntry);
-            console.log(newEntry);
           });
           $scope.calendar.calEvents = entries;
 

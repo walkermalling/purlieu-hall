@@ -77,7 +77,7 @@ module.exports = function(app){
      */
 
     $scope.isCustomDirective = function (sectionName) {
-      var acceptedCustomDirectives = ['library','paypal'];
+      var acceptedCustomDirectives = ['catalogue','paypal'];
       var itemName = sectionName.toLowerCase().replace(' ', '-');
       if (acceptedCustomDirectives.indexOf(itemName) > -1) {
         return true;

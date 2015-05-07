@@ -70,6 +70,9 @@ div#centering-wrapper {
 div {
   position: relative; }
 
+textarea {
+  resize: vertical; }
+
 main {
   width: 100%;
   margin: 0 auto;
@@ -80,10 +83,17 @@ main {
   padding: 5em 1em;
   min-height: 300px; }
 
+main a {
+  color: #727152; }
+
+main a:hover {
+  color: #4D4C38; }
+
 header {
   border-top: 0.5em solid black;
   border-left: 0.5em solid black;
-  border-right: 0.5em solid black; }
+  border-right: 0.5em solid black;
+  position: relative; }
 
 #container {
   height: 850px;

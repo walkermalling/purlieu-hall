@@ -11,12 +11,13 @@ module.exports = function(app){
 
     // map sections and subitems
     $scope.sections = {
-      'cms': {'active': true},
+      'content': {'active': true},
       'events': {'active': false},
-      'users': {'active': false}
+      'users': {'active': false},
+      'library': {'active':false}
     };
 
-    $scope.sections.cms.subitems = {
+    $scope.sections.content.subitems = {
       'frontpage' : {'active': true},
       'dtosaua' : {'active': false},
     };
@@ -28,6 +29,11 @@ module.exports = function(app){
     $scope.sections.users.subitems = {
       'rolls' : {'active': true},
       'invite' : {'active': false},
+    };
+
+    $scope.sections.library.subitems = {
+      'catalogue': {active: true},
+      'requests': {active: false}
     };
 
     $scope.goTo = function (parent, child) {
