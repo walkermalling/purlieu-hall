@@ -1,6 +1,6 @@
 'use strict';
 
-require('./app/init');
+// require('./app/init');
 
 var http = require('http');
 var express = require('express');

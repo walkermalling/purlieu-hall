@@ -1,6 +1,7 @@
 'use strict';
 
 var util = require('util');
+var moment = require('moment');
 
 module.exports = function(app){
 
@@ -22,7 +23,8 @@ module.exports = function(app){
       });
       var d = new Date(date);
       d.setHours(time[0] + (d.getTimezoneOffset() / 6), time[1]);
-      return d;
+      var md = moment(d);
+      return md.format('ddd, MMMM Do YYYY, h:mm a');
     }
 
     $scope.calendar.getSections = function () {
@@ -40,8 +42,9 @@ module.exports = function(app){
               var body = i.join().trim();
 
               if (label === 'First start') {
-                var startDate = parseShittyDate(body);
-                newEntry.start = startDate;
+                newEntry.start = parseShittyDate(body);
+              } else if (label === 'When') {
+                newEntry.start = body.replace('PDT', '');
               } else {
                 newEntry[label] = body;
               }

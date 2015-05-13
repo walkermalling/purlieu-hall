@@ -1,5 +1,3 @@
-'use strict';
-
 var mongoose = require('mongoose');
 
 var FrontpageItemSchema = mongoose.Schema({
@@ -12,14 +10,11 @@ var FrontpageItemSchema = mongoose.Schema({
   updatedAt: {type: Date, default: Date.now }
 });
 
-
 // Auto update the updatedAt field before model save
 
 FrontpageItemSchema.pre('save', function (next) {
   this.updatedAt = new Date();
   next();
 });
-
-
 
 module.exports = mongoose.model('FrontpageItem', FrontpageItemSchema);

@@ -23,11 +23,10 @@ module.exports = function(app){
       $scope.frontpage.newItem = {};
       cmsServer.frontPageItem.getAll()
         .success(function (items) {
-          // save items to the scope
+          console.log(items);
           $scope.frontpage.items = items;
-          // set visibility to false
           $scope.frontpage.items.forEach( function (i) {
-            i.active = false;
+            i.active = false;           // set visibility to false
           });
         });
     };
