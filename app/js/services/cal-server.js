@@ -8,22 +8,15 @@ module.exports = function (app) {
     var calRoute = '/api/public/events';
     var privateCalRoute = '/api/admin/calendar';
 
-    calServer.getAllPublic = function () {
+    calServer.getPublic = function () {
       return $http.get(calRoute)
         .error(logError);
     };
 
-    calServer.getAllPrivate = function () {
+    calServer.getPrivate = function () {
       return $http.get(privateCalRoute)
         .error(logError);
     };
-
-
-
-    // calServer.getOne = function (id) {
-    //   return $http.get(calRoute + '/' + id)
-    //     .error(logError);
-    // };
 
     function logError (data, status) {
       console.warn(util.format(

@@ -10,10 +10,6 @@ module.exports = function(app){
     function($scope, $cookies, $location, calServer) {
     
     $scope.calendar = {};
-
-    /**
-     * calendar 
-     */
     
     function parseShittyDate (dateString) {
       var dStr = dateString.trim();
@@ -28,8 +24,9 @@ module.exports = function(app){
     }
 
     $scope.calendar.getSections = function () {
-      calServer.getAllPublic()
+      calServer.getPublic()
         .success(function (calEvents) {
+          console.log(calEvents);
           if (!calEvents || !calEvents.feed) {
             return null;
           }

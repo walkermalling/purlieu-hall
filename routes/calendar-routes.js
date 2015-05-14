@@ -36,7 +36,7 @@ module.exports = function(app) {
 
   // private calendar
   
-  var privateCal = 'https://www.google.com/calendar/feeds/purlieuhall%40gmail.com/private-8e56d734a16b55f5a882b72c1c0a0cd9/basic';
+  var privateCal = 'https://www.google.com/calendar/feeds/9hn5l2l3s0ba2aljtd0m3ndu38%40group.calendar.google.com/public/basic';
     
   app.get(adminApi, function (req, res) {
     request.get(privateCal, function privateCalCallback (err, response, body) {
