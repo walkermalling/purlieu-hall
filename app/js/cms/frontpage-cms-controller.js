@@ -1,4 +1,4 @@
-'use strict';
+var _ = require('lodash');
 
 module.exports = function(app){
 
@@ -6,27 +6,18 @@ module.exports = function(app){
     ['$scope', '$cookies', '$location', 'cmsServer',
     function($scope, $cookies, $location, cmsServer) {
 
-    /**
-     * Initialize variables on the scope
-     */
-    
     $scope.frontpage = {};
     $scope.frontpage.newItem = {};
-    // 'verbose' controls display of instructions
     $scope.verbose = false; 
-
-    /**
-     * Frontpage CRUD
-     */
 
     $scope.frontpage.getItems = function () {
       $scope.frontpage.newItem = {};
       cmsServer.frontPageItem.getAll()
         .success(function (items) {
-          console.log(items);
-          $scope.frontpage.items = items;
-          $scope.frontpage.items.forEach( function (i) {
-            i.active = false;           // set visibility to false
+          $scope.frontpage.items = _.sortBy(items, 'position');
+          $scope.frontpage.items.forEach(function (i, index) {
+            i.active = false;
+            i.position = index;
           });
         });
     };
@@ -34,7 +25,6 @@ module.exports = function(app){
     $scope.frontpage.create = function () {
       cmsServer.frontPageItem.create($scope.frontpage.newItem)
         .success(function (response) {
-          console.log(response);
           $scope.frontpage.getItems();
         });
     };
@@ -43,7 +33,6 @@ module.exports = function(app){
       var item = $scope.frontpage.items[itemIndex];
       cmsServer.frontPageItem.update(item)
         .success(function (response) {
-          console.log(response);
           $scope.frontpage.getItems();
         });
     };
@@ -77,6 +66,22 @@ module.exports = function(app){
       };
       return map[numeral] || numeral;
     };
+
+    $scope.moveUp = function (itemIndex) {
+      if (itemIndex === 0) {
+        return false;
+      }
+      $scope.frontpage.items[itemIndex - 1].position++;
+      $scope.frontpage.items[itemIndex].position--;
+    }
+
+    $scope.moveDown = function (itemIndex) {
+      if (itemIndex === $scope.frontpage.items.length - 1) {
+        return false;
+      }
+      $scope.frontpage.items[itemIndex + 1].position--;
+      $scope.frontpage.items[itemIndex].position++;
+    }
 
     // init: fetch content
 

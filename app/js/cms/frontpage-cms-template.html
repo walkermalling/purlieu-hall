@@ -1,17 +1,5 @@
 <h3><span>CMS </span> Front Page Content</h3>
 
-<div class="instructions" data-ng-show="verbose">
-  <p>Directions: The front page can only comfortably contain three sections.  Make sure that only three are enabled.  You may, for example, maintain more than three, to be ready to swap out sections by enabling and disabling.</p>
-
-  <p>Regarding content: insert either plain text or HTML into the content field; it will live preview in the box below.  Use the preview to assess length: it is based off the same style constraints as the homepage, and will accurately render in mobile view.</p>
-
-  <p>Regarding ordering: currently the three enabled here will appear at the top of the list on the front page, with custom sections for the Calendar and Login appearing below.  In the future we will have the ability to control the order of the first three from here, but for now, they are orderd as they appear.</p>
-</div>
-
-<a class="dark" data-ng-click="verbose = !verbose">
-  {{ verbose ? 'Hide' : 'Read'}} Instructions
-</a>
-
 <div class="selector">
   <h4>Choose A Section to Edit</h4>
   <li class="menu-item" data-ng-repeat="item in frontpage.items">
@@ -27,12 +15,10 @@
     <ul class="item-actions">
       <li><button data-ng-click="frontpage.update($index)">Update</button></li>
       <li><button data-ng-click="frontpage.delete($index)">Destroy</button></li>
-      <li>
-        <button 
-          class="check-box {{ item.enable ? 'enabled' : 'disabled'}}"
-          data-ng-click="item.enable = !item.enable">
-        </button>
-      </li>
+      <li>|</li>
+      <li><button data-ng-click="moveUp($index)">up</button></li>
+      <li><button data-ng-click="moveDown($index)">down</button></li>
+      <li>|</li>
       <li>
         <a data-ng-click="item.enable = !item.enable" class="dark">
           {{ item.enable ? 'Enabled' : 'Disabled'}}
