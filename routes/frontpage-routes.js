@@ -15,7 +15,8 @@ module.exports = function(app) {
       },{
         _id: false,
         title: true,
-        content: true
+        content: true,
+        position: true
       },
       function (err, items) {
         var sortedItems = _.sortBy(items, 'position');
