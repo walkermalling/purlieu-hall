@@ -5,14 +5,15 @@ var util = require('util');
 module.exports = function(app){
 
   app.controller('libraryController', 
-    ['$scope', '$cookies', '$location',
-    function($scope, $cookies, $location) {
+    ['$scope', '$cookies', '$location', 'libraryServer'
+    function($scope, $cookies, $location, libararyServer) {
 
-    console.log('loading library');
+      $scope.library = {};
 
-    /**
-     *  Methods
-     */
+      libraryServer.books.getAll()
+        .success(function (results) {
+          $scope.library.books = results;
+        });
 
     // send a search query
 
