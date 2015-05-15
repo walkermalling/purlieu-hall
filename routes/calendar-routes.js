@@ -36,7 +36,7 @@ module.exports = function(app) {
 
   // private calendar
   
-  var privateCal = 'https://www.google.com/calendar/feeds/9hn5l2l3s0ba2aljtd0m3ndu38%40group.calendar.google.com/public/basic';
+  var privateCal = 'https://www.google.com/calendar/feeds/9hn5l2l3s0ba2aljtd0m3ndu38%40group.calendar.google.com/private-7c4e5248830b7a12286e7fea810ddaf4/basic';
     
   app.get(adminApi, function (req, res) {
     request.get(privateCal, function privateCalCallback (err, response, body) {
@@ -47,7 +47,7 @@ module.exports = function(app) {
         if (err) {
           return res.send({msg:'xml parse error'});
         }
-        res.send({});
+        res.send(result);
       });
     });
   });

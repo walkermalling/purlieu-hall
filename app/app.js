@@ -28,6 +28,7 @@ require('./js/services/user-server')(purlieu);
 require('./js/services/cms-server')(purlieu);
 require('./js/services/content-server')(purlieu);
 require('./js/services/cal-server')(purlieu);
+require('./js/services/library-server')(purlieu);
 require('./js/services/auth-service')(purlieu);
 
 /**
@@ -42,6 +43,7 @@ require('./js/cms/dtosaua-cms-controller')(purlieu);
 require('./js/admin/admin-controller')(purlieu);
 require('./js/account/user-management/user-management-controller')(purlieu);
 require('./js/calendar/public-calendar-controller')(purlieu);
+require('./js/calendar/private-calendar-controller')(purlieu);
 require('./js/library/library-controller')(purlieu);
 require('./js/account/paypal/paypal-controller')(purlieu);
 
@@ -54,6 +56,7 @@ require('./js/cms/frontpage-cms-directive')(purlieu);
 require('./js/cms/dtosaua-cms-directive')(purlieu);
 require('./js/account/user-management/user-management-directive')(purlieu);
 require('./js/calendar/public-calendar-directive')(purlieu);
+require('./js/calendar/private-calendar-directive')(purlieu);
 require('./js/library/library-directive')(purlieu);
 require('./js/account/paypal/paypal-directive')(purlieu);
           // partials

@@ -1,0 +1,10 @@
+<div data-ng-repeat="entry in calendars.events" >
+  <p>
+    <span class="event-title" style="font-weight:bold" data-ng-bind-html="entry.title"></span>
+    <span class="event-date">{{ entry.start }}</span>
+  </p>
+  <p class="event-description" data-ng-bind-html="entry['Event Description']"></p>
+  <br />
+</div>
+
+

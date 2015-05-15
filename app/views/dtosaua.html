@@ -47,6 +47,11 @@
         <paypal></paypal>
       </div>
 
+      <div data-ng-if="matchKey(item.subtitle, 'calendar')">
+        <div data-ng-bind-html="item.content"></div>
+        <private-calendar></private-calendar>
+      </div>
+
       <!-- cms sections -->
       <div data-ng-if="!isCustomDirective(item.subtitle)" data-ng-bind-html="item.content"></div>
     </div>
