@@ -10,23 +10,10 @@ module.exports = function(app){
     function($scope, $cookies, $location, calServer) {
     
     $scope.calendar = {};
-    
-    function parseShittyDate (dateString) {
-      var dStr = dateString.trim();
-      var date = dateString.slice(0,10);
-      var time = dateString.slice(11,19).split(',').map(function (item) {
-        return parseInt(item);
-      });
-      var d = new Date(date);
-      d.setHours(time[0] + (d.getTimezoneOffset() / 6), time[1]);
-      var md = moment(d);
-      return md.format('ddd, MMMM Do YYYY, h:mm a');
-    }
 
     $scope.calendar.getSections = function () {
       calServer.getPublic()
         .success(function (calEvents) {
-          console.log(calEvents);
           if (!calEvents || !calEvents.feed) {
             return null;
           }
@@ -39,12 +26,11 @@ module.exports = function(app){
             content.forEach(function (item) {
               var i = item.replace('\n','').split(':');
               var label = i.shift();
-              var body = i.join().trim();
+              var body = i.join(':').trim();
 
-              if (label === 'First start') {
-                newEntry.start = parseShittyDate(body);
-              } else if (label === 'When') {
-                newEntry.start = body.replace('PDT', '');
+              if (label === 'When') {
+                newEntry.start = body.replace('PDT', '').trim();
+                console.log(newEntry.start);
               } else {
                 newEntry[label] = body;
               }

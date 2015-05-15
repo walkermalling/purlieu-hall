@@ -1,12 +1,10 @@
-'use strict';
-
 var util = require('util');
 
 module.exports = function(app){
 
   app.controller('libraryController', 
-    ['$scope', '$cookies', '$location', 'libraryServer'
-    function($scope, $cookies, $location, libararyServer) {
+    ['$scope', '$cookies', '$location', 'libraryServer',
+    function($scope, $cookies, $location, libraryServer) {
 
       $scope.library = {};
 
@@ -24,8 +22,6 @@ module.exports = function(app){
     // get a randon artifact
 
     // request a title
-
-    
 
   }]);
 };
