@@ -114,9 +114,11 @@ nav{
             .pull-down p span.fee{
               width:150px;
             }
-            .pull-down p span.market {
+            .pull-down p span.market,
+            .pull-down p a {
               font-family: 'MarketDeco';
               font-size:0.8em;
+              font-weight: normal;
             }
       .menu-item.active{
         height:340px;
