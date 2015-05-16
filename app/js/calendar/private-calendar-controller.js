@@ -10,12 +10,16 @@ module.exports = function(app){
     ['$scope', '$cookies', '$location','calServer',
     function($scope, $cookies, $location, calServer) {
     
+    var publicEvents = [];
+    var privateEvents = [];
+
     $scope.calendars = {
-      'publicEvents': [],
-      'privateEvents': []
+      events: []
     };
 
     function processCalData (calData) {
+      console.log('processing incoming data:');
+      console.log(calData);
       var entries = [];
       calData.feed.entry.forEach(function (entry) {
         var newEntry = {
@@ -41,10 +45,11 @@ module.exports = function(app){
 
     function weaveCalEvents () {
       console.log('weaving...');
-      console.log($scope.calendars);
-      var a = $scope.calendars.publicEvents;
-      var b = $scope.calendars.privateEvents;
+      var a = publicEvents;
+      var b = privateEvents;
       var c = a.concat(b);
+      console.log('result:');
+      console.log(c);
       var sorted = _.sortBy(c, 'start');
       $scope.calendars.events = sorted.slice(0, 6).reverse();
     }
@@ -58,8 +63,7 @@ module.exports = function(app){
             console.log(calEvents);
             return;
           }
-          var entries = processCalData(calEvents);
-          $scope.calendars.publicEvents = entries;
+          publicEvents = processCalData(calEvents);
           weaveCalEvents();
         });
 
@@ -69,8 +73,7 @@ module.exports = function(app){
             console.log('error getting private events');
             return;
           }
-          var entries = processCalData(calEvents);
-          $scope.calendars.privateEvents = entries;
+          privateEvents = processCalData(calEvents);
           weaveCalEvents();
         });
 
