@@ -63,16 +63,16 @@ module.exports = function(app){
           weaveCalEvents();
         });
 
-      calServer.getPublic()
-        .success(function (calEvents) {
-          if (!calEvents || !calEvents.feed) {
-            console.log('error getting public events');
-            return;
-          }
-          var entries = processCalData(calEvents);
-          $scope.calendars.publicEvents = entries;
-          weaveCalEvents();
-        });
+      // calServer.getPublic()
+      //   .success(function (calEvents) {
+      //     if (!calEvents || !calEvents.feed) {
+      //       console.log('error getting public events');
+      //       return;
+      //     }
+      //     var entries = processCalData(calEvents);
+      //     $scope.calendars.publicEvents = entries;
+      //     weaveCalEvents();
+      //   });
       };
 
     $scope.calendars.getSections();

@@ -47,7 +47,7 @@ module.exports = function(app) {
         if (err) {
           return res.send(body);
         }
-        res.send(result);
+        res.send(body);
       });
     });
   });
