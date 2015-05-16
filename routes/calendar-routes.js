@@ -45,7 +45,7 @@ module.exports = function(app) {
       }
       parser.parseString(body, function (err, result) {
         if (err) {
-          return res.send({msg:'xml parse error'});
+          return res.send(err);
         }
         res.send(result);
       });
