@@ -4,6 +4,7 @@ var request = require('request');
 var xml2js = require('xml2js');
 var util = require('util');
 var parser = new xml2js.Parser();
+var parser2 = new xml2js.Parser();
 
 module.exports = function(app) {
 
@@ -39,16 +40,15 @@ module.exports = function(app) {
     
   app.get(adminApi, function (req, res) {
     request.get(privateCal, function privateCalCallback (err, response, body) {
-      res.send(body);
-      // if (err) {
-      //   return res.send({msg:'error'});
-      // }
-      // parser.parseString(body, function (err, result) {
-      //   if (err) {
-      //     return res.send(body);
-      //   }
-      //   res.send(result);
-      // });
+      if (err) {
+        return res.send({msg:'error'});
+      }
+      parser2.parseString(body, function (err, result) {
+        if (err) {
+          return res.send(body);
+        }
+        res.send(result);
+      });
     });
   });
 
