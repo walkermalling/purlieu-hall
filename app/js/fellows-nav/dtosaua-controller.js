@@ -15,7 +15,6 @@ module.exports = function(app){
     function getPageContent () {
       contentServer.dtosauaSections.getAll()
         .success(function (sections) {
-          console.log(sections);
           $scope.dtosauaContent.sections = sections;
           dsecs = $scope.dtosauaContent.sections;
           prep();

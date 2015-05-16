@@ -39,7 +39,9 @@ module.exports = function(app){
       return entries;
     }
 
-    function weaveCalEvents (events) {
+    function weaveCalEvents () {
+      console.log('weaving...');
+      console.log($scope.calendars);
       var a = $scope.calendars.publicEvents;
       var b = $scope.calendars.privateEvents;
       var c = a.concat(b);
