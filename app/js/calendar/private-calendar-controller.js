@@ -54,23 +54,23 @@ module.exports = function(app){
       calServer.getPublic()
         .success(function (calEvents) {
           if (!calEvents || !calEvents.feed) {
-            console.log('error getting private events');
+            console.log('error getting public events');
             console.log(calEvents);
             return;
           }
           var entries = processCalData(calEvents);
-          $scope.calendars.privateEvents = entries;
+          $scope.calendars.publicEvents = entries;
           weaveCalEvents();
         });
 
-      calServer.getPublic()
+      calServer.getPrivate()
         .success(function (calEvents) {
           if (!calEvents || !calEvents.feed) {
-            console.log('error getting public events');
+            console.log('error getting private events');
             return;
           }
           var entries = processCalData(calEvents);
-          $scope.calendars.publicEvents = entries;
+          $scope.calendars.privateEvents = entries;
           weaveCalEvents();
         });
 

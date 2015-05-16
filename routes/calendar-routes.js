@@ -3,7 +3,6 @@
 var request = require('request');
 var xml2js = require('xml2js');
 var util = require('util');
-
 var parser = new xml2js.Parser();
 
 module.exports = function(app) {
@@ -11,10 +10,10 @@ module.exports = function(app) {
   var publicApi = '/api/public/events';
   var adminApi = '/api/admin/calendar';
 
-  function isAdmin (permission) {
-    if (['dodo','admin'].indexOf(permission) !== -1) return true;
-    else return false;
-  }
+  // function isAdmin (permission) {
+  //   if (['dodo','admin'].indexOf(permission) !== -1) return true;
+  //   else return false;
+  // }
 
   // get all public events
   
@@ -47,7 +46,7 @@ module.exports = function(app) {
         if (err) {
           return res.send(body);
         }
-        res.send(body);
+        res.send(result);
       });
     });
   });
