@@ -39,15 +39,16 @@ module.exports = function(app) {
     
   app.get(adminApi, function (req, res) {
     request.get(privateCal, function privateCalCallback (err, response, body) {
-      if (err) {
-        return res.send({msg:'error'});
-      }
-      parser.parseString(body, function (err, result) {
-        if (err) {
-          return res.send(body);
-        }
-        res.send(result);
-      });
+      res.send(body);
+      // if (err) {
+      //   return res.send({msg:'error'});
+      // }
+      // parser.parseString(body, function (err, result) {
+      //   if (err) {
+      //     return res.send(body);
+      //   }
+      //   res.send(result);
+      // });
     });
   });
 
