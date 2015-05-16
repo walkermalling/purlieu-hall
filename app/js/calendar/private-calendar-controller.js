@@ -55,7 +55,8 @@ module.exports = function(app){
         .success(function (calEvents) {
           if (!calEvents || !calEvents.feed) {
             console.log('error getting private events');
-            return null;
+            console.log(calEvents);
+            return;
           }
           var entries = processCalData(calEvents);
           $scope.calendars.privateEvents = entries;
@@ -66,7 +67,7 @@ module.exports = function(app){
         .success(function (calEvents) {
           if (!calEvents || !calEvents.feed) {
             console.log('error getting public events');
-            return null;
+            return;
           }
           var entries = processCalData(calEvents);
           $scope.calendars.publicEvents = entries;
