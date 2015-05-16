@@ -62,6 +62,8 @@ module.exports = function(app){
         $scope.calendars.events = sorted.slice(0, 6).reverse();
       });
     }
+
+    getCalData();
    
 
     // function weaveCalEvents () {
