@@ -54,6 +54,7 @@ module.exports = function(app){
       calServer.getPrivate()
         .success(function (calEvents) {
           if (!calEvents || !calEvents.feed) {
+            console.log('error getting private events');
             return null;
           }
           var entries = processCalData(calEvents);
@@ -64,6 +65,7 @@ module.exports = function(app){
       calServer.getPublic()
         .success(function (calEvents) {
           if (!calEvents || !calEvents.feed) {
+            console.log('error getting public events');
             return null;
           }
           var entries = processCalData(calEvents);
