@@ -45,7 +45,7 @@ module.exports = function(app) {
       }
       parser.parseString(body, function (err, result) {
         if (err) {
-          return res.send(err);
+          return res.send(body);
         }
         res.send(result);
       });
