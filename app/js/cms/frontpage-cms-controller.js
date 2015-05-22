@@ -10,22 +10,26 @@ module.exports = function(app){
     $scope.frontpage.newItem = {};
     $scope.verbose = false; 
 
+    function updateItemSort () {
+      $scope.frontpage.items = _.sortBy($scope.frontpage.items, 'position');
+      console.log('(Re)sorting');
+      console.log($scope.frontpage.items);
+    }
+
     $scope.frontpage.getItems = function () {
       $scope.frontpage.newItem = {};
       cmsServer.frontPageItem.getAll()
         .success(function (items) {
-          $scope.frontpage.items = _.sortBy(items, 'position');
+          $scope.frontpage.items = items;
           console.log($scope.frontpage.items);
+          updateItemSort();
           $scope.frontpage.items.forEach(function (i, index) {
             i.active = false;
-            i.position = index;
           });
         });
     };
 
-    function updateItemSort () {
-      
-    }
+
 
     $scope.frontpage.create = function () {
       cmsServer.frontPageItem.create($scope.frontpage.newItem)
@@ -78,6 +82,7 @@ module.exports = function(app){
       }
       $scope.frontpage.items[itemIndex - 1].position++;
       $scope.frontpage.items[itemIndex].position--;
+      updateItemSort();
     };
 
     $scope.moveDown = function (itemIndex) {
@@ -86,6 +91,7 @@ module.exports = function(app){
       }
       $scope.frontpage.items[itemIndex + 1].position--;
       $scope.frontpage.items[itemIndex].position++;
+      updateItemSort();
     };
 
     // init: fetch content
