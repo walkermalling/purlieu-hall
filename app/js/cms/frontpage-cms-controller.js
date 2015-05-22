@@ -15,12 +15,17 @@ module.exports = function(app){
       cmsServer.frontPageItem.getAll()
         .success(function (items) {
           $scope.frontpage.items = _.sortBy(items, 'position');
+          console.log($scope.frontpage.items);
           $scope.frontpage.items.forEach(function (i, index) {
             i.active = false;
             i.position = index;
           });
         });
     };
+
+    function updateItemSort () {
+      
+    }
 
     $scope.frontpage.create = function () {
       cmsServer.frontPageItem.create($scope.frontpage.newItem)
@@ -73,7 +78,7 @@ module.exports = function(app){
       }
       $scope.frontpage.items[itemIndex - 1].position++;
       $scope.frontpage.items[itemIndex].position--;
-    }
+    };
 
     $scope.moveDown = function (itemIndex) {
       if (itemIndex === $scope.frontpage.items.length - 1) {
@@ -81,7 +86,7 @@ module.exports = function(app){
       }
       $scope.frontpage.items[itemIndex + 1].position--;
       $scope.frontpage.items[itemIndex].position++;
-    }
+    };
 
     // init: fetch content
 
