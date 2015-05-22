@@ -73,6 +73,7 @@ module.exports = function(app){
           if (err) {
             return console.log('There was an error updating all items');
           }
+          console.log('Done updating all');
           $scope.frontpage.getItems();
         }
       );

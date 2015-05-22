@@ -16,6 +16,7 @@ module.exports = function(app){
               navigationInit();
             }
             $scope.frontpage.items = _.sortBy(items, 'position');
+            console.log($scope.frontpage.items);
           });
       };
 
