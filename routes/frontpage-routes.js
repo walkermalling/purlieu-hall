@@ -12,11 +12,6 @@ module.exports = function(app) {
   app.get(route, function (req,res){
     FrontpageItem.find({
         enable:true
-      },{
-        _id: false,
-        title: true,
-        content: true,
-        position: true
       },
       function (err, items) {
         var sortedItems = _.sortBy(items, 'position');
