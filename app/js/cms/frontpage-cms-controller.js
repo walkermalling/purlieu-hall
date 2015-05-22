@@ -10,22 +10,44 @@ module.exports = function(app){
     $scope.frontpage.newItem = {};
     $scope.verbose = false; 
 
+    function reportItemOrder () {
+      $scope.frontpage.items.forEach(function (item) {
+        console.log(item.position + ' ' + item.title);
+      });
+    }
+
     function updateItemSort () {
       $scope.frontpage.items = _.sortBy($scope.frontpage.items, 'position');
-      console.log('(Re)sorting');
-      console.log($scope.frontpage.items);
+      reportItemOrder();
+    }
+
+    function normalizePositions () {
+      $scope.frontpage.items.forEach(function (item, index) {
+        item.position = index;
+      });
     }
 
     $scope.frontpage.getItems = function () {
       $scope.frontpage.newItem = {};
       cmsServer.frontPageItem.getAll()
         .success(function (items) {
+          console.log('Original list:');
           $scope.frontpage.items = items;
-          console.log($scope.frontpage.items);
           updateItemSort();
+        });
+    };
+
+    $scope.frontpage.initializePage = function () {
+      $scope.frontpage.newItem = {};
+      cmsServer.frontPageItem.getAll()
+        .success(function (items) {
+          $scope.frontpage.items = items;
+          console.log('Original list:');
+          reportItemOrder();
           $scope.frontpage.items.forEach(function (i, index) {
             i.active = false;
           });
+          normalizePositions();
         });
     };
 
@@ -36,12 +58,14 @@ module.exports = function(app){
         });
     };
 
-    $scope.frontpage.update = function (itemIndex) {
-      var item = $scope.frontpage.items[itemIndex];
-      cmsServer.frontPageItem.update(item)
-        .success(function (response) {
-          $scope.frontpage.getItems();
-        });
+    $scope.frontpage.update = function () {
+      $scope.frontpage.items.forEach(function (item) {
+        cmsServer.frontPageItem.update(item)
+          .success(function (response) {
+            $scope.frontpage.getItems();
+          });
+      });
+      
     };
 
     $scope.frontpage.delete = function (itemIndex) {   
@@ -96,14 +120,19 @@ module.exports = function(app){
 
     $scope.moveUp = function (id) {
       var currentItem = findItemById(id);
+      console.log('Moving up...');
+      console.log(currentItem);
       if (currentItem) {
-        if (parseInt(currentItem.position) === 0) {
+        if (currentItem.position === 0) {
+          console.log('Item already a the top');
           return;
         } else {
-          var itemToSwapWith = findItemByPosition(parseInt(currentItem.position) + 1);
+          var itemToSwapWith = findItemByPosition(currentItem.position - 1);
           if (itemToSwapWith) {
-            itemToSwapWith.position = parseInt(itemToSwapWith.position) - 1;
-            currentItem.position = parseInt(currentItem.position) + 1;
+            itemToSwapWith.position = itemToSwapWith.position + 1;
+            currentItem.position = currentItem.position - 1;
+            console.log(itemToSwapWith.title + ' is now ' + itemToSwapWith.position);
+            console.log(currentItem.title + ' is now ' + currentItem.position);
           }
         }
       }
@@ -112,14 +141,18 @@ module.exports = function(app){
 
     $scope.moveDown = function (id) {
       var currentItem = findItemById(id);
+      console.log('Moving down...');
       if (currentItem) {
-        if (parseInt(currentItem.position) >= $scope.frontpage.items.length) {
+        if (currentItem.position >= $scope.frontpage.items.length) {
+          console.log('Item already a the bottom');
           return;
         } else {
-          var itemToSwapWith = findItemByPosition(parseInt(currentItem.position) + 1);
+          var itemToSwapWith = findItemByPosition(currentItem.position + 1);
           if (itemToSwapWith) {
-            itemToSwapWith.position = parseInt(itemToSwapWith.position) + 1;
-            currentItem.position = parseInt(currentItem.position) - 1;
+            itemToSwapWith.position = itemToSwapWith.position - 1;
+            currentItem.position = currentItem.position + 1;
+            console.log(itemToSwapWith.title + ' is now ' + itemToSwapWith.position);
+            console.log(currentItem.title + ' is now ' + currentItem.position);
           }
         }
       }
@@ -128,7 +161,7 @@ module.exports = function(app){
 
     // init: fetch content
 
-    $scope.frontpage.getItems();
+    $scope.frontpage.initializePage();
 
   }]);
 };
