@@ -29,8 +29,6 @@ module.exports = function(app){
         });
     };
 
-
-
     $scope.frontpage.create = function () {
       cmsServer.frontPageItem.create($scope.frontpage.newItem)
         .success(function (response) {
@@ -76,21 +74,55 @@ module.exports = function(app){
       return map[numeral] || numeral;
     };
 
-    $scope.moveUp = function (itemIndex) {
-      if (itemIndex === 0) {
-        return false;
+    function findItemById (id) {
+      var requestedItem = null;
+      $scope.frontpage.items.forEach(function (item) {
+        if (item._id === id) {
+          requestedItem = item;
+        }
+      });
+      return requestedItem;
+    }
+
+    function findItemByPosition (position) {
+      var requestedItem = null;
+      $scope.frontpage.items.forEach(function (item) {
+        if (item.position === position) {
+          requestedItem = item;
+        }
+      });
+      return requestedItem;
+    }
+
+    $scope.moveUp = function (id) {
+      var currentItem = findItemById(id);
+      if (currentItem) {
+        if (parseInt(currentItem.position) === 0) {
+          return;
+        } else {
+          var itemToSwapWith = findItemByPosition(parseInt(currentItem.position) + 1);
+          if (itemToSwapWith) {
+            itemToSwapWith.position = parseInt(itemToSwapWith.position) - 1;
+            currentItem.position = parseInt(currentItem.position) + 1;
+          }
+        }
       }
-      $scope.frontpage.items[itemIndex - 1].position++;
-      $scope.frontpage.items[itemIndex].position--;
       updateItemSort();
     };
 
-    $scope.moveDown = function (itemIndex) {
-      if (itemIndex === $scope.frontpage.items.length - 1) {
-        return false;
+    $scope.moveDown = function (id) {
+      var currentItem = findItemById(id);
+      if (currentItem) {
+        if (parseInt(currentItem.position) >= $scope.frontpage.items.length) {
+          return;
+        } else {
+          var itemToSwapWith = findItemByPosition(parseInt(currentItem.position) + 1);
+          if (itemToSwapWith) {
+            itemToSwapWith.position = parseInt(itemToSwapWith.position) + 1;
+            currentItem.position = parseInt(currentItem.position) - 1;
+          }
+        }
       }
-      $scope.frontpage.items[itemIndex + 1].position--;
-      $scope.frontpage.items[itemIndex].position++;
       updateItemSort();
     };
 

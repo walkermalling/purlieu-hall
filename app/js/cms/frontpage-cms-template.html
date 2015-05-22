@@ -16,8 +16,8 @@
       <li><button data-ng-click="frontpage.update($index)">Update</button></li>
       <li><button data-ng-click="frontpage.delete($index)">Destroy</button></li>
       <li>|</li>
-      <li><button data-ng-click="moveUp($index)">up</button></li>
-      <li><button data-ng-click="moveDown($index)">down</button></li>
+      <li><button data-ng-click="moveUp(item._id)">up</button></li>
+      <li><button data-ng-click="moveDown(item._id)">down</button></li>
       <li>|</li>
       <li>
         <a data-ng-click="item.enable = !item.enable" class="dark">
