@@ -23,7 +23,7 @@ module.exports = function(app){
       // Check string against custom directive names
        
       $scope.isCustomDirective = function (sectionName) {
-        var cds = ['calendar','public-calendar','library','demo-library'];
+        var cds = ['library','demo-library'];
         var itemName = sectionName.toLowerCase().replace(' ', '-');
         if (cds.indexOf(itemName) > -1) {
           return true;

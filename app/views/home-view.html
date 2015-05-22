@@ -10,10 +10,10 @@
       <li class="menu-item" data-ng-repeat="item in frontpage.items" on-finish-render>
         <a>{{ item.title }}</a>
 
-        <div class="pull-down" data-ng-if="matchKey(item.title, 'public-calendar')">
+        <!-- <div class="pull-down" data-ng-if="matchKey(item.title, 'public-calendar')">
           <div data-ng-bind-html="item.content"></div>
           <public-calendar></public-calendar>
-        </div>
+        </div> -->
         
         <div class="pull-down" data-ng-if="!isCustomDirective(item.title)" data-ng-bind-html="item.content"></div>
       </li>
