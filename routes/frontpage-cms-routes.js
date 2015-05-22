@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('lodash');
+
 var FrontpageItem = require('../models/frontpage-item');
 
 module.exports = function(app, jwtauth) {
@@ -7,7 +9,7 @@ module.exports = function(app, jwtauth) {
   var route = '/api/cms/frontpage';
 
   function isAdmin (permission) {
-    if (['dodo','admin'].indexOf(permission) != -1) return true;
+    if (['dodo','admin'].indexOf(permission) !== -1) return true;
     else return false;
   }
 
@@ -19,7 +21,7 @@ module.exports = function(app, jwtauth) {
 
     FrontpageItem.find({}, function (err, items) {
       if (err) return res.status(500).json(err);
-      else res.status(200).send(items);
+      else res.status(200).send(_.sortBy(items, 'position'));
     });
 
   });
