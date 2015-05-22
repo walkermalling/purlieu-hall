@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var async = require('async');
 
 module.exports = function(app){
 
@@ -31,8 +32,7 @@ module.exports = function(app){
       $scope.frontpage.newItem = {};
       cmsServer.frontPageItem.getAll()
         .success(function (items) {
-          console.log('Original list:');
-          $scope.frontpage.items = items;
+          $scope.frontpage.items = _.sortBy(items, 'position');
           updateItemSort();
         });
     };
@@ -58,14 +58,24 @@ module.exports = function(app){
         });
     };
 
-    $scope.frontpage.update = function () {
-      $scope.frontpage.items.forEach(function (item) {
-        cmsServer.frontPageItem.update(item)
-          .success(function (response) {
-            $scope.frontpage.getItems();
-          });
-      });
-      
+    $scope.frontpage.updateAll = function () {
+      var copyOfItemArray = [].concat($scope.frontpage.items);
+      $scope.frontpage.items = [];
+      async.eachSeries(
+        copyOfItemArray,
+        function (item, callback) {
+          cmsServer.frontPageItem.update(item)
+            .success(function (response) {
+              callback();
+            });
+        },
+        function (err) {
+          if (err) {
+            return console.log('There was an error updating all items');
+          }
+          $scope.frontpage.getItems();
+        }
+      );
     };
 
     $scope.frontpage.delete = function (itemIndex) {   
