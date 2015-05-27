@@ -3,11 +3,11 @@ var mongoose = require('mongoose');
 var BookSchema = mongoose.Schema({
   title:      {type: String},
   subtitle:   {type: String},
-  author:     {type: Number, default: 0},
+  author:     {type: String},
   published:  {type: Date, default: null},
   house:      {type: String},
   isbn:       {type: String},
-  collection: {type: String},
+  hallCollection: {type: String},
   location:   {type: String},
   donatedBy:  {type: String},
   donatedOn:  {type: Date},

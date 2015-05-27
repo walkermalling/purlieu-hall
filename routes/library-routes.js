@@ -3,30 +3,37 @@ var util = require('util');
 var _ = require('lodash');
 var Book = require('../models/book');
 
-module.exports = function(app) {
+module.exports = function(app, jwtAuth) {
 
   var publicApi = '/api/public/library';
   var adminApi = '/api/admin/library';
 
   function isAdmin (permission) {
-    if (['dodo','admin'].indexOf(permission) != -1) return true;
+    if (['dodo','admin'].indexOf(permission) !== -1) return true;
     else return false;
   }
 
   // books
 
   app.get(publicApi + '/books', function (req, res) {
-    if (!req.params) {
-        Book.find({
-          enable:true
-        },
-        function (err, books) {
-          var sortedItems = _.sortBy(books, 'title');
-          if (err) return res.status(500).json(err);
-          else res.status(200).send(sortedItems);
+    console.log('Server fetching books...');
+      var searchParams = {};
+      for (var key in req.params) {
+        searchParams[key] = req.params[key];
+      }
+      
+      Book.find(searchParams,
+      function (err, books) {
+        var sortedItems = _.sortBy(books, 'title');
+        if (err) {
+          console.log(err);
+          return res.status(500).json(err);
+        } else {
+          console.log(books);
+          res.status(200).send(sortedItems);
         }
-      );
-    }
+      }
+    );
   });
 
 

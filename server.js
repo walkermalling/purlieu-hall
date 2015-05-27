@@ -43,6 +43,7 @@ require('./routes/calendar-routes')(app);
 require('./routes/frontpage-cms-routes')(app, jwtauth.auth);
 require('./routes/dtosaua-section-routes')(app, jwtauth.auth);
 require('./routes/dtosaua-cms-routes')(app, jwtauth.auth);
+require('./routes/library-routes')(app, jwtauth.auth);
 
 // listen
 

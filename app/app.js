@@ -45,6 +45,7 @@ require('./js/account/user-management/user-management-controller')(purlieu);
 require('./js/calendar/public-calendar-controller')(purlieu);
 require('./js/calendar/private-calendar-controller')(purlieu);
 require('./js/library/library-controller')(purlieu);
+require('./js/library/library-admin-controller')(purlieu);
 require('./js/account/paypal/paypal-controller')(purlieu);
 
 /**
@@ -76,8 +77,12 @@ purlieu.config([ '$routeProvider', '$locationProvider',
         controller: 'homeController'
       })
       .when('/dtosaua', {
-        templateUrl: 'views/dtosaua.html',
+        templateUrl: 'views/dtosaua-view.html',
         controller: 'dtosauaController'
+      })
+      .when('/library/admin', {
+        templateUrl: 'js/library/library-admin-template.html',
+        controller: 'libraryAdminController'
       })
       .when('/dodo', {
         templateUrl: 'views/admin-view.html',

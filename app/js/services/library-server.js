@@ -6,12 +6,13 @@ module.exports = function(app) {
     var libraryServer = {};
 
     var libBasePublicRoute = '/api/public/library';
-    var libBaseAdminRoute = '/api/public/library';
+    var libBaseAdminRoute = '/api/admin/library';
 
     // books
     libraryServer.books = {};
 
     libraryServer.books.getAll = function () {
+      console.log('Library server, getting all books');
       return $http.get(libBasePublicRoute + '/books')
         .error(logError);
     };
@@ -41,7 +42,7 @@ module.exports = function(app) {
 
     // helpers
     function logError (data, status) {
-      console.warn(util.format('Error in Content Server Operation:\nData: %s\nStatus: %s', data, status));
+      console.warn(util.format('Error in Content Server Operation:\nData: %s\nStatus: %s', util.inspect(data), status));
     }
 
     return libraryServer;
